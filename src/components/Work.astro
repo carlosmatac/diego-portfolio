@@ -1,0 +1,134 @@
+---
+import { works } from '../data/facts';
+import type { Copy, WorkCopy } from '../i18n/en';
+
+interface Props {
+  copy: Copy;
+  /** Heading level of the section title: 1 when Work is a page of its own. */
+  level?: 1 | 2;
+}
+const { copy, level = 2 } = Astro.props;
+const Title = `h${level}` as 'h1' | 'h2';
+const c = copy.work;
+---
+
+<section class="section surface-light work" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <header class="head grid">
+      <Title class="display title" id="work-title">{c.title}</Title>
+      <p class="lede reveal">{c.lede}</p>
+    </header>
+
+    <div class="items">
+      {
+        works.map((w, i) => {
+          const t = c.items[w.id as keyof typeof c.items] as WorkCopy;
+          return (
+            <article class={`item grid pos-${i}`}>
+              <span class="rule reveal" aria-hidden="true" />
+              <p class="kind meta muted reveal">{t.kind}</p>
+              <h3 class="reveal" lang={w.id === 'china-sea' ? 'es' : undefined}>
+                {t.title}
+              </h3>
+              <div class="text reveal">
+                <p>{t.text}</p>
+                {w.link && t.linkLabel && (
+                  <p class="more">
+                    <a href={w.link} rel="noopener">
+                      {t.linkLabel}
+                    </a>
+                  </p>
+                )}
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .work {
+    padding-top: clamp(7rem, 14vw, 13rem);
+  }
+
+  .head {
+    row-gap: 1.2rem;
+    align-items: end;
+    margin-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    font-size: clamp(6rem, 25vw, 29rem);
+    letter-spacing: -0.06em;
+    line-height: 0.78;
+    margin-left: -0.04em;
+  }
+
+  .lede {
+    grid-column: 1 / -1;
+    font-size: 1.4rem;
+    color: var(--muted);
+  }
+
+  .item {
+    padding-block: clamp(2rem, 4vw, 3.5rem) clamp(3.5rem, 7vw, 7rem);
+    row-gap: 1.2rem;
+  }
+
+  .item > * {
+    grid-column: 1 / -1;
+  }
+
+  .rule {
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: clamp(1.9rem, 1rem + 3.9vw, 4.6rem);
+    letter-spacing: -0.038em;
+    line-height: 0.98;
+    font-weight: 720;
+    font-stretch: 106%;
+  }
+
+  .text {
+    display: grid;
+    gap: 1.2em;
+    max-width: 36rem;
+  }
+
+  .more {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 900px) {
+    .item .kind {
+      grid-column: var(--s) / span 5;
+    }
+
+    .item h3 {
+      grid-column: var(--s) / span 8;
+    }
+
+    .item .text {
+      grid-column: calc(var(--s) + 3) / span 5;
+    }
+
+    .pos-0 {
+      --s: 1;
+    }
+
+    .pos-1 {
+      --s: 4;
+    }
+
+    .pos-2 {
+      --s: 2;
+    }
+  }
+</style>

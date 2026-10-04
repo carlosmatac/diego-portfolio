@@ -1,0 +1,65 @@
+---
+import Admin from '../../../layouts/Admin.astro';
+import { getArticleById } from '../../../lib/db';
+
+export const prerender = false;
+const { id } = Astro.params;
+const article = id === 'new' ? null : await getArticleById(id!);
+if (id !== 'new' && !article) return Astro.redirect('/admin');
+const data = article ?? {
+  id: null,
+  status: 'draft',
+  slug: '',
+  title: '',
+  subtitle: '',
+  style: { font: 'editorial', palette: 'marble' },
+  cover: null,
+  blocks: [],
+};
+---
+
+<Admin title={article ? `Editar: ${article.title}` : 'Nuevo artículo'}>
+  <script type="application/json" id="article-data" set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />
+
+  <div id="editor" class="editor">
+    <header class="ed-bar">
+      <a class="back" href="/admin">← Artículos</a>
+      <p class="state"><span id="state" data-status="draft">Borrador</span> <span id="msg" role="status" aria-live="polite"></span></p>
+      <div id="actions" class="actions"></div>
+    </header>
+
+    <div class="ed-grid">
+      <section class="ed-main" aria-label="Contenido">
+        <label class="fld big">
+          <span>Título</span>
+          <input id="title" type="text" required maxlength="200" placeholder="Título del artículo" />
+        </label>
+        <label class="fld">
+          <span>Subtítulo (opcional)</span>
+          <input id="subtitle" type="text" maxlength="400" placeholder="Una línea que resuma el artículo" />
+        </label>
+
+        <h2 class="sec">Contenido</h2>
+        <div id="blocks"></div>
+      </section>
+
+      <aside class="ed-side" aria-label="Ajustes">
+        <h2 class="sec">Estilo</h2>
+        <div id="style"></div>
+
+        <h2 class="sec">Imagen de portada (opcional)</h2>
+        <div id="cover"></div>
+
+        <h2 class="sec">Dirección</h2>
+        <label class="fld">
+          <span>Se publicará en /blog/…</span>
+          <input id="slug" type="text" maxlength="120" />
+        </label>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    import '../../../scripts/editor';
+  </script>
+</Admin>

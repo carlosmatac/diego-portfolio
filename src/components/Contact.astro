@@ -1,0 +1,184 @@
+---
+import { animation } from '../config/animation';
+import { person } from '../data/facts';
+import type { Copy } from '../i18n/en';
+
+interface Props {
+  copy: Copy;
+}
+const { copy } = Astro.props;
+const c = copy.contact;
+const [w, h] = animation.frames.tiers.lg;
+const still = `/frames/lg/g${String(animation.staticDrawing).padStart(2, '0')}.webp`;
+const wink = '/frames/lg/wink.webp';
+---
+
+<section class="surface-dark contact" id="contact" aria-labelledby="contact-title">
+  <div class="copy">
+    <div class="top">
+      <h2 class="display title" id="contact-title">{c.title}</h2>
+      <p class="intro reveal">{c.text}</p>
+      <ul class="links">
+        <li class="reveal">
+          <span class="meta muted">{c.emailLabel}</span>
+          <a class="big" href={`mailto:${person.email}`}>{person.email}</a>
+        </li>
+        <li class="reveal" style="--d:100ms">
+          <span class="meta muted">{c.linkedinLabel}</span>
+          <a class="big" href={person.linkedin} rel="noopener">{c.linkedinText}</a>
+        </li>
+      </ul>
+    </div>
+    <p class="footer">© 2026 {c.footer}</p>
+  </div>
+
+  <figure class="sheet">
+    <div class="sketch reveal" data-wink>
+      <img class="still" src={still} width={w} height={h} alt={c.figureLabel} loading="lazy" decoding="async" />
+      <img class="wink" src={wink} width={w} height={h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+    </div>
+  </figure>
+  <script>
+    // Touch screens have no hover: a tap gives the same wink for a moment.
+    document.querySelectorAll<HTMLElement>('[data-wink]').forEach((el) => {
+      let timer: number;
+      const wink = el.querySelector<HTMLImageElement>('.wink');
+      const ready = () => el.classList.add('is-ready');
+      if (wink?.complete) ready();
+      else wink?.addEventListener('load', ready, { once: true });
+      el.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'mouse') return;
+        el.classList.add('is-winking');
+        clearTimeout(timer);
+        timer = window.setTimeout(() => el.classList.remove('is-winking'), 1100);
+      });
+    });
+  </script>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+  }
+
+  .copy {
+    display: grid;
+    gap: 4rem;
+    align-content: space-between;
+    padding: clamp(5.5rem, 13vw, 12rem) var(--gutter) 0;
+  }
+
+  .top {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: clamp(4.4rem, 17vw, 19rem);
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+    margin-left: -0.04em;
+  }
+
+  .intro {
+    max-width: 30rem;
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.8rem);
+    line-height: 1.45;
+  }
+
+  .links {
+    display: grid;
+    gap: 2.2rem;
+    margin-top: 1rem;
+  }
+
+  .links li {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .big {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 0.8rem + 2.4vw, 2.7rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    text-decoration-color: var(--line);
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  .big:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .footer {
+    padding-block: 1.6rem 2rem;
+    border-top: 1.5px solid var(--line);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--muted);
+  }
+
+  /* The sketch returns on a sheet of marble, as in the opening, bleeding to the edge. */
+  .sheet {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: clamp(3rem, 8vw, 5rem) var(--gutter) 0;
+    background: var(--marble-fixed);
+    background-attachment: fixed;
+  }
+
+  .sketch {
+    position: relative;
+    height: min(64svh, 560px);
+    aspect-ratio: 680 / 1516;
+    margin-bottom: -1px;
+  }
+
+  .sketch img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* A frame swap, not a fade: the wink should read as a drawing changing. */
+  .wink {
+    opacity: 0;
+  }
+
+  .sketch.is-ready:hover .wink,
+  .sketch.is-ready.is-winking .wink {
+    opacity: 1;
+  }
+
+  .sketch.is-ready:hover .still,
+  .sketch.is-ready.is-winking .still {
+    opacity: 0;
+  }
+
+  @media (min-width: 900px) {
+    .contact {
+      grid-template-columns: minmax(0, 1fr) clamp(320px, 36vw, 700px);
+      min-height: 100svh;
+    }
+
+    .title {
+      font-size: clamp(4.4rem, 12.6vw, 17rem);
+    }
+
+    .sheet {
+      padding: 8svh 2vw 0;
+    }
+
+    .sketch {
+      height: min(84svh, 940px);
+    }
+  }
+</style>

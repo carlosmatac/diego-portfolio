@@ -1,0 +1,258 @@
+---
+import { auge } from '../data/facts';
+import type { Copy, InitiativeCopy } from '../i18n/en';
+import { formatDate } from '../i18n/format';
+
+interface Props {
+  copy: Copy;
+}
+const { copy } = Astro.props;
+const c = copy.auge;
+---
+
+<section class="section surface-dark auge" id="auge" aria-labelledby="auge-title">
+  <div class="wrap">
+    <header>
+      <h2 class="display mark" id="auge-title">{c.title}</h2>
+      <p class="fullname reveal">
+        <span class="name" lang="es">{auge.name}</span>
+        <span class="muted">{c.fullNameNote}</span>
+      </p>
+    </header>
+
+    <div class="grid story">
+      <div class="purpose reveal">
+        <h3>{c.purposeTitle}</h3>
+        {c.purpose.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="side">
+        <div class="block reveal">
+          <h3>{c.roleTitle}</h3>
+          <ul>
+            {c.role.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+        <div class="block reveal">
+          <h3>{c.formatTitle}</h3>
+          <ul>
+            {c.format.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sessions">
+      <h3 class="reveal">{c.initiativesTitle}</h3>
+      <ol>
+        {
+          auge.initiatives.map((it) => {
+            const t = c.initiatives[it.id as keyof typeof c.initiatives] as InitiativeCopy;
+            return (
+              <li class="session reveal">
+                <span class="rule" aria-hidden="true" />
+                <time class="when meta" datetime={it.date}>
+                  {formatDate(it.date, copy)}
+                </time>
+                <h4 class="what">{it.link ? <a href={it.link} rel="noopener">{t.title}</a> : t.title}</h4>
+                {t.note && <p class="note muted">{t.note}</p>}
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+
+    <div class="grid outcome">
+      <h3 class="reveal">{c.outcomeTitle}</h3>
+      <div class="outcome-text">
+        {c.outcome.map((p) => <p class="reveal">{p}</p>)}
+        <p class="links reveal">
+          <a href={auge.media} rel="noopener">{c.links.media}</a>
+          <a href={auge.instagram} rel="noopener">{c.links.instagram}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mark {
+    font-size: min(24vw, 30rem);
+    font-stretch: 125%;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.76;
+    margin-left: -0.05em;
+  }
+
+  .fullname {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.2rem, 1rem + 0.9vw, 1.75rem);
+    line-height: 1.25;
+  }
+
+  .fullname .muted {
+    font-weight: 500;
+    font-size: 1.0625rem;
+  }
+
+  h3 {
+    font-size: clamp(1.45rem, 1.2rem + 0.7vw, 1.9rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .story {
+    margin-top: clamp(4rem, 9vw, 8rem);
+    row-gap: 3.5rem;
+  }
+
+  .purpose {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1.2em;
+    align-content: start;
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.85rem);
+    line-height: 1.5;
+  }
+
+  .purpose h3 {
+    margin-bottom: 0.2rem;
+  }
+
+  .side {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 3rem;
+    align-content: start;
+  }
+
+  .block ul {
+    display: grid;
+  }
+
+  .block li {
+    padding-block: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .sessions {
+    margin-top: clamp(5rem, 11vw, 11rem);
+  }
+
+  .sessions > h3 {
+    margin-bottom: 2rem;
+  }
+
+  .session {
+    position: relative;
+    display: grid;
+    column-gap: var(--col-gap);
+    padding-block: 1.6rem 2.2rem;
+  }
+
+  .session .rule {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1.5px;
+    background: var(--line);
+  }
+
+  .when {
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .what {
+    font-size: clamp(1.45rem, 1.1rem + 1.5vw, 2.5rem);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    font-weight: 650;
+  }
+
+  .what a {
+    text-decoration-color: var(--line);
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  .what a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .note {
+    margin-top: 0.8rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 34rem;
+  }
+
+  .outcome {
+    margin-top: clamp(5rem, 11vw, 11rem);
+    row-gap: 1.2rem;
+  }
+
+  .outcome h3 {
+    grid-column: 1 / -1;
+  }
+
+  .outcome-text {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1.4em;
+    max-width: 40rem;
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  @media (min-width: 900px) {
+    .purpose {
+      grid-column: 1 / span 6;
+    }
+
+    .side {
+      grid-column: 8 / span 5;
+    }
+
+    .session {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .when {
+      grid-column: 1 / span 2;
+      padding-top: 0.55rem;
+      margin-bottom: 0;
+    }
+
+    .what {
+      grid-column: 3 / span 6;
+    }
+
+    .note {
+      grid-column: 9 / span 4;
+      margin-top: 0.45rem;
+    }
+
+    .outcome h3 {
+      grid-column: 1 / span 3;
+    }
+
+    .outcome-text {
+      grid-column: 4 / span 7;
+    }
+  }
+</style>

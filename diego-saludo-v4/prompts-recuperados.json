@@ -1,0 +1,151 @@
+{
+  "tool": "ImageGen integrado",
+  "note": "Prompts originales conservados durante la generación; las especificaciones de las fases están en plan.json.",
+  "common": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. ",
+  "prompts": [
+    {
+      "frame": "01",
+      "ref": "v3/paso-01a",
+      "prompt": "Use case identity-preserve / animation keyframe. Edit the supplied rough pencil Diego walking drawing to the standing REST POSE for a new greeting animation. Same Diego identity, face, dark wavy hair, eyebrows, moustache, small chin beard, slim body, suit shirt tie and dress shoes. Same quick rough graphite sketch with many overlapping imperfect searching lines, visible abandoned light strokes and sparse scratch hatching. 1024x1536 pure white canvas. Full body same framing, hair at y25, shoes at y1470 approximately. CHANGE POSE: stop walking. Both feet rest naturally on the same ground level, a comfortable small distance apart: viewer-left shoe centered x425, viewer-right shoe centered x590. Knees softly relaxed, weight a little on his right leg viewer-left. Both arms hanging loosely at sides, hands OUT of pockets, right hand viewer-left centered around x290,y850, left hand viewer-right x715,y850. Shoulders relaxed. He looks toward the viewer with a restrained friendly CLOSED-MOUTH smile, lips lightly curved, cheeks relaxed, not big grin. Keep same recognizable facial features, no surprise, no theatrical acting. Redraw all lines as a loose animator pencil rough with multiple exploratory contours, including hair and face; do not clean up. One single figure; no text, no props, no ground line, no shadow. This is a different body pose from the reference, both feet must be planted, NOT mid-stride."
+    },
+    {
+      "frame": "25",
+      "ref": "24",
+      "prompt": "undefinedKeep the same folded arms pose exactly. Let the smile soften: lips almost meet, only the smallest sliver of teeth remains, cheeks still pleasantly lifted. Chin lowers 2px with a natural exhale. Draw new slightly displaced pencil marks all over hair, brows, jacket, forearms, trousers and shoes. Same overall contrast, no pose drift."
+    },
+    {
+      "frame": "27",
+      "ref": "24",
+      "prompt": "undefinedSame folded arms pose. A natural complete blink, BOTH EYES CLOSED softly, curved relaxed eyelids. He remains warmly smiling with upper teeth subtly visible, cheeks lifted, eyebrows relaxed. This is a blink, NOT a change to an exaggerated laughing face. Head remains nearly frontal. Fresh exploratory pencil tracing throughout body and hair."
+    },
+    {
+      "frame": "26",
+      "ref": "24",
+      "prompt": "undefinedSame folded arms pose. First half of a natural blink: upper eyelids descend halfway, eyes half closed but NOT angry; eyebrows remain relaxed and cheeks smiling. Mouth smile stays like reference, upper teeth visible modestly. Keep head frontal and feet fixed. Redraw rough pencil contours everywhere with small fresh variation."
+    },
+    {
+      "frame": "28",
+      "ref": "24",
+      "prompt": "undefinedSame folded arms pose. Eyes have just reopened after blink: bright relaxed eyes looking toward viewer. Smile gently broadens at corners by only a few pixels, revealing a thin strip of upper teeth. Head tips just 1 degree toward his left, friendly small movement. Add tiny natural breath expansion of upper chest, 3px maximum, fresh rough multi-stroke contours throughout."
+    },
+    {
+      "frame": "19",
+      "refs": [
+        "18",
+        "20"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  The two references are START and END animation poses of the same man. Produce ONE in-between frame, not a side-by-side layout. Draw the body pose HALFWAY between reference 1 (arms at sides) and reference 2 (hands in front of belt). Both elbows bend just 25 degrees. Hands move toward front of hips, still well separated around x345,y760 and x660,y750. Relaxed smile slightly larger than reference1. This is a SMALL preparatory movement before crossing arms, not already crossed."
+    },
+    {
+      "frame": "21",
+      "refs": [
+        "20",
+        "24"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  The two references are START and END animation poses of the same man. Produce ONE in-between frame, not a side-by-side layout. Draw 25% of the way from reference 1 to reference 2: his RIGHT forearm from viewer-left starts travelling diagonally across abdomen, right hand now at x540,y550 approaching opposite bicep but not touching yet. LEFT forearm lifts beneath it, left hand near x435,y610. Both hands visible and separated, arms only BEGIN to overlap near middle. Do not jump straight to final crossed pose. Smile is still mostly closed-lip, beginning to part."
+    },
+    {
+      "frame": "23",
+      "refs": [
+        "20",
+        "24"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  The two references are START and END animation poses of the same man. Produce ONE in-between frame, not a side-by-side layout. Draw 85% toward reference2 folded pose: right palm gently makes first contact with left upper arm, fingers not fully settled, right forearm almost horizontal. Left forearm tucks under, left fingertips barely visible near right elbow. Elbows 8px lower and slightly wider than final pose, shoulders about to settle. Warm small tooth-showing smile, eyes open and soft."
+    },
+    {
+      "frame": "22",
+      "refs": [
+        "20",
+        "24"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  The two references are START and END animation poses of the same man. Produce ONE in-between frame, not a side-by-side layout. Draw halfway between references 1 and 2: right forearm diagonally across chest, right hand at x610,y485 still approaching left upper arm; left forearm crosses UNDER right, left hand at x365,y555 moving under right upper arm but still partly visible. Arms partially crossed, elbows still slightly low and away from body. Smile shows just a small sliver of upper teeth. Keep anatomical single pair of arms/hands."
+    },
+    {
+      "frame": "02",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Exact resting pose, arms loose at sides, feet same. Fresh alternate tracing for LINE BOIL: replace all pencil marks with new broken retraced graphite lines displaced roughly 2-4px. Slight inhale raises both shoulders 3px and tie shifts 2px. Lips remain softly closed, one smile corner lifts subtly, eyes attentive. Maintain same ink density and face geometry."
+    },
+    {
+      "frame": "03",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Same relaxed resting pose. BOTH EYES CLOSED in a brief natural blink, soft curved eyelids, eyebrows relaxed. Keep the same subtle closed-mouth smile and upright head. All body and face pencil marks freshly redrawn with imperfect overlapping contours. No other dramatic expression change."
+    },
+    {
+      "frame": "04",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Eyes reopen after blink. Anticipation before a greeting: right shoulder viewer-left rises just 4px, right hand moves only 35px away from thigh and 30px upward, elbow barely begins to bend. Friendly closed-mouth smile increases a little. Keep head upright and nearly frontal. Full body redrawn with scratchy searching pencil contours."
+    },
+    {
+      "frame": "40",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Exact same neutral resting pose and restrained closed-mouth smile as reference, eyes open facing viewer; this frame closes an animation loop into that reference. Preserve feet/hips/head/hand placement within 2px. Make an independent quick pencil retracing of the WHOLE character: different stroke starts, broken lines and faint abandoned contours, subtle 2-3px roughness including hair, face, sleeves and trousers. Same contrast. No extra movement, no expression drift."
+    },
+    {
+      "frame": "35",
+      "refs": [
+        "20",
+        "18"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  Two references provide beginning and end of arm-lowering motion. Draw ONE specified intermediate. LOWERING BOTH ARMS late phase: only 25% away from final rest pose reference2. Elbows slightly bent 20 degrees, relaxed hands x315,y795 and x690,y790, fingers down. Sleeves and jacket hem settle naturally. Head upright, pleasant subtle closed-lip smile, eyes toward viewer. Draw all rough pencil strokes anew."
+    },
+    {
+      "frame": "33",
+      "refs": [
+        "20",
+        "18"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  Two references provide beginning and end of arm-lowering motion. Draw ONE specified intermediate. UNCROSSING, hands now fully separated in front of LOWER CHEST/upper abdomen, right hand viewer-left at x420,y605 and left hand viewer-right at x595,y605. Palms face inward toward body and fingers relaxed; both forearms slope inward from elbows near waist. No arms crossed or hands touching. Smile softly closed, calm alert eyes. This is a pose slightly HIGHER than reference1 hands by belt."
+    },
+    {
+      "frame": "36",
+      "refs": [
+        "18"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Almost fully at rest: hands are just 20px above and 10px in front of final resting positions in reference, elbows barely bent. Both shoulders finish settling from uncrossing, small exhale. Smile remains gentle and closed-mouth, cheeks a touch raised. New loose graphite retracing on every area, tiny natural line-boil variation. Same planted feet and face identity."
+    },
+    {
+      "frame": "34",
+      "refs": [
+        "20",
+        "18"
+      ],
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping.  Two references provide beginning and end of arm-lowering motion. Draw ONE specified intermediate. LOWERING BOTH ARMS: halfway between reference1 hands at belt and reference2 arms down. Hands move outward/down, right hand center x360,y725 and left hand x655,y715. Elbows still bent about 40 degrees. Fingers point diagonally down, hands relaxed, palms inward. Soft closed-mouth smile becoming restrained, slight shoulder relaxation. Keep feet fixed."
+    },
+    {
+      "frame": "38",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Same resting pose, both arms down and feet fixed. Both eyelids are halfway lowered in a brief natural blink, neither frowning nor sleepy. Small closed-mouth smile unchanged. New imperfect multi-stroke graphite contours on the whole character. Keep the exact likeness and framing.",
+      "revision": 1
+    },
+    {
+      "frame": "39",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Same relaxed standing pose, eyes fully open after blink, restrained closed-mouth smile. Just a 1 degree head tip toward his right, subtle life in the gaze, shoulders neutral. Fresh alternate hand-drawn rough pencil tracing throughout hair, face, torso, legs and shoes. Same density, small contour changes.",
+      "revision": 1
+    },
+    {
+      "frame": "37",
+      "ref": "18",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Return to relaxed standing, both arms down like reference. Smile is gently closed-mouth and slightly less broad, cheeks relaxed, eyes engaged with viewer. Head settles upright. Light exhale lowers shoulders 2px. Fresh rough pencil drawing throughout, tiny changes to searching contours but same pose.",
+      "revision": 1
+    },
+    {
+      "frame": "32",
+      "ref": "21",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Use this white-background sketch as the pose reference for uncrossing the arms. Right forearm is diagonally across upper abdomen, right hand near x550,y565; left forearm lowers outward, left hand near x405,y615. Neither hand touches upper arms now; both hands visible, elbows relaxed. Gently closed smile, eyes forward. Different fresh graphite strokes throughout. White background MUST remain flat pure WHITE RGB255 everywhere outside character. NO black background, NO grey gradient, NO vignette, NO glow; clothes stay white with rough pencil lines.",
+      "revision": 2
+    },
+    {
+      "frame": "02",
+      "ref": "01",
+      "prompt": "Use case: identity-preserve. One full-body animation frame of Diego, 1024x1536 pure white. Reference is exact identity, scale, camera, suit and rough graphite sketch style. Keep his distinctive face, tousled dark hair, thick eyebrows, moustache, small goatee and slim proportions. Full figure in exactly same placement: hair around y25, shoes around y1470; feet planted as reference, no stepping. Vary every pencil stroke slightly: 2-4 imperfect searching and retraced contours, broken graphite lines, light abandoned marks and sparse scribbly hatching on clothes and hair. Preserve the lively unfinished sketch, including rough face lines. Natural professional demeanor, friendly warmth, never exaggerated or comic. Do not clean up to ink. No text, extra objects, shadows, extra limbs or cropping. Same exact relaxed standing pose, eyes open, subtle friendly closed-mouth smile, tiny inhale lifting shoulders 2px. Make a fresh rough graphite tracing, changing the positions and starts of pencil strokes by 2-3px over the whole figure. Very small variation only. Background MUST remain flat pure WHITE RGB255 everywhere outside the character. NO black background, NO grey gradient, NO vignette, NO glow. Interior of clothes remains white with graphite outlines.",
+      "revision": 2
+    },
+    {
+      "frame": "02",
+      "ref": "40",
+      "revision": 3,
+      "prompt": "Create a second animator's rough pencil tracing of the supplied full-body sketch. Retain the same man, facial likeness, relaxed standing pose, gentle closed-mouth smile, suit and head-to-toe framing. The canvas is bright blank WHITE PAPER from edge to edge, and the suit interior is white paper as well. Graphite strokes only. Redraw the contours with small independent variations: overlapping searching pencil lines at sleeves, lapels, trousers, hair and shoes. Tiny relaxed inhale in shoulders. Keep contrast and pencil density very close to the reference. Output one portrait 1024x1536 image."
+    }
+  ]
+}

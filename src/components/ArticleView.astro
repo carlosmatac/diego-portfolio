@@ -1,0 +1,358 @@
+---
+import { paragraphs, readingMinutes, renderInline } from '../lib/article-format';
+import type { Article } from '../lib/article-types';
+import type { Copy } from '../i18n/en';
+import { formatDate } from '../i18n/format';
+
+interface Props {
+  article: Pick<Article, 'title' | 'subtitle' | 'style' | 'cover' | 'blocks' | 'publishedAt'>;
+  copy: Copy;
+  preview?: boolean;
+}
+const { article, copy, preview = false } = Astro.props;
+const surface = { marble: 'surface-light', charcoal: 'surface-dark', stone: 'surface-stone' }[article.style.palette];
+const minutes = readingMinutes(article);
+const date = article.publishedAt ? formatDate(article.publishedAt.slice(0, 10), copy) : null;
+---
+
+<article class:list={['article', surface]} data-font={article.style.font} data-palette={article.style.palette}>
+  <header class="top">
+    <a class="back" href="/blog">{copy.blog.back}</a>
+    <p class="meta muted">
+      {preview && !date ? 'Borrador' : date ? `${copy.blog.published} ${date}` : ''}
+      {(date || preview) && ' · '}
+      {minutes} {copy.blog.minutes}
+    </p>
+    <h1 class="title">{article.title}</h1>
+    {article.subtitle && <p class="subtitle">{article.subtitle}</p>}
+  </header>
+
+  {
+    article.cover && (
+      <figure class="cover">
+        <img src={article.cover.src} alt={article.cover.alt} />
+      </figure>
+    )
+  }
+
+  <div class="body">
+    {
+      article.blocks.map((b) => {
+        switch (b.type) {
+          case 'heading':
+            return b.level === 3 ? <h3 class="h3">{b.text}</h3> : <h2 class="h2">{b.text}</h2>;
+          case 'text':
+            return paragraphs(b.text).map((p) => <p class="p" set:html={renderInline(p)} />);
+          case 'list': {
+            const Tag = b.ordered ? 'ol' : 'ul';
+            return (
+              <Tag class:list={['list', b.ordered ? 'ordered' : 'bullets']}>
+                {b.items.map((i) => (
+                  <li set:html={renderInline(i)} />
+                ))}
+              </Tag>
+            );
+          }
+          case 'quote':
+            return (
+              <blockquote class="quote">
+                <p set:html={renderInline(b.text)} />
+                {b.cite && <footer>{b.cite}</footer>}
+              </blockquote>
+            );
+          case 'image':
+            return b.src ? (
+              <figure class={`img size-${b.size}`}>
+                <img src={b.src} alt={b.alt} loading="lazy" decoding="async" />
+                {b.caption && <figcaption set:html={renderInline(b.caption)} />}
+              </figure>
+            ) : null;
+          case 'images': {
+            const imgs = b.images.filter((i) => i.src);
+            return imgs.length ? (
+              <figure class={`imgs count-${imgs.length}`}>
+                <div class="row">
+                  {imgs.map((i) => (
+                    <img src={i.src} alt={i.alt} loading="lazy" decoding="async" />
+                  ))}
+                </div>
+                {b.caption && <figcaption set:html={renderInline(b.caption)} />}
+              </figure>
+            ) : null;
+          }
+          case 'callout':
+            return (
+              <aside class="callout">
+                {b.title && <h3>{b.title}</h3>}
+                {paragraphs(b.text).map((p) => (
+                  <p set:html={renderInline(p)} />
+                ))}
+              </aside>
+            );
+          case 'references':
+            return b.items.length ? (
+              <section class="refs" aria-label={b.title}>
+                <h2>{b.title}</h2>
+                <ol>
+                  {b.items.map((r) => (
+                    <li>
+                      <span class="label">{r.label}</span>
+                      {(r.source || r.year) && <span class="where">{[r.source, r.year].filter(Boolean).join(', ')}</span>}
+                      {r.url && (
+                        <a href={r.url} rel="noopener noreferrer" target="_blank">
+                          {r.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            ) : null;
+          case 'divider':
+            return <hr class="divider" />;
+        }
+      })
+    }
+  </div>
+</article>
+
+<style is:global>
+  .article {
+    position: relative;
+    min-height: 100svh;
+    padding: clamp(7rem, 12vw, 11rem) var(--gutter) clamp(5rem, 9vw, 8rem);
+  }
+
+  .article .top {
+    max-width: var(--max);
+    margin-inline: auto;
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .article .back {
+    justify-self: start;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    padding-block: 0.4rem;
+  }
+
+  .article .meta {
+    font-family: var(--font-display);
+  }
+
+  .article .title {
+    font-family: var(--a-title-font);
+    font-weight: var(--a-title-weight);
+    font-stretch: var(--a-title-stretch);
+    letter-spacing: var(--a-title-track);
+    font-size: clamp(2.2rem, 8vw, 8.6rem);
+    line-height: 0.95;
+    max-width: 18ch;
+    overflow-wrap: break-word;
+  }
+
+  .article .subtitle {
+    max-width: 36rem;
+    font-family: var(--a-body-font);
+    font-size: clamp(1.35rem, 1.1rem + 1vw, 2rem);
+    line-height: 1.35;
+    color: var(--muted);
+  }
+
+  .article .cover {
+    max-width: var(--max);
+    margin: clamp(2.5rem, 5vw, 4.5rem) auto 0;
+  }
+
+  .article .cover img {
+    width: 100%;
+    max-height: 78svh;
+    object-fit: cover;
+  }
+
+  .article .body {
+    max-width: var(--max);
+    margin: clamp(3rem, 6vw, 5.5rem) auto 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: var(--col-gap);
+    font-family: var(--a-body-font);
+    font-size: var(--a-body-size);
+    font-weight: var(--a-body-weight);
+    line-height: var(--a-body-lh);
+  }
+
+  .article .body > * {
+    grid-column: 1 / -1;
+  }
+
+  .article .body > * + * {
+    margin-top: 1.35em;
+  }
+
+  .article .body a {
+    text-decoration-thickness: 1.5px;
+  }
+
+  .article .h2,
+  .article .h3,
+  .article .refs h2,
+  .article .callout h3 {
+    font-family: var(--a-title-font);
+    font-weight: var(--a-title-weight);
+    font-stretch: var(--a-title-stretch);
+    letter-spacing: var(--a-title-track);
+    line-height: 1.04;
+  }
+
+  .article .h2 {
+    margin-top: 2.2em;
+    font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3.2rem);
+  }
+
+  .article .h3 {
+    margin-top: 1.8em;
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  }
+
+  .article .h2 + *,
+  .article .h3 + * {
+    margin-top: 0.8em;
+  }
+
+  .article .list {
+    padding-left: 1.3em;
+    display: grid;
+    gap: 0.5em;
+  }
+
+  .article .bullets {
+    list-style: square;
+  }
+
+  .article .ordered {
+    list-style: decimal;
+  }
+
+  .article .quote {
+    margin-block: 2.2em;
+    padding-left: clamp(1rem, 2vw, 1.8rem);
+    border-left: 3px solid currentColor;
+  }
+
+  .article .quote p {
+    font-family: var(--a-title-font);
+    font-weight: calc(var(--a-title-weight) - 120);
+    font-stretch: var(--a-title-stretch);
+    letter-spacing: -0.03em;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.9rem);
+    line-height: 1.12;
+  }
+
+  .article .quote footer {
+    margin-top: 0.9em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    color: var(--muted);
+  }
+
+  .article .callout {
+    padding: 1.4em 0 1.4em clamp(1rem, 2vw, 1.8rem);
+    border-left: 3px solid var(--line);
+    display: grid;
+    gap: 0.7em;
+  }
+
+  .article .callout h3 {
+    font-size: 1.35rem;
+  }
+
+  .article figure img {
+    width: 100%;
+    height: auto;
+  }
+
+  .article figcaption {
+    margin-top: 0.7em;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .article .imgs .row {
+    display: grid;
+    gap: var(--col-gap);
+    grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .article .imgs.count-1 .row {
+    --n: 1;
+  }
+  .article .imgs.count-3 .row {
+    --n: 3;
+  }
+
+  .article .refs {
+    margin-top: 3em;
+    padding-top: 1.4em;
+    border-top: 1.5px solid var(--line);
+  }
+
+  .article .refs h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.8em;
+  }
+
+  .article .refs ol {
+    list-style: decimal;
+    padding-left: 1.6em;
+    display: grid;
+    gap: 0.9em;
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  .article .refs .label {
+    font-weight: 600;
+  }
+
+  .article .refs .where,
+  .article .refs a {
+    display: block;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+
+  .article .divider {
+    width: 4rem;
+    height: 3px;
+    border: 0;
+    margin-block: 2.6em;
+    background: currentColor;
+    opacity: 0.55;
+  }
+
+  @media (min-width: 900px) {
+    .article .body > * {
+      grid-column: 4 / span 6;
+    }
+
+    .article .body > .img.size-wide,
+    .article .body > .imgs {
+      grid-column: 2 / span 10;
+    }
+
+    .article .body > .img.size-full {
+      grid-column: 1 / -1;
+    }
+
+    .article .body > .quote {
+      grid-column: 3 / span 8;
+    }
+  }
+</style>

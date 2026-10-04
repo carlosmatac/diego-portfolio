@@ -1,0 +1,32 @@
+{
+  "name": "diego-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "check": "astro check",
+    "frames": "python3 scripts/build-frames.py"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/vercel": "^11.0.11",
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.0",
+    "astro": "^7.3.5",
+    "typescript": "5.9"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "overrides": {
+    "path-to-regexp": "6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5"
+  }
+}

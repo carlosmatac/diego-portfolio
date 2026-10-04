@@ -1,0 +1,17 @@
+{
+  "objective": "Saludo tranquilo seguido de brazos cruzados y sonrisa, con expresión facial variable y line boil; cierre al reposo inicial.",
+  "uniqueFrames": 40,
+  "canvas": [1024, 1536],
+  "fps": 10,
+  "phases": {
+    "01-04": "reposo, respiración, parpadeo y anticipación",
+    "05-08": "subida gradual del brazo derecho",
+    "09-14": "saludo con muñeca y sonrisa",
+    "15-18": "baja el brazo y se acomoda",
+    "19-24": "cruce gradual de brazos",
+    "25-30": "sonrisa, parpadeo y respiración con brazos cruzados",
+    "31-36": "descruza y baja los brazos",
+    "37-40": "reposo, parpadeo y cierre"
+  },
+  "notes": "Mantener encuadre y apoyos; pequeñas variaciones de lápiz en todo el cuerpo. Expresiones contenidas, sin sorpresa ni giros bruscos. Generar imágenes con ImageGen integrado y montar sin deformaciones artificiales."
+}

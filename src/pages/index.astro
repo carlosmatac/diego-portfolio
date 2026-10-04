@@ -1,0 +1,26 @@
+---
+import Auge from '../components/Auge.astro';
+import Contact from '../components/Contact.astro';
+import Hero from '../components/Hero.astro';
+import Header from '../components/Header.astro';
+import Path from '../components/Path.astro';
+import Profile from '../components/Profile.astro';
+import Base from '../layouts/Base.astro';
+import { en as copy } from '../i18n/en';
+---
+
+<Base lang={copy.lang} title={copy.meta.title} description={copy.meta.description} home>
+  <a class="skip-link" href="#profile">{copy.skip}</a>
+  <Header copy={copy} home />
+  <main id="content">
+    <Hero copy={copy} />
+    <Profile copy={copy} />
+    <Path copy={copy} />
+    <Auge copy={copy} />
+    <Contact copy={copy} />
+  </main>
+  <script>
+    import '../scripts/hero';
+    import '../scripts/page';
+  </script>
+</Base>

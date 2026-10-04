@@ -1,0 +1,35 @@
+---
+import ArticleView from '../../components/ArticleView.astro';
+import Header from '../../components/Header.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Base from '../../layouts/Base.astro';
+import { en as copy } from '../../i18n/en';
+import { describe } from '../../lib/article-format';
+import type { Article } from '../../lib/article-types';
+import { getPublishedBySlug } from '../../lib/db';
+
+export const prerender = false;
+
+let article: Article | null = null;
+try {
+  article = await getPublishedBySlug(Astro.params.slug!);
+} catch (e) {
+  console.error('article load failed', e);
+  return new Response('Temporarily unavailable', { status: 503, headers: { 'Cache-Control': 'no-store', 'Retry-After': '10' } });
+}
+if (!article) return new Response('Not found', { status: 404 });
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=600');
+const img = article.cover?.src ?? article.blocks.find((b) => b.type === 'image')?.src;
+---
+
+<Base lang={copy.lang} title={`${article.title} | Diego Prados Jódar`} description={describe(article)} image={img}>
+  <a class="skip-link" href="#content">{copy.skip}</a>
+  <Header copy={copy} current="blog" />
+  <main id="content" tabindex="-1">
+    <ArticleView article={article} copy={copy} />
+  </main>
+  <SiteFooter copy={copy} />
+  <script>
+    import '../../scripts/page';
+  </script>
+</Base>

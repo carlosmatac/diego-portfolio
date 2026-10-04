@@ -1,0 +1,20 @@
+---
+import Admin from '../../layouts/Admin.astro';
+
+export const prerender = false;
+const error = Astro.url.searchParams.has('error');
+---
+
+<Admin title="Acceso">
+  <section class="login">
+    <h1 class="display">Backoffice</h1>
+    <form method="post" action="/api/admin/login">
+      <label class="fld">
+        <span>Contraseña</span>
+        <input type="password" name="password" autocomplete="current-password" required autofocus />
+      </label>
+      {error && <p class="form-error" role="alert">Contraseña incorrecta.</p>}
+      <button class="btn btn-solid" type="submit">Entrar</button>
+    </form>
+  </section>
+</Admin>

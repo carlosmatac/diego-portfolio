@@ -1,0 +1,19 @@
+---
+import Header from '../components/Header.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Work from '../components/Work.astro';
+import Base from '../layouts/Base.astro';
+import { en as copy } from '../i18n/en';
+---
+
+<Base lang={copy.lang} title={copy.work.pageTitle} description={copy.work.pageDescription}>
+  <a class="skip-link" href="#content">{copy.skip}</a>
+  <Header copy={copy} current="work" />
+  <main id="content" tabindex="-1">
+    <Work copy={copy} level={1} />
+  </main>
+  <SiteFooter copy={copy} />
+  <script>
+    import '../scripts/page';
+  </script>
+</Base>

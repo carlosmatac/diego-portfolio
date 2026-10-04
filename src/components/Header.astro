@@ -1,0 +1,297 @@
+---
+import type { Copy } from '../i18n/en';
+
+interface Props {
+  copy: Copy;
+  home?: boolean;
+  current?: string;
+}
+const { copy, home = false, current } = Astro.props;
+const h = copy.header;
+---
+
+<header class="site-header" data-header data-home={home ? '' : undefined} data-theme="light" data-state={home ? 'big' : 'docked'}>
+  <a class="brand" href="/" aria-label={h.home} aria-current={current === 'home' ? 'page' : undefined}>
+    <span class="brand-inner" data-brand-inner aria-hidden="true">
+      <span class="b-row" data-row>
+        <span class="b-diego"><span class="rise">Diego</span></span>
+        <span class="b-mask b-mask-2"><span class="b-prados p2"><span class="rise">Prados</span></span></span>
+      </span>
+      <span class="b-mask b-mask-1"><span class="b-prados p1"><span class="rise">Prados</span></span></span>
+    </span>
+  </a>
+
+  <nav class="site-nav" aria-label={h.label} data-nav>
+    {
+      home && (
+        <ul class="anchors">
+          {h.anchors.map((a) => (
+            <li>
+              <a href={`/#${a.id}`} data-nav-link={a.id}>
+                {a.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    <ul class="pages">
+      {
+        h.pages.map((p) => (
+          <li>
+            <a href={p.href} aria-current={current === p.id ? 'page' : undefined}>
+              {p.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  import '../scripts/header';
+</script>
+
+<style>
+  .site-header {
+    --hfg: var(--charcoal);
+    position: fixed;
+    z-index: 60;
+    inset: 0 0 auto 0;
+    height: var(--header-h);
+    padding-inline: var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--hfg);
+    transition: color 0.35s ease;
+  }
+
+  .site-header[data-theme='dark'] {
+    --hfg: var(--marble);
+    --hbg: var(--charcoal);
+  }
+
+  .site-header[data-theme='stone'] {
+    --hbg: #d9d5cd;
+  }
+
+  /* Two backdrop layers: the fixed marble and a solid colour; theme decides which one shows. */
+  .site-header::before,
+  .site-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+    transition: opacity 0.3s ease;
+  }
+
+  .site-header::before {
+    background: var(--marble-fixed);
+    background-attachment: fixed;
+    opacity: calc(var(--bg-alpha, 1));
+  }
+
+  .site-header::after {
+    background: var(--hbg, var(--charcoal));
+    opacity: 0;
+  }
+
+  .site-header[data-theme='dark']::after,
+  .site-header[data-theme='stone']::after {
+    opacity: var(--bg-alpha, 1);
+  }
+
+  .site-header[data-theme='dark']::before,
+  .site-header[data-theme='stone']::before {
+    opacity: 0;
+  }
+
+  /* ---- brand ---- */
+  .brand {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .brand-inner {
+    position: absolute;
+    left: var(--gutter);
+    top: 0;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    transform-origin: 0 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 112%;
+    font-size: var(--brand-final);
+    line-height: 0.84;
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+  }
+
+  :global(html[data-brand='big']) .brand-inner {
+    left: 0;
+    height: auto;
+    display: block;
+    font-size: var(--name-size);
+    transform: translate(var(--gutter), calc(100svh - var(--name-b) - var(--stack-lines) * var(--name-size)));
+  }
+
+  .b-row {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .b-diego,
+  .b-mask-2 {
+    display: block;
+    overflow: hidden;
+    padding-block: 0.12em 0.22em;
+    margin-block: -0.12em -0.22em;
+    padding-inline: 0.02em;
+    margin-inline: -0.02em;
+  }
+
+  .b-mask-2 {
+    margin-left: 0.2em;
+  }
+
+  .b-prados,
+  .rise {
+    display: block;
+  }
+
+  /* Prados below Diego (large state only): clipped at its own top edge so it tucks under Diego. */
+  .b-mask-1 {
+    display: none;
+  }
+
+  :global(html[data-brand='big']) .b-mask-1 {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    line-height: inherit;
+    height: 0.84em;
+    clip-path: inset(-0.07em -1em -0.4em -1em);
+  }
+
+  .p1 {
+    transform: translateY(calc(var(--u, 0) * -135%));
+  }
+
+  /* Prados to the right of Diego: hidden behind Diego's edge until the brand has docked. */
+  .p2 {
+    transform: translateX(-120%);
+    transition: transform 0.4s cubic-bezier(0.5, 0, 0.9, 0.4);
+  }
+
+  [data-state='docked'] .p2 {
+    transform: none;
+    transition: transform 0.9s cubic-bezier(0.12, 1, 0.3, 1);
+  }
+
+  /* Large single-line state on compact screens: Prados sits beside Diego until the scroll starts. */
+  @media (max-width: 760px), (max-aspect-ratio: 4/5) {
+    :global(html[data-brand='big']) [data-state='big'] .p2 {
+      transform: none;
+    }
+
+    :global(html[data-brand='big']) .b-mask-1 {
+      display: none;
+    }
+  }
+
+  :global(html[data-brand='big']) .b-row {
+    gap: 0;
+  }
+
+  /* intro: letters rise into place once the figure is close */
+  :global(html[data-intro]:not([data-name-state='in'])) .rise {
+    transform: translateY(150%);
+  }
+
+  .rise {
+    transition: transform 1.2s var(--ease-out);
+  }
+
+  .p2 .rise,
+  .p1 .rise {
+    transition-delay: 0.15s;
+  }
+
+  /* ---- navigation ---- */
+  .site-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 3vw, 3.2rem);
+    margin-right: -12px;
+    opacity: var(--nav-alpha, 1);
+    transition: opacity 0.4s ease;
+  }
+
+  .site-nav:not(:focus-within)[data-hidden] {
+    pointer-events: none;
+  }
+
+  ul {
+    display: flex;
+    gap: clamp(0px, 1.2vw, 18px);
+  }
+
+  .anchors {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .anchors {
+      display: flex;
+    }
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 13px 12px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .site-nav a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin-top: 6px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .site-nav a:hover::after,
+  .site-nav a[aria-current]::after {
+    transform: scaleX(1);
+  }
+
+  .site-nav:focus-within {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .p2,
+    [data-state='docked'] .p2,
+    .rise {
+      transition: none;
+    }
+  }
+</style>

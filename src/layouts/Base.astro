@@ -1,0 +1,51 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/source-serif-4/wght.css';
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import serifLatin from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2?url';
+import '../styles/global.css';
+
+interface Props {
+  lang: string;
+  title: string;
+  description: string;
+  /** The opening scene lives on the home page: the brand starts large and docks on scroll. */
+  home?: boolean;
+  noindex?: boolean;
+  image?: string;
+}
+const { lang, title, description, home = false, noindex = false, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ecebe7" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {image && <meta property="og:image" content={image} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifLatin} as="font" type="font/woff2" crossorigin />
+    {home && <link rel="preload" href="/frames/sm/w01.webp" as="image" type="image/webp" fetchpriority="high" />}
+    <script is:inline define:vars={{ home }}>
+      const root = document.documentElement;
+      root.classList.add('js');
+      if (home) {
+        root.dataset.brand = 'big';
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) root.dataset.intro = '';
+      }
+    </script>
+  </head>
+  <body>
+    <div class="marble-layer" aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>

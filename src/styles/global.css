@@ -1,0 +1,332 @@
+@font-face {
+  font-family: 'Noto Sans JP Hiragana';
+  src: url('../assets/fonts/noto-sans-jp-hiragana-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3040-30FF, U+FF66-FF9F;
+}
+
+:root {
+  --marble: #ecebe7;
+  --marble-deep: #e1dfda;
+  --charcoal: #1a1917;
+  --charcoal-soft: #262522;
+
+  --ink-muted: #57534c;
+  --ink-line: #c4c0b8;
+  --paper-muted: #aaa59b;
+  --paper-line: #3d3b37;
+
+  --font-display: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-text: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-jp: 'Noto Sans JP Hiragana';
+
+  --gutter: clamp(20px, 5vw, 80px);
+  --max: 1760px;
+  --col-gap: clamp(14px, 2vw, 36px);
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* One fixed marble surface for the whole site; light sections let it show. */
+  --marble-fixed:
+    radial-gradient(120% 90% at 12% 0%, #f5f4f1 0%, rgba(245, 244, 241, 0) 60%),
+    linear-gradient(118deg, #efeeea 0%, #e8e7e3 45%, #dcdad4 100%);
+
+  --header-h: 56px;
+  --brand-final: 26px;
+  --name-size: clamp(4.5rem, 12vw, 17rem);
+  --name-b: 2.2svh;
+  --stack-lines: 1.68;
+}
+
+@media (max-width: 760px), (max-aspect-ratio: 4/5) {
+  :root {
+    --header-h: 52px;
+    --name-size: clamp(2.4rem, 13vw, 6.5rem);
+    --name-b: 3.2svh;
+    --stack-lines: 0.84;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;
+  background: var(--charcoal);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  isolation: isolate;
+  background: transparent;
+  color: var(--charcoal);
+  font-family: var(--font-text);
+  font-size: clamp(1.1875rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.58;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.02;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.2em;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--charcoal);
+  color: var(--marble);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 0.7rem 1rem;
+  background: var(--charcoal);
+  color: var(--marble);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Section surfaces: light and dark alternate and carry their own colour tokens. */
+.marble-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--marble-fixed);
+  pointer-events: none;
+}
+
+.surface-light {
+  --fg: var(--charcoal);
+  --bg: var(--marble);
+  --muted: var(--ink-muted);
+  --line: var(--ink-line);
+  color: var(--fg);
+}
+
+.surface-stone {
+  --fg: var(--charcoal);
+  --bg: #d9d5cd;
+  --muted: #4b473f;
+  --line: #b4afa5;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.surface-dark {
+  --fg: var(--marble);
+  --bg: var(--charcoal);
+  --muted: var(--paper-muted);
+  --line: var(--paper-line);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.section {
+  position: relative;
+  padding: clamp(5.5rem, 13vw, 12rem) var(--gutter);
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--col-gap);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Display type: wide, heavy grotesque, tightly set. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 780;
+  font-stretch: 112%;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+}
+
+.meta {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+}
+
+/* Scroll reveals (see src/scripts/page.ts). Content is visible without JS and with reduced motion. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s ease,
+    transform 1.1s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.rule {
+  display: block;
+  height: 1.5px;
+  background: var(--line);
+  transform-origin: left center;
+}
+
+.js .rule.reveal {
+  opacity: 1;
+  transform: scaleX(0);
+  transition: transform 1.3s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+
+.js .rule.reveal.is-in {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .rule.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  .js .reveal,
+  .js .rule.reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Article typography presets (shared by the public article and the editor sample). */
+.article {
+  --a-title-font: var(--font-display);
+  --a-title-weight: 780;
+  --a-title-stretch: 112%;
+  --a-title-track: -0.04em;
+  --a-body-font: var(--font-text);
+  --a-body-size: clamp(1.2rem, 1.1rem + 0.45vw, 1.4rem);
+  --a-body-lh: 1.62;
+  --a-body-weight: 400;
+}
+
+.article[data-font='grotesk'] {
+  --a-body-font: var(--font-display);
+  --a-body-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem);
+  --a-body-lh: 1.65;
+}
+
+.article[data-font='classic'] {
+  --a-title-font: var(--font-text);
+  --a-title-weight: 700;
+  --a-title-stretch: 100%;
+  --a-title-track: -0.025em;
+}

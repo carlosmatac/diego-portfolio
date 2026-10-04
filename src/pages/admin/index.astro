@@ -1,0 +1,57 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import { listArticles } from '../../lib/db';
+import type { Article } from '../../lib/article-types';
+
+export const prerender = false;
+let articles: Article[] = [];
+let failed = false;
+try {
+  articles = await listArticles();
+} catch (e) {
+  console.error(e);
+  failed = true;
+}
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(iso));
+---
+
+<Admin title="Artículos">
+  <section class="wrap-admin">
+    <header class="bar">
+      <h1 class="display">Artículos</h1>
+      <div class="bar-actions">
+        <a class="btn btn-solid" href="/admin/edit/new">Nuevo artículo</a>
+        <form method="post" action="/api/admin/logout"><button class="btn btn-ghost" type="submit">Cerrar sesión</button></form>
+      </div>
+    </header>
+
+    {failed && <p class="form-error" role="alert">No se pudo conectar con la base de datos.</p>}
+
+    {
+      !failed && !articles.length && (
+        <p class="empty">Todavía no hay artículos. Crea el primero con «Nuevo artículo».</p>
+      )
+    }
+
+    <ul class="list">
+      {
+        articles.map((a) => (
+          <li class="item">
+            <div>
+              <h2><a href={`/admin/edit/${a.id}`}>{a.title}</a></h2>
+              <p class="muted">
+                <span class="status" data-status={a.status}>{a.status === 'published' ? 'Publicado' : 'Borrador'}</span>
+                Editado el {fmt(a.updatedAt)}
+              </p>
+            </div>
+            <div class="row-actions">
+              <a class="btn btn-ghost" href={`/admin/edit/${a.id}`}>Editar</a>
+              {a.status === 'published' && <a class="btn btn-ghost" href={`/blog/${a.slug}`} target="_blank" rel="noopener">Ver</a>}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Admin>

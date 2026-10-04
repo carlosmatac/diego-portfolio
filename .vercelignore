@@ -1,0 +1,7 @@
+diego-saludo-v4
+docs
+.agents
+.claude
+node_modules
+.env*
+skills-lock.json

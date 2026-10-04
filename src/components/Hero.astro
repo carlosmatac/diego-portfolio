@@ -1,0 +1,134 @@
+---
+import { animation } from '../config/animation';
+import { person } from '../data/facts';
+import type { Copy } from '../i18n/en';
+
+interface Props {
+  copy: Copy;
+}
+const { copy } = Astro.props;
+const [w, h] = animation.frames.tiers.sm;
+const poster = `/frames/sm/w01.webp`;
+const still = `/frames/sm/g${String(animation.staticDrawing).padStart(2, '0')}.webp`;
+---
+
+<section
+  class="hero surface-light"
+  id="top"
+  aria-labelledby="hero-title"
+  data-hero
+  style={`--ar:${w}/${h};--origin-y:${animation.arrival.originY * 100}%;--start-scale:${animation.arrival.startScale}`}
+>
+  <div class="stage" data-stage>
+    <h1 class="sr-only" id="hero-title">{person.name}</h1>
+
+    <div class="figure" data-figure role="img" aria-label={copy.hero.figureLabel}>
+      <div class="scaler" data-scaler>
+        <picture>
+          <source media="(prefers-reduced-motion: reduce)" srcset={still} />
+          <img class="poster" data-poster src={poster} width={w} height={h} alt="" decoding="async" fetchpriority="high" />
+        </picture>
+        <canvas data-canvas width={w} height={h} aria-hidden="true"></canvas>
+      </div>
+      <noscript>
+        <style is:inline>
+          .poster {
+            display: none;
+          }
+        </style>
+        <img class="nojs" src={still} width={w} height={h} alt="" />
+      </noscript>
+    </div>
+
+    <div class="greetings" data-greetings aria-hidden="true"></div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    --fig-h: min(86svh, 1100px);
+    --fig-x: 64%;
+    --fig-b: 3svh;
+    position: relative;
+    height: 100svh;
+    min-height: 34rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .stage {
+    position: absolute;
+    inset: 0;
+  }
+
+  .figure {
+    position: absolute;
+    z-index: 1;
+    left: var(--fig-x);
+    bottom: var(--fig-b);
+    height: var(--fig-h);
+    aspect-ratio: var(--ar);
+    transform: translateX(-50%);
+  }
+
+  .scaler {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% var(--origin-y);
+    will-change: transform;
+  }
+
+  .scaler picture,
+  .scaler img,
+  .scaler canvas,
+  .nojs {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scaler canvas:not([data-ready]) {
+    visibility: hidden;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .scaler {
+      transform: scale(var(--start-scale));
+    }
+  }
+
+  .greetings {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  :global(.greeting) {
+    position: absolute;
+    font-family: var(--font-jp), 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    font-stretch: 108%;
+    font-size: clamp(1.6rem, 2.7vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+    color: var(--charcoal);
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  @media (max-width: 760px), (max-aspect-ratio: 4/5) {
+    .hero {
+      --fig-h: min(66svh, 680px);
+      --fig-x: 50%;
+      --fig-b: 12.5svh;
+    }
+
+    :global(.greeting) {
+      font-size: clamp(1.5rem, 6.4vw, 2.6rem);
+    }
+  }
+</style>
