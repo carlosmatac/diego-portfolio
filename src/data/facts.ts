@@ -13,6 +13,12 @@ export interface Period {
   to?: string | 'present';
 }
 
+export interface Item {
+  id: string;
+  link?: string;
+  sources: SourceId[];
+}
+
 export interface Entry {
   id: string;
   institution: string;
@@ -21,6 +27,8 @@ export interface Entry {
   /** A single point in time (YYYY-MM or YYYY-MM-DD) when the span is not documented. */
   date?: string;
   link?: string;
+  /** Sub-entries such as the courses taken at an institution. */
+  items?: Item[];
   sources: SourceId[];
 }
 
@@ -38,7 +46,7 @@ export const person = {
   linkedin: 'https://www.linkedin.com/in/diegopradosjodar/',
 } as const;
 
-export const stages: Stage[] = [
+export const studies: Stage[] = [
   {
     id: 'madrid-uc3m',
     city: 'Madrid',
@@ -81,33 +89,6 @@ export const stages: Stage[] = [
     ],
   },
   {
-    id: 'madrid-work',
-    city: 'Madrid',
-    place: 'Madrid, Spain',
-    entries: [
-      {
-        id: 'tpr',
-        institution: 'The Political Room',
-        link: 'https://thepoliticalroom.com',
-        sources: ['li-profile', 'tpr-article'],
-      },
-      {
-        id: 'garrigues',
-        institution: 'Garrigues',
-        logo: 'garrigues',
-        date: '2024-06',
-        sources: ['li-profile', 'li-garrigues'],
-      },
-      {
-        id: 'maec',
-        institution: 'Ministry of Foreign Affairs, European Union and Cooperation',
-        logo: 'maec',
-        period: { from: '2024-09', to: '2025-01' },
-        sources: ['li-profile', 'li-nato', 'maec-placement'],
-      },
-    ],
-  },
-  {
     id: 'bruges',
     city: 'Bruges',
     place: 'Bruges, Belgium',
@@ -119,14 +100,90 @@ export const stages: Stage[] = [
         period: { from: '2025', to: 'present' },
         sources: ['li-profile', 'areces-list', 'coe-mata'],
       },
+    ],
+  },
+  {
+    id: 'boston',
+    city: 'Boston',
+    place: 'Greater Boston, Massachusetts, United States',
+    entries: [
       {
         id: 'fletcher',
         institution: 'The Fletcher School, Tufts University',
         logo: 'fletcher',
         link: 'https://fletcher.tufts.edu/academics/degrees-programs/master-arts-transatlantic-affairs',
-        sources: ['coe-mata', 'fletcher-mata'],
+        sources: ['coe-mata', 'fletcher-mata', 'diego-direct'],
+      },
+      {
+        id: 'harvard',
+        institution: 'Harvard Kennedy School',
+        link: 'https://www.hks.harvard.edu/',
+        sources: ['diego-direct', 'hks-maga', 'my-harvard-dpi451m'],
+        items: [
+          {
+            id: 'maga',
+            link: 'https://www.hks.harvard.edu/courses/make-america-great-again-ideas-behind-movement',
+            sources: ['hks-maga'],
+          },
+          {
+            id: 'china',
+            link: 'https://my.harvard.edu/course/DPI451M/2026-Fall/Fall-2/001',
+            sources: ['my-harvard-dpi451m'],
+          },
+        ],
       },
     ],
+  },
+];
+
+export const scholarships: Entry[] = [
+  {
+    id: 'areces',
+    institution: 'Fundación Ramón Areces',
+    logo: 'areces',
+    link: 'https://www.fundacionareces.es/fundacionareces/en/social-sciences/scholarships/',
+    sources: ['areces-list', 'areces-call', 'cv'],
+  },
+  {
+    id: 'madrid-excellence',
+    institution: 'Comunidad de Madrid',
+    sources: ['cv'],
+  },
+];
+
+export const experience: Entry[] = [
+  {
+    id: 'euroconf',
+    institution: 'European Conference',
+    link: 'https://euroconf.eu/',
+    date: '2027',
+    sources: ['diego-direct', 'euroconf-2026'],
+  },
+  {
+    id: 'sppn',
+    institution: 'Spanish Public Policy Network',
+    link: 'https://spainpolicy.com/',
+    sources: ['diego-direct', 'sppn-home'],
+  },
+  {
+    id: 'maec',
+    institution: 'Ministry of Foreign Affairs, European Union and Cooperation',
+    logo: 'maec',
+    period: { from: '2024-09', to: '2025-01' },
+    sources: ['li-profile', 'li-nato', 'maec-placement'],
+  },
+  {
+    id: 'garrigues',
+    institution: 'Garrigues',
+    logo: 'garrigues',
+    date: '2024-06',
+    sources: ['li-profile', 'li-garrigues', 'cv'],
+  },
+  {
+    id: 'tpr',
+    institution: 'The Political Room',
+    link: 'https://thepoliticalroom.com',
+    sources: ['li-profile', 'tpr-article'],
   },
 ];
 

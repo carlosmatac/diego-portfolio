@@ -1,0 +1,30 @@
+---
+import type { LogoId } from '../data/facts';
+import { logos } from '../data/logos';
+
+interface Props {
+  id: LogoId;
+}
+const logo = logos[Astro.props.id];
+---
+
+<img
+  class:list={['logo', { blend: logo.blend }]}
+  src={`/logos/${logo.file}`}
+  alt=""
+  height={logo.height}
+  width={Math.round((logo.height * logo.w) / logo.h)}
+  loading="lazy"
+  decoding="async"
+/>
+
+<style>
+  .logo {
+    width: auto;
+    margin-bottom: 1.1rem;
+  }
+
+  .logo.blend {
+    mix-blend-mode: multiply;
+  }
+</style>

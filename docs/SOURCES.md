@@ -9,7 +9,7 @@ cross-checked against official pages. Nothing was taken from people with similar
 Economics degree from Loughborough/UC3M is a different person and was discarded).
 
 Confidence: **A** official or institutional page; **B** Diego's own public post or author bio; **C** LinkedIn profile
-snippet only (to be confirmed by Diego).
+snippet only (to be confirmed by Diego); **D** Diego's own word or his private CV (`Diego_Prados_Jodar_CV.pdf`, gitignored), not publicly checkable.
 
 | Claim on the site | Source | Conf. |
 | --- | --- | --- |
@@ -34,11 +34,19 @@ snippet only (to be confirmed by Diego).
 | 6 Nov 2024 session with the Ambassador of Japan to Spain, Takahiro Nakamae; moderated by Diego and Lucía Barona Bonet; support of the Embassy of Japan and UC3M | Diego's post of 2 Dec 2024. Nakamae's role as Ambassador confirmed independently by URJC and UC3M Cultura pages | B/A |
 | 20 Nov 2025 presentation of "Las fuerzas que mueven el mundo" (El Orden Mundial) with El Circo del Poder, Sonora UC3M and the student council | AUGE announcement reshared by Delegación de Estudiantes UC3M | B |
 | Externals and internals as formats; recordings on UC3M Media and YouTube | AUGE podcast episode (UC3M associations, ep. 31); Aina Vallespir Bonafé's post; UC3M Media | B/A |
+| Cross-registration at Harvard Kennedy School through Fletcher, two courses | Diego himself; course pages at HKS and my.Harvard (the pages prove the courses exist and Fletcher students may cross-register, not that Diego is enrolled) | D/A |
+| "Make America Great Again: The Ideas Behind The Movement", Stephen Richer, Adjunct Lecturer in Public Policy (no term given on the page) | HKS course page | A |
+| "China's Political Economy: Industrial Policy and Corporate Strategy", Edward Cunningham, Fall 2 2026 (19 Oct to 4 Dec) | my.Harvard course page | A |
+| Member of the Spanish Public Policy Network (SPPN); what SPPN does | Diego himself; SPPN home page | D/A |
+| Panel coordinator, industrial policy panel, European Conference 2027; the conference is run by Harvard, MIT and Fletcher students, 2026 was the 12th edition | Diego himself; European Conference 2026 site | D/A |
+| Fundación Ramón Areces scholarship, awarded twice; what the call funds | Fundación Ramón Areces call and grantee list (2025/26 only); Diego's CV for "twice" | A/D |
+| Excellence Scholarship of the Comunidad de Madrid, awarded three times during the UC3M degree | Diego's CV | D |
+| Garrigues internship in Málaga (the site said Madrid before) | Diego's CV | D |
 | Contact email and LinkedIn | LinkedIn "About" text (public) | C |
 
 ## What the site deliberately does not say
 
-- No metrics, awards, publications beyond the one article, languages spoken, or quotes in the first person.
+- No metrics, publications beyond the one article, languages spoken, or quotes in the first person.
 - The greetings in the opening scene are decoration; they are not a list of languages Diego speaks.
-- Grades shown on LinkedIn are not published.
+- Grades (LinkedIn and CV) are not published.
 - Birth year is not published.

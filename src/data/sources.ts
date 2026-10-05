@@ -1,6 +1,7 @@
 export interface Source {
   label: string;
-  url: string;
+  /** Absent for private sources (Diego himself, his CV). */
+  url?: string;
   note?: string;
 }
 
@@ -85,6 +86,38 @@ export const sources = {
     label: 'Universidad Rey Juan Carlos: visit of the Ambassador of Japan, Takahiro Nakamae',
     url: 'https://www.urjc.es/fcjp/actualidad-fcjp/noticias-fcjp/8642-visita-del-embajador-de-japon-a-la-fcjp-de-la-universidad-rey-juan-carlos',
     note: 'Independent confirmation that Takahiro Nakamae is the Ambassador of Japan in Spain.',
+  },
+  'diego-direct': {
+    label: 'Diego Prados Jódar, first-hand information given to the site owner (Oct 2026)',
+    note: 'Not published online. Cross-registration at Harvard, SPPN membership and the 2027 panel role are known only from Diego himself.',
+  },
+  cv: {
+    label: 'Diego Prados Jódar, CV (PDF)',
+    note: 'Private document, kept out of the repository (.gitignore). Used for the scholarships and the city of the Garrigues internship.',
+  },
+  'hks-maga': {
+    label: 'Harvard Kennedy School, course page "Make America Great Again: The Ideas Behind The Movement"',
+    url: 'https://www.hks.harvard.edu/courses/make-america-great-again-ideas-behind-movement',
+    note: 'Instructor Stephen Richer. The page gives no term.',
+  },
+  'my-harvard-dpi451m': {
+    label: 'my.Harvard, DPI 451M "China\u2019s Political Economy: Industrial Policy and Corporate Strategy" (Fall 2 2026)',
+    url: 'https://my.harvard.edu/course/DPI451M/2026-Fall/Fall-2/001',
+    note: 'Instructor Edward Cunningham, 19 Oct to 4 Dec 2026, open to Harvard cross-registration for Fletcher students.',
+  },
+  'sppn-home': {
+    label: 'Spanish Public Policy Network (SPPN)',
+    url: 'https://spainpolicy.com/',
+  },
+  'euroconf-2026': {
+    label: 'European Conference 2026, home page',
+    url: 'https://euroconf.eu/',
+    note: 'Organised by Harvard, MIT and Fletcher students; 2026 was the 12th edition. The site shows only the 2026 edition.',
+  },
+  'areces-call': {
+    label: 'Fundación Ramón Areces, XXXIX call for postgraduate studies abroad in the social sciences (course 2025/26)',
+    url: 'https://www.fundacionareces.es/fundacionareces/becas-fundacion-ramon-areces-para-estudios-de-postgrado-xxxix-convocatoria-para-ampliacion-de-estudios-en-el-extranjero-en-ciencias-sociales.html',
+    note: 'Master programmes: one academic year, renewable for a second year.',
   },
   'uc3m-japan-week': {
     label: 'UC3M Cultura, Japan Cultural Week opening conference with Ambassador Takahiro Nakamae',

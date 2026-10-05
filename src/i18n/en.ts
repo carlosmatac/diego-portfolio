@@ -1,9 +1,15 @@
+export interface ItemCopy {
+  title: string;
+  note?: string;
+}
+
 export interface EntryCopy {
   relation: string;
   programme: string;
   place?: string;
   summary?: string;
   points?: string[];
+  items?: Record<string, ItemCopy>;
 }
 
 export interface InitiativeCopy {
@@ -30,7 +36,7 @@ export const en = {
   meta: {
     title: 'Diego Prados Jódar',
     description:
-      'Diego Prados Jódar studies and works on international relations, international law and geostrategy. Universidad Carlos III de Madrid, UC Berkeley, Bologna, College of Europe. Founder and president of AUGE.',
+      'Diego Prados Jódar studies and works on international relations, international law and geostrategy. Universidad Carlos III de Madrid, UC Berkeley, Bologna, College of Europe and The Fletcher School. Founder and president of AUGE.',
   },
   skip: 'Skip to content',
   hero: {
@@ -45,8 +51,9 @@ export const en = {
       { id: 'blog', href: '/blog', label: 'Blog' },
     ],
     anchors: [
-      { id: 'path', label: 'Path' },
+      { id: 'studies', label: 'Studies' },
       { id: 'auge', label: 'AUGE' },
+      { id: 'experience', label: 'Experience' },
       { id: 'contact', label: 'Contact' },
     ],
   },
@@ -54,19 +61,19 @@ export const en = {
   profile: {
     title: ['International relations,', 'international law', 'and geostrategy.'],
     paragraphs: [
-      'Diego Prados Jódar was born in Granada. He studied the Double Degree in International Studies and Law at Universidad Carlos III de Madrid, spent an exchange year at UC Berkeley and a stay at the University of Bologna, and is now studying the Master of Arts in Transatlantic Affairs at the College of Europe in Bruges.',
-      'Alongside his studies he has worked in the administrative law department of a law firm, with the Spanish Ministry of Foreign Affairs and as a collaborating researcher at an independent media outlet on international affairs. In 2023 he co-founded AUGE, the geopolitics and strategy association of his university, and has presided over it since.',
+      'Diego Prados Jódar was born in Granada. He studied the Double Degree in International Studies and Law at Universidad Carlos III de Madrid, spent an exchange year at UC Berkeley and a stay at the University of Bologna. He is now studying the Master of Arts in Transatlantic Affairs, a joint degree of the College of Europe in Bruges and The Fletcher School in Boston, and cross-registers at Harvard Kennedy School. A Fundación Ramón Areces scholarship funds his postgraduate studies abroad.',
+      'Alongside his studies he has worked in the administrative law department of a law firm, with the Spanish Ministry of Foreign Affairs and as a collaborating researcher at an independent media outlet on international affairs. He is a member of the Spanish Public Policy Network and coordinates a panel on industrial policy for the 2027 European Conference. In 2023 he co-founded AUGE, the geopolitics and strategy association of his university, and has presided over it since.',
     ],
     facts: [
-      { label: 'Now', value: 'Master of Arts in Transatlantic Affairs, College of Europe, Bruges' },
+      { label: 'Now', value: 'Master of Arts in Transatlantic Affairs, College of Europe (Bruges) and The Fletcher School (Boston)' },
+      { label: 'Harvard', value: 'Cross-registration at Harvard Kennedy School, two courses' },
+      { label: 'Scholarship', value: 'Fundación Ramón Areces, postgraduate studies abroad, awarded twice' },
       { label: 'Founded', value: 'AUGE, university association for geopolitics and strategy, 2023' },
-      { label: 'Scholarship', value: 'Fundación Ramón Areces, postgraduate studies abroad, 2025/26 call' },
     ],
   },
-  path: {
-    title: 'Path',
-    lede: 'Studies, placements and a student association, city by city.',
-    locationLabel: 'Location',
+  studies: {
+    title: 'Studies',
+    lede: 'Degrees, exchange stays and scholarships, city by city.',
     entries: {
       uc3m: {
         relation: 'Degree',
@@ -90,22 +97,6 @@ export const en = {
         programme: 'Law',
         summary: 'Law courses at the University of Bologna, founded in 1088, during an exchange stay.',
       },
-      tpr: {
-        relation: 'Collaborating researcher',
-        programme: 'Independent media outlet on international affairs',
-        summary: 'Published an article in Spanish on the South China Sea and international law in March 2024.',
-      },
-      garrigues: {
-        relation: 'Summer Legal Intern',
-        programme: 'Administrative Law department',
-      },
-      maec: {
-        relation: 'Collaborator',
-        programme: 'Deputy Directorate-General for Common Foreign and Security Policy',
-        points: [
-          'Part of the team that organised the first Meeting of Senior Allied Officials on NATO\u2019s Southern Neighbourhood, held at the Ministry on 29 November 2024.',
-        ],
-      },
       coe: {
         relation: 'Master of Arts, in progress',
         programme: 'Transatlantic Affairs (MATA)',
@@ -114,15 +105,85 @@ export const en = {
         points: [
           'Coursework includes European governance and institutions, European political economy, transatlantic trade and EU foresight, industrial strategy and digital policies.',
           'Thesis in progress on European chip policy, supervised by Chris Miller.',
-          'Recipient of the Fundación Ramón Areces scholarship for postgraduate studies abroad.',
         ],
       },
       fletcher: {
-        relation: 'Partner institution',
+        relation: 'Joint degree, partner institution',
         programme: 'Master of Arts in Transatlantic Affairs',
         place: 'Greater Boston, Massachusetts',
         summary:
-          'The Fletcher School is the other half of the degree. Students who begin in Bruges cross the Atlantic for a partner semester in the Boston area.',
+          'The Fletcher School is the other half of the degree. Students who begin in Bruges cross the Atlantic for a semester in the Boston area.',
+        points: ['From Fletcher, Diego cross-registers at Harvard Kennedy School.'],
+      },
+      harvard: {
+        relation: 'Cross-registration',
+        programme: 'Two courses through Fletcher',
+        place: 'Cambridge, Massachusetts',
+        summary: 'Fletcher students can take courses at Harvard through cross-registration. Diego takes two at the Kennedy School.',
+        items: {
+          maga: {
+            title: 'Make America Great Again: The Ideas Behind The Movement',
+            note: 'Stephen Richer, Adjunct Lecturer in Public Policy. The ideas behind the MAGA movement, read through primary sources.',
+          },
+          china: {
+            title: 'China\u2019s Political Economy: Industrial Policy and Corporate Strategy',
+            note: 'Edward Cunningham. Fall 2026, second half of the term, 19 October to 4 December. How business and the state interact in China, through the energy and technology sectors.',
+          },
+        },
+      },
+    } satisfies Record<string, EntryCopy>,
+    scholarships: {
+      title: 'Scholarships',
+      items: {
+        areces: {
+          relation: 'Scholarship holder, awarded twice',
+          programme: 'Postgraduate studies abroad, social sciences',
+          summary:
+            'The foundation\u2019s annual call funds master\u2019s and doctoral studies at universities and research centres abroad in economics, EU law and the social sciences. Diego holds it for his master\u2019s at the College of Europe and Fletcher, and appears on the foundation\u2019s list of grantees for the 2025/26 call.',
+        },
+        'madrid-excellence': {
+          relation: 'Scholarship holder, awarded three times',
+          programme: 'Excellence Scholarship for undergraduate students',
+          summary: 'Awarded by the regional government of Madrid during his Double Degree at Universidad Carlos III de Madrid.',
+        },
+      } satisfies Record<string, EntryCopy>,
+    },
+  },
+  experience: {
+    title: 'Experience',
+    lede: 'Placements, research and the policy networks he is part of.',
+    entries: {
+      euroconf: {
+        relation: 'Panel coordinator',
+        programme: 'Industrial policy panel, European Conference 2027',
+        place: 'Cambridge, Massachusetts',
+        summary:
+          'Diego is organising a panel on industrial policy for the 2027 edition. The conference is run each year by Harvard, MIT and Fletcher students to strengthen transatlantic dialogue; the 2026 edition was its twelfth.',
+      },
+      sppn: {
+        relation: 'Member',
+        programme: 'Platform for young Spanish professionals in public policy',
+        summary:
+          'The Spanish Public Policy Network brings together students, professionals and institutional leaders in policymaking and international affairs, through institutional visits, expert talks, an annual conference and a policy blog.',
+      },
+      maec: {
+        relation: 'Collaborator',
+        programme: 'Deputy Directorate-General for Common Foreign and Security Policy',
+        place: 'Madrid, Spain',
+        points: [
+          'Part of the team that organised the first Meeting of Senior Allied Officials on NATO\u2019s Southern Neighbourhood, held at the Ministry on 29 November 2024.',
+        ],
+      },
+      garrigues: {
+        relation: 'Summer Legal Intern',
+        programme: 'Administrative Law department',
+        place: 'Málaga, Spain',
+      },
+      tpr: {
+        relation: 'Collaborating researcher',
+        programme: 'Independent media outlet on international affairs',
+        place: 'Madrid, Spain',
+        summary: 'Published an article in Spanish on the South China Sea and international law in March 2024.',
       },
     } satisfies Record<string, EntryCopy>,
   },

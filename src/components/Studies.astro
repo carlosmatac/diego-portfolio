@@ -1,39 +1,29 @@
 ---
-import { stages, type LogoId } from '../data/facts';
-import type { Copy, EntryCopy } from '../i18n/en';
+import { scholarships, studies } from '../data/facts';
+import type { Copy, EntryCopy, ItemCopy } from '../i18n/en';
 import { formatDate, formatPeriod } from '../i18n/format';
+import Logo from './Logo.astro';
 
 interface Props {
   copy: Copy;
 }
 const { copy } = Astro.props;
-const c = copy.path;
+const c = copy.studies;
 
-/** Intrinsic ratio and display height of each official logo, so nothing shifts while it loads. */
-const logos: Record<LogoId, { file: string; w: number; h: number; height: number; blend?: boolean }> = {
-  uc3m: { file: 'uc3m.svg', w: 842, h: 303, height: 58 },
-  berkeley: { file: 'berkeley.svg', w: 225, h: 42, height: 34 },
-  bologna: { file: 'bologna.png', w: 314, h: 314, height: 84, blend: true },
-  garrigues: { file: 'garrigues.svg', w: 200, h: 23.557, height: 24 },
-  maec: { file: 'maec.svg', w: 2546, h: 531, height: 52 },
-  fletcher: { file: 'fletcher.svg', w: 410, h: 48, height: 30 },
-  areces: { file: 'areces.png', w: 251, h: 70, height: 34, blend: true },
-};
-
-const when = (e: (typeof stages)[number]['entries'][number]) =>
+const when = (e: (typeof studies)[number]['entries'][number]) =>
   e.period ? formatPeriod(e.period, copy) : e.date ? formatDate(e.date, copy) : '';
 ---
 
-<section class="section surface-light path" id="path" aria-labelledby="path-title">
+<section class="section surface-light studies" id="studies" aria-labelledby="studies-title">
   <div class="wrap">
     <header class="head grid">
-      <h2 class="display title" id="path-title">{c.title}</h2>
+      <h2 class="display title" id="studies-title">{c.title}</h2>
       <p class="lede reveal">{c.lede}</p>
     </header>
 
     <div class="stages">
       {
-        stages.map((stage, si) => (
+        studies.map((stage, si) => (
           <div class={`stage grid ${si % 2 ? 'is-right' : 'is-left'}`}>
             <span class="rule reveal" aria-hidden="true" />
             <p class="city display reveal" aria-hidden="true">
@@ -42,22 +32,11 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
             <div class="entries">
               {stage.entries.map((entry) => {
                 const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
-                const logo = entry.logo ? logos[entry.logo] : undefined;
                 const place = t.place ?? stage.place;
                 const time = when(entry);
                 return (
                   <article class="entry reveal">
-                    {logo && (
-                      <img
-                        class:list={['logo', { blend: logo.blend }]}
-                        src={`/logos/${logo.file}`}
-                        alt=""
-                        height={logo.height}
-                        width={Math.round((logo.height * logo.w) / logo.h)}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
+                    {entry.logo && <Logo id={entry.logo} />}
                     <h3>
                       {entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}
                     </h3>
@@ -75,6 +54,21 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
                         ))}
                       </ul>
                     )}
+                    {entry.items && t.items && (
+                      <ul class="points items">
+                        {entry.items.map((item) => {
+                          const it = t.items![item.id] as ItemCopy;
+                          return (
+                            <li>
+                              <span class="item-title">
+                                {item.link ? <a href={item.link} rel="noopener">{it.title}</a> : it.title}
+                              </span>
+                              {it.note && <span class="item-note muted">{it.note}</span>}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </article>
                 );
               })}
@@ -82,6 +76,27 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
           </div>
         ))
       }
+    </div>
+
+    <div class="awards grid">
+      <span class="rule reveal" aria-hidden="true" />
+      <h3 class="display awards-title reveal">{c.scholarships.title}</h3>
+      <div class="award-list">
+        {
+          scholarships.map((a) => {
+            const t = c.scholarships.items[a.id as keyof typeof c.scholarships.items] as EntryCopy;
+            return (
+              <article class="entry reveal">
+                {a.logo && <Logo id={a.logo} />}
+                <h4>{a.link ? <a href={a.link} rel="noopener">{a.institution}</a> : a.institution}</h4>
+                <p class="programme">{t.programme}</p>
+                <p class="meta muted">{t.relation}</p>
+                {t.summary && <p class="summary">{t.summary}</p>}
+              </article>
+            );
+          })
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -95,7 +110,7 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
 
   .title {
     grid-column: 1 / -1;
-    font-size: clamp(6.5rem, 27vw, 31rem);
+    font-size: clamp(4.4rem, 20vw, 24rem);
     letter-spacing: -0.06em;
     line-height: 0.78;
     margin-left: -0.04em;
@@ -146,28 +161,21 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
     border-top: 1.5px solid var(--line);
   }
 
-  .logo {
-    width: auto;
-    margin-bottom: 1.1rem;
-  }
-
-  .logo.blend {
-    mix-blend-mode: multiply;
-  }
-
-  h3 {
+  .entry :is(h3, h4) {
     font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.7rem);
     letter-spacing: -0.025em;
     line-height: 1.04;
   }
 
-  h3 a {
+  .entry :is(h3, h4) a,
+  .item-title a {
     text-decoration-color: var(--line);
     text-decoration-thickness: 2px;
     transition: text-decoration-color 0.3s ease;
   }
 
-  h3 a:hover {
+  .entry :is(h3, h4) a:hover,
+  .item-title a:hover {
     text-decoration-color: currentColor;
   }
 
@@ -196,6 +204,37 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
     border-top: 1px solid var(--line);
   }
 
+  .items li {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .item-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.25;
+  }
+
+  .awards {
+    padding-block: clamp(2.5rem, 6vw, 5.5rem) 0;
+    row-gap: 2rem;
+  }
+
+  .awards-title {
+    grid-column: 1 / -1;
+    font-size: clamp(3rem, 12vw, 8rem);
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    margin-left: -0.04em;
+  }
+
+  .award-list {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+
   @media (min-width: 900px) {
     .head {
       row-gap: 0;
@@ -203,6 +242,16 @@ const when = (e: (typeof stages)[number]['entries'][number]) =>
 
     .title {
       grid-column: 1 / span 9;
+      font-size: clamp(5rem, 13.5vw, 22rem);
+    }
+
+    .awards-title {
+      grid-column: 1 / span 5;
+      font-size: clamp(3.5rem, 6.4vw, 9rem);
+    }
+
+    .award-list {
+      grid-column: 7 / span 6;
     }
 
     .lede {

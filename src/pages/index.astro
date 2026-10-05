@@ -1,9 +1,10 @@
 ---
 import Auge from '../components/Auge.astro';
 import Contact from '../components/Contact.astro';
+import Experience from '../components/Experience.astro';
 import Hero from '../components/Hero.astro';
 import Header from '../components/Header.astro';
-import Path from '../components/Path.astro';
+import Studies from '../components/Studies.astro';
 import Profile from '../components/Profile.astro';
 import Base from '../layouts/Base.astro';
 import { en as copy } from '../i18n/en';
@@ -15,8 +16,9 @@ import { en as copy } from '../i18n/en';
   <main id="content">
     <Hero copy={copy} />
     <Profile copy={copy} />
-    <Path copy={copy} />
+    <Studies copy={copy} />
     <Auge copy={copy} />
+    <Experience copy={copy} />
     <Contact copy={copy} />
   </main>
   <script>

@@ -1,0 +1,177 @@
+---
+import { experience } from '../data/facts';
+import type { Copy, EntryCopy } from '../i18n/en';
+import { formatDate, formatPeriod } from '../i18n/format';
+import Logo from './Logo.astro';
+
+interface Props {
+  copy: Copy;
+}
+const { copy } = Astro.props;
+const c = copy.experience;
+
+const when = (e: (typeof experience)[number]) =>
+  e.period ? formatPeriod(e.period, copy) : e.date ? formatDate(e.date, copy) : '';
+---
+
+<section class="section surface-light experience" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <header class="head grid">
+      <h2 class="display title" id="experience-title">{c.title}</h2>
+      <p class="lede reveal">{c.lede}</p>
+    </header>
+
+    <ol class="roles">
+      {
+        experience.map((entry) => {
+          const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
+          const time = when(entry);
+          return (
+            <li class="role grid reveal">
+              <span class="rule" aria-hidden="true" />
+              <div class="side">
+                {entry.logo && <Logo id={entry.logo} />}
+                <p class="meta muted">
+                  {t.relation}
+                  {time && <span class="when">{time}</span>}
+                  {t.place && <span class="when">{t.place}</span>}
+                </p>
+              </div>
+              <div class="body">
+                <h3>{entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}</h3>
+                <p class="programme">{t.programme}</p>
+                {t.summary && <p class="summary">{t.summary}</p>}
+                {t.points && (
+                  <ul class="points">
+                    {t.points.map((p) => (
+                      <li>{p}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .head {
+    align-items: end;
+    row-gap: 1.5rem;
+    margin-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .title {
+    grid-column: 1 / -1;
+    font-size: clamp(3.4rem, 15.5vw, 22rem);
+    letter-spacing: -0.06em;
+    line-height: 0.78;
+    margin-left: -0.04em;
+  }
+
+  .lede {
+    grid-column: 1 / -1;
+    max-width: 28rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .role {
+    position: relative;
+    row-gap: 1.4rem;
+    padding-block: 1.8rem clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .rule {
+    grid-column: 1 / -1;
+    margin-bottom: 0.4rem;
+  }
+
+  .side,
+  .body {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+  }
+
+  .when {
+    display: block;
+  }
+
+  h3 {
+    font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.7rem);
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+  }
+
+  h3 a {
+    text-decoration-color: var(--line);
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  h3 a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .programme {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.25;
+  }
+
+  .summary {
+    margin-top: 0.6rem;
+    max-width: 36rem;
+  }
+
+  .points {
+    display: grid;
+    margin-top: 0.7rem;
+    max-width: 36rem;
+  }
+
+  .points li {
+    padding-block: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 900px) {
+    .head {
+      row-gap: 0;
+    }
+
+    .title {
+      grid-column: 1 / span 9;
+      font-size: clamp(5rem, 11vw, 18rem);
+    }
+
+    .lede {
+      grid-column: 9 / span 4;
+      align-self: end;
+      padding-bottom: 1.2rem;
+    }
+
+    .role {
+      row-gap: 0;
+    }
+
+    .rule {
+      margin-bottom: 1.8rem;
+    }
+
+    .side {
+      grid-column: 1 / span 4;
+    }
+
+    .body {
+      grid-column: 6 / span 6;
+    }
+  }
+</style>

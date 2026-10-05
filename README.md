@@ -39,7 +39,7 @@ frames in `public/frames/{sm,lg}/` and writes `src/config/frames.json`:
 
 | Route | What |
 | --- | --- |
-| `/` | Opening scene, profile, path, AUGE, contact. The big name docks into the header on scroll (`src/scripts/header.ts`) |
+| `/` | Opening scene, profile, studies (with scholarships), AUGE, experience, contact. The big name docks into the header on scroll (`src/scripts/header.ts`) |
 | `/work` | Work, on its own page |
 | `/blog`, `/blog/[slug]` | Published articles (server rendered, cached 60 s) |
 | `/admin` | Backoffice behind a password: list, block editor, preview, publish |
