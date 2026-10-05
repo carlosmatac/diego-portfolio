@@ -1,0 +1,134 @@
+{
+  "madrid": {
+    "files": [
+      {
+        "src": "/photos/madrid-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/madrid-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/madrid-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 769,
+    "author": "Antonio Tajuelo from España",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "page": "https://commons.wikimedia.org/wiki/File:UC3M_Panor%C3%A1mica_Getafe.jpg"
+  },
+  "berkeley": {
+    "files": [
+      {
+        "src": "/photos/berkeley-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/berkeley-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/berkeley-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 1333,
+    "author": "Coolcaesar",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Sather_Tower_from_Memorial_Glade.jpg"
+  },
+  "bologna": {
+    "files": [
+      {
+        "src": "/photos/bologna-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/bologna-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/bologna-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 1333,
+    "author": "Palickap",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Bologna,_Archiginnasio,_portico.jpg"
+  },
+  "bruges": {
+    "files": [
+      {
+        "src": "/photos/bruges-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/bruges-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/bruges-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 1333,
+    "author": "Falk2",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "page": "https://commons.wikimedia.org/wiki/File:J33_427_Rozenhoedkaai,_Dijver.jpg"
+  },
+  "boston": {
+    "files": [
+      {
+        "src": "/photos/boston-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/boston-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/boston-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 1333,
+    "author": "Daderot",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "page": "https://commons.wikimedia.org/wiki/File:Fletcher_School_of_Law_and_Diplomacy_-_Tufts_University_-_IMG_0918.JPG"
+  },
+  "ministry": {
+    "files": [
+      {
+        "src": "/photos/ministry-800.webp",
+        "w": 800
+      },
+      {
+        "src": "/photos/ministry-1400.webp",
+        "w": 1400
+      },
+      {
+        "src": "/photos/ministry-2000.webp",
+        "w": 2000
+      }
+    ],
+    "width": 2000,
+    "height": 1111,
+    "author": "Zarateman",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "page": "https://commons.wikimedia.org/wiki/File:Madrid_-_Palacio_de_Santa_Cruz_(Ministerio_de_Asuntos_Exteriores_de_Espa%C3%B1a)_1.jpg"
+  }
+}

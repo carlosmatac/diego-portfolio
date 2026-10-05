@@ -1,0 +1,140 @@
+---
+import type { Copy } from '../i18n/en';
+
+interface Props {
+  copy: Copy;
+}
+const c = Astro.props.copy.studies.film;
+const tall = '(max-width: 760px)';
+---
+
+<figure class="film reveal" data-film data-tall-media={tall}>
+  <div class="frame">
+    <picture>
+      <source media={tall} srcset="/video/route-tall.jpg" width="1080" height="1350" />
+      <img class="poster" src="/video/route-wide.jpg" width="1920" height="1080" alt={c.label} loading="lazy" decoding="async" />
+    </picture>
+    <video
+      muted
+      playsinline
+      preload="none"
+      aria-hidden="true"
+      tabindex="-1"
+      data-wide="/video/route-wide.mp4"
+      data-tall="/video/route-tall.mp4"></video>
+    <button class="toggle" type="button" data-film-toggle data-state="play" hidden>
+      <span class="sr-only" data-label-play>{c.play}</span>
+      <span class="sr-only" data-label-pause hidden>{c.pause}</span>
+      <span class="sr-only" data-label-replay hidden>{c.replay}</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="i-play"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"></path></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="i-pause"
+        ><path d="M7.5 5.5h3v13h-3zM13.5 5.5h3v13h-3z" fill="currentColor"></path></svg
+      >
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="i-replay"
+        ><path d="M12 5a7 7 0 1 1-6.6 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        ></path><path d="M4.2 4.6v5.2h5.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"></path></svg
+      >
+    </button>
+  </div>
+  <figcaption class="muted">{c.caption}</figcaption>
+</figure>
+
+<script>
+  import '../scripts/film';
+</script>
+
+<style>
+  .film {
+    display: grid;
+    gap: 0.8rem;
+    margin-bottom: clamp(4rem, 9vw, 8rem);
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+  }
+
+  .poster,
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* The film is rendered on white; multiply lets the marble show through. */
+    mix-blend-mode: multiply;
+  }
+
+  video {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .poster {
+    transition: opacity 0.6s ease;
+  }
+
+  /* Both layers multiply, so the poster has to leave once the film runs. */
+  .film[data-playing] video {
+    opacity: 1;
+  }
+
+  .film[data-playing] .poster {
+    opacity: 0;
+  }
+
+  figcaption {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .toggle {
+    position: absolute;
+    right: clamp(10px, 1.6vw, 24px);
+    bottom: clamp(10px, 1.6vw, 24px);
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    background: var(--marble);
+    color: var(--charcoal);
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease;
+  }
+
+  .toggle:hover {
+    background: var(--charcoal);
+    color: var(--marble);
+  }
+
+  .toggle svg {
+    width: 20px;
+    height: 20px;
+    display: none;
+  }
+
+  .toggle[data-state='play'] .i-play,
+  .toggle[data-state='pause'] .i-pause,
+  .toggle[data-state='replay'] .i-replay {
+    display: block;
+  }
+
+  @media (max-width: 760px) {
+    .frame {
+      aspect-ratio: 4 / 5;
+    }
+
+    .toggle {
+      top: 10px;
+      bottom: auto;
+    }
+  }
+</style>

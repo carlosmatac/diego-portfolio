@@ -74,6 +74,14 @@ export const en = {
   studies: {
     title: 'Studies',
     lede: 'Degrees, exchange stays and scholarships, city by city.',
+    film: {
+      label:
+        'Animated map: a pencil line on a globe follows Diego from Granada to Madrid, Berkeley, Bologna, Bruges and Boston.',
+      caption: 'From Granada to Boston.',
+      pause: 'Pause the film',
+      play: 'Play the film',
+      replay: 'Play the film again',
+    },
     entries: {
       uc3m: {
         relation: 'Degree',
@@ -186,6 +194,36 @@ export const en = {
         summary: 'Published an article in Spanish on the South China Sea and international law in March 2024.',
       },
     } satisfies Record<string, EntryCopy>,
+  },
+  photos: {
+    by: 'Photo',
+    edited: 'cropped and toned',
+    items: {
+      madrid: {
+        caption: 'Universidad Carlos III de Madrid, Getafe campus',
+        alt: 'Panoramic view of the Getafe campus of Universidad Carlos III de Madrid.',
+      },
+      berkeley: {
+        caption: 'Sather Tower from Memorial Glade, UC Berkeley',
+        alt: 'The Sather Tower campanile rising above the trees of Memorial Glade at UC Berkeley.',
+      },
+      bologna: {
+        caption: 'The portico of the Archiginnasio, Bologna',
+        alt: 'A long vaulted arcade under the Archiginnasio in Bologna.',
+      },
+      bruges: {
+        caption: 'Rozenhoedkaai and the Dijver, Bruges',
+        alt: 'Brick houses along the canal at the Rozenhoedkaai in Bruges.',
+      },
+      boston: {
+        caption: 'The Fletcher School of Law and Diplomacy, Tufts University',
+        alt: 'The Fletcher School building on the Tufts University campus.',
+      },
+      ministry: {
+        caption: 'Palacio de Santa Cruz, Madrid, seat of the Ministry of Foreign Affairs',
+        alt: 'The brick and stone façade of the Palacio de Santa Cruz in Madrid.',
+      },
+    },
   },
   auge: {
     title: 'AUGE',

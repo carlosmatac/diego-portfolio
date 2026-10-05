@@ -9,4 +9,5 @@ export const logos: Record<LogoId, { file: string; w: number; h: number; height:
   maec: { file: 'maec.svg', w: 2546, h: 531, height: 52 },
   fletcher: { file: 'fletcher.svg', w: 410, h: 48, height: 30 },
   areces: { file: 'areces.png', w: 251, h: 70, height: 34, blend: true },
+  hks: { file: 'hks.svg', w: 315.06, h: 36.9, height: 36 },
 };

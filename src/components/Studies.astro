@@ -2,7 +2,9 @@
 import { scholarships, studies } from '../data/facts';
 import type { Copy, EntryCopy, ItemCopy } from '../i18n/en';
 import { formatDate, formatPeriod } from '../i18n/format';
+import Film from './Film.astro';
 import Logo from './Logo.astro';
+import Photo from './Photo.astro';
 
 interface Props {
   copy: Copy;
@@ -21,14 +23,21 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
       <p class="lede reveal">{c.lede}</p>
     </header>
 
+    <Film copy={copy} />
+
     <div class="stages">
       {
         studies.map((stage, si) => (
           <div class={`stage grid ${si % 2 ? 'is-right' : 'is-left'}`}>
             <span class="rule reveal" aria-hidden="true" />
-            <p class="city display reveal" aria-hidden="true">
-              {stage.city}
-            </p>
+            <div class="where">
+              <p class="city display reveal" aria-hidden="true">
+                {stage.city}
+              </p>
+              {stage.photo && (
+                <Photo id={stage.photo} copy={copy} class="stage-photo" sizes="(min-width: 900px) 56vw, 92vw" />
+              )}
+            </div>
             <div class="entries">
               {stage.entries.map((entry) => {
                 const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
@@ -135,8 +144,19 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
     margin-bottom: clamp(1.5rem, 3vw, 3rem);
   }
 
-  .city {
+  .where {
     grid-column: 1 / -1;
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-content: start;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .where :global(.stage-photo) {
+    width: min(100%, calc(52svh * var(--ar)));
+  }
+
+  .city {
     font-size: clamp(3.6rem, 17vw, 14.5rem);
     letter-spacing: -0.055em;
     line-height: 0.8;
@@ -260,16 +280,24 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
       padding-bottom: 1.2rem;
     }
 
-    .city {
+    .where {
       position: sticky;
       top: 14vh;
       align-self: start;
+      margin-bottom: 0;
+    }
+
+    .city {
       font-size: clamp(5rem, 11.4vw, 16.5rem);
     }
 
-    .is-left .city {
+    .is-left .where {
       grid-column: 1 / span 7;
       grid-row: 2;
+    }
+
+    .is-right .where :global(.stage-photo) {
+      justify-self: end;
     }
 
     .is-left .entries {
@@ -277,9 +305,12 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
       grid-row: 2;
     }
 
-    .is-right .city {
+    .is-right .where {
       grid-column: 6 / span 7;
       grid-row: 2;
+    }
+
+    .is-right .city {
       text-align: right;
       margin-right: -0.04em;
     }

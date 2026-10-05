@@ -1,3 +1,4 @@
+import type photos from '../config/photos.json';
 import type { SourceId } from './sources';
 
 /**
@@ -6,7 +7,10 @@ import type { SourceId } from './sources';
  * Anything not verified is intentionally absent; see docs/PENDING.md.
  */
 
-export type LogoId = 'uc3m' | 'berkeley' | 'bologna' | 'garrigues' | 'maec' | 'fletcher' | 'areces';
+/** Toned photos built by `python3 scripts/build-photos.py` from scripts/photos.json. */
+export type PhotoId = keyof typeof photos;
+
+export type LogoId = 'uc3m' | 'berkeley' | 'bologna' | 'garrigues' | 'maec' | 'fletcher' | 'areces' | 'hks';
 
 export interface Period {
   from?: string;
@@ -29,6 +33,7 @@ export interface Entry {
   link?: string;
   /** Sub-entries such as the courses taken at an institution. */
   items?: Item[];
+  photo?: PhotoId;
   sources: SourceId[];
 }
 
@@ -36,6 +41,7 @@ export interface Stage {
   id: string;
   city: string;
   place: string;
+  photo?: PhotoId;
   entries: Entry[];
 }
 
@@ -51,6 +57,7 @@ export const studies: Stage[] = [
     id: 'madrid-uc3m',
     city: 'Madrid',
     place: 'Getafe, Madrid, Spain',
+    photo: 'madrid',
     entries: [
       {
         id: 'uc3m',
@@ -65,6 +72,7 @@ export const studies: Stage[] = [
     id: 'berkeley',
     city: 'Berkeley',
     place: 'Berkeley, California, United States',
+    photo: 'berkeley',
     entries: [
       {
         id: 'berkeley',
@@ -79,6 +87,7 @@ export const studies: Stage[] = [
     id: 'bologna',
     city: 'Bologna',
     place: 'Bologna, Italy',
+    photo: 'bologna',
     entries: [
       {
         id: 'bologna',
@@ -92,6 +101,7 @@ export const studies: Stage[] = [
     id: 'bruges',
     city: 'Bruges',
     place: 'Bruges, Belgium',
+    photo: 'bruges',
     entries: [
       {
         id: 'coe',
@@ -106,6 +116,7 @@ export const studies: Stage[] = [
     id: 'boston',
     city: 'Boston',
     place: 'Greater Boston, Massachusetts, United States',
+    photo: 'boston',
     entries: [
       {
         id: 'fletcher',
@@ -117,6 +128,7 @@ export const studies: Stage[] = [
       {
         id: 'harvard',
         institution: 'Harvard Kennedy School',
+        logo: 'hks',
         link: 'https://www.hks.harvard.edu/',
         sources: ['diego-direct', 'hks-maga', 'my-harvard-dpi451m'],
         items: [
@@ -169,6 +181,7 @@ export const experience: Entry[] = [
     id: 'maec',
     institution: 'Ministry of Foreign Affairs, European Union and Cooperation',
     logo: 'maec',
+    photo: 'ministry',
     period: { from: '2024-09', to: '2025-01' },
     sources: ['li-profile', 'li-nato', 'maec-placement'],
   },

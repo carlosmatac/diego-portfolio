@@ -36,6 +36,10 @@ entry is simply shorter.
 - Logos are shown as found on official sites or Wikimedia Commons (`public/logos/`). Confirm the right to use them in a personal portfolio, especially UC Berkeley (strict wordmark rules), the University of Bologna seal and Garrigues. No logo was found for College of Europe or The Political Room, so their names are set in type.
 - Photo or social links beyond LinkedIn and AUGE's Instagram, if wanted.
 
+## Photos and film
+- Photos are Wikimedia Commons city and building views, not photos of Diego. If he has his own (at the College of Europe, Fletcher, Harvard, AUGE sessions, the European Conference), they would be better. `scripts/build-photos.py` only fetches from Commons today, so it would need a local-file option.
+- The film shows Boston with "2026" (from the Harvard course in Fall 2026) and Bologna without a year, matching the site. Update `video/src/data.ts` once the Bologna and Fletcher dates are confirmed.
+
 ## Animation assets
 - The walk cycle exists only inside the embedded MP4 of `diego-saludo-v4/ver-saludo.html` (12 distinct drawings, repeated four times; H.264 compression). If the original PNGs of those 12 drawings exist, add them and rerun `npm run frames` for cleaner lines.
 - The greeting loop uses the 40 PNGs and the original exposure order from `secuencia.json`.

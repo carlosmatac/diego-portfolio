@@ -3,6 +3,7 @@ import { experience } from '../data/facts';
 import type { Copy, EntryCopy } from '../i18n/en';
 import { formatDate, formatPeriod } from '../i18n/format';
 import Logo from './Logo.astro';
+import Photo from './Photo.astro';
 
 interface Props {
   copy: Copy;
@@ -48,6 +49,7 @@ const when = (e: (typeof experience)[number]) =>
                     ))}
                   </ul>
                 )}
+                {entry.photo && <Photo id={entry.photo} copy={copy} class="role-photo" sizes="(min-width: 900px) 46vw, 92vw" />}
               </div>
             </li>
           );
@@ -140,6 +142,10 @@ const when = (e: (typeof experience)[number]) =>
   .points li {
     padding-block: 0.9rem;
     border-top: 1px solid var(--line);
+  }
+
+  .body :global(.role-photo) {
+    margin-top: 1.6rem;
   }
 
   @media (min-width: 900px) {

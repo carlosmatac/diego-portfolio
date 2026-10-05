@@ -1,0 +1,38 @@
+[
+  {
+    "id": "madrid",
+    "file": "File:UC3M Panorámica Getafe.jpg",
+    "aspect": 2.6,
+    "focus": [0.5, 0.55]
+  },
+  {
+    "id": "berkeley",
+    "file": "File:Sather Tower from Memorial Glade.jpg",
+    "aspect": 1.5,
+    "focus": [0.55, 0.45]
+  },
+  {
+    "id": "bologna",
+    "file": "File:Bologna, Archiginnasio, portico.jpg",
+    "aspect": 1.5,
+    "focus": [0.5, 0.5]
+  },
+  {
+    "id": "bruges",
+    "file": "File:J33 427 Rozenhoedkaai, Dijver.jpg",
+    "aspect": 1.5,
+    "focus": [0.5, 0.45]
+  },
+  {
+    "id": "boston",
+    "file": "File:Fletcher School of Law and Diplomacy - Tufts University - IMG 0918.JPG",
+    "aspect": 1.5,
+    "focus": [0.5, 0.45]
+  },
+  {
+    "id": "ministry",
+    "file": "File:Madrid - Palacio de Santa Cruz (Ministerio de Asuntos Exteriores de España) 1.jpg",
+    "aspect": 1.8,
+    "focus": [0.5, 0.3]
+  }
+]

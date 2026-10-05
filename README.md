@@ -19,6 +19,8 @@ npm run check      # type check
 | Facts: places, dates, links, source ids | `src/data/facts.ts`, `src/data/sources.ts` |
 | Wording (English) | `src/i18n/en.ts` (other locales implement the same `Copy` type) |
 | Opening scene settings: timings, scale, sequences, greetings, slots | `src/config/animation.ts` |
+| City and Ministry photos: list and crops | `scripts/photos.json` (built by `npm run photos` into `public/photos/` and `src/config/photos.json`) |
+| Route film (Remotion project) | `video/` (stops in `video/src/data.ts`, rendered by `npm run video` into `public/video/`) |
 | Playback engine | `src/scripts/hero.ts` |
 | Sections | `src/components/` |
 | Tokens and type | `src/styles/global.css` |
@@ -34,6 +36,15 @@ frames in `public/frames/{sm,lg}/` and writes `src/config/frames.json`:
 - Paper is removed by turning luminance into alpha, so there is no blend mode, halo or rectangle on the marble surface.
 - Only a rolling window of frames is decoded at a time. The arrival plays once per page load; afterwards only the greeting cycle repeats.
 - `prefers-reduced-motion` shows a still pose with no approach and no flowing greetings; the round button in the corner pauses or plays.
+
+## Route film
+
+`video/` is a separate Remotion project (its own `package.json`, run `npm install` inside it once). It renders a pencil globe
+following the stops Granada, Madrid, Berkeley, Bologna, Bruges and Boston in two formats: `route-wide.mp4` (1920x1080) and
+`route-tall.mp4` (1080x1350, used up to 760px wide), plus a poster of the last frame for each. `cd video && npm run dev`
+opens Remotion Studio. The film is drawn on white and shown with `mix-blend-mode: multiply`, so the marble shows through. It
+loads only near the viewport, plays once, pauses off screen, has a play/pause button and never autoplays with
+`prefers-reduced-motion`. If a stop changes on the site, change `video/src/data.ts` and render again.
 
 ## Pages
 
