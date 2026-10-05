@@ -25,10 +25,12 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
 
     <Film copy={copy} />
 
-    <div class="stages">
+    <div class="stages" data-deck>
+      <div class="deck-view" data-deck-view>
       {
         studies.map((stage, si) => (
-          <div class={`stage grid ${si % 2 ? 'is-right' : 'is-left'}`}>
+          <div class={`stage ${si % 2 ? 'is-right' : 'is-left'}`} data-card>
+           <div class="card-body grid" data-card-body>
             <span class="rule reveal" aria-hidden="true" />
             <div class="where">
               <p class="city display reveal" aria-hidden="true">
@@ -38,7 +40,7 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
                 <Photo id={stage.photo} copy={copy} class="stage-photo" sizes="(min-width: 900px) 56vw, 92vw" />
               )}
             </div>
-            <div class="entries">
+            <div class="entries" data-card-scroll>
               {stage.entries.map((entry) => {
                 const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
                 const place = t.place ?? stage.place;
@@ -82,9 +84,11 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
                 );
               })}
             </div>
+           </div>
           </div>
         ))
       }
+      </div>
     </div>
 
     <div class="awards grid">
@@ -109,6 +113,10 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
     </div>
   </div>
 </section>
+
+<script>
+  import '../scripts/deck';
+</script>
 
 <style>
   .head {
@@ -136,7 +144,72 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
   .stage {
     position: relative;
     padding-block: clamp(2.5rem, 6vw, 5.5rem) clamp(3.5rem, 8vw, 8rem);
+  }
+
+  .card-body {
     row-gap: 1.5rem;
+  }
+
+  /*
+   * Deck mode (src/scripts/deck.ts, off with reduced motion or without JS): the stages become a pile of sheets
+   * held in a sticky view. The front sheet is read, then lifts away and the next one comes forward.
+   */
+  .stages:global(.deck-on) {
+    --peek: 14px;
+    --deck-top: calc(var(--peek) * 3 + clamp(10px, 2vh, 22px));
+    --deck-bottom: clamp(14px, 3vh, 32px);
+    --card-pad: clamp(1.25rem, 3vw, 3rem);
+    position: relative;
+  }
+
+  .stages:global(.deck-on) .deck-view {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+  }
+
+  .stages:global(.deck-on) .stage {
+    position: absolute;
+    inset: var(--deck-top) 0 var(--deck-bottom) 0;
+    padding: var(--card-pad);
+    overflow: hidden;
+    background: var(--bg, var(--marble));
+    border: 1.5px solid var(--line);
+    box-shadow: 0 34px 60px -48px rgba(26, 25, 23, 0.55);
+    transform-origin: 50% 0;
+    will-change: transform;
+  }
+
+  /* Soft edge where a long sheet's content runs under its bottom margin. */
+  .stages:global(.deck-on) .stage::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: calc(var(--card-pad) * 1.6);
+    background: linear-gradient(to bottom, transparent, var(--bg, var(--marble)) 70%);
+    pointer-events: none;
+  }
+
+  .stages:global(.deck-on) .rule {
+    display: none;
+  }
+
+  .stages:global(.deck-on) .card-body,
+  .stages:global(.deck-on) .entries {
+    will-change: transform;
+  }
+
+  .stages:global(.deck-on) .where {
+    position: static;
+    margin-bottom: 0;
+  }
+
+  .stages:global(.deck-on) .where :global(.stage-photo) {
+    width: min(100%, calc(36svh * var(--ar)));
+  }
+
+  .stages:global(.deck-on) .city {
+    font-size: clamp(3.2rem, 15vw, 13rem);
   }
 
   .rule {
@@ -320,8 +393,12 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
       grid-row: 2;
     }
 
-    .stage {
+    .card-body {
       row-gap: 0;
+    }
+
+    .stages:global(.deck-on) .city {
+      font-size: clamp(4.5rem, 9.6vw, 14rem);
     }
   }
 </style>

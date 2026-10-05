@@ -74,3 +74,5 @@ for (const fig of document.querySelectorAll<HTMLElement>('[data-film]')) {
     { threshold: 0.45 },
   ).observe(fig);
 }
+
+export {};
