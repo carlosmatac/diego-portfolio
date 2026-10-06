@@ -1,0 +1,99 @@
+{
+  "mode": "ImageGen integrado",
+  "styleReference": "outputs/diego-saludo-v4/frames/diego-24.png",
+  "initialPrompt": "Use case: illustration-story. Create ONE standalone object illustration for Diego's international affairs portfolio, matching only the GRAPHITE DRAWING STYLE of the supplied person reference. Do NOT draw the person. Square 1024x1024 canvas. Center the complete object inside a 720x720 area with generous empty margins. Graphite black and grey pencil ONLY, quick expert observational sketch, overlapping searching strokes, slight overshoots, repeated faint construction contours, loose sparse crosshatching, confident but imperfect human pencil strokes. Match the scratchy line density and lively unfinished quality of the reference. No clean vector outlines, no cartoon, no photorealism, no dark solid fill, no gradients, no text, no borders, no cast shadow. Background genuinely TRANSPARENT with alpha, no white paper rectangle or checkerboard drawn in the pixels. Sparse graphite strokes on transparency so the artwork can sit on a warm white web page. This is anchor frame 01 of a three-drawing line-boil loop: clear stable geometry, strong legibility at 200px. Object: ",
+  "objects": [
+    {
+      "id": "tierra",
+      "name": "Tierra",
+      "description": "A standalone spherical planet Earth, Atlantic-centered with recognisable South America on the left, Europe and Africa on the right, partial North America upper left. Restrained geographically plausible continent outlines, no country borders, a few faint curved latitude construction lines. No stand, no rings, no stars.",
+      "section": "Presentación internacional; acompañar el perfil sin duplicar el globo del recorrido.",
+      "frames": [
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-d4897ff9-57c9-439b-a515-3106cb21813e.png",
+          "destination": "tierra/01.png",
+          "prompt": "Edit this pencil globe. Preserve its circle position, size, continent outlines and Atlantic-facing geographic orientation exactly. Fix only the ocean rendering: remove ALL grey filled patches, blotches and ghost shapes between latitude lines. Oceans must be clean white like the continents, with only a few thin hand-drawn latitude lines and light sparse graphite hatching. Keep scratchy repeated graphite outlines around the sphere and continents. Keep the complete globe LIGHT and airy like a fast pencil sketch, NOT a shaded 3D globe. Transparent outside the circle, solid pure white inside the circle behind the pencil strokes, absolutely no mottled ocean shading. Same canvas and size."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-8e321010-6862-4098-9e20-bc873bc97910.png",
+          "destination": "tierra/02.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 02. Keep the silhouette and anchors registered precisely. Keep ocean interiors clean white with no grey blotches. No globe rotation."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-8e7b5f3e-4248-466d-8722-4eb9f5f82ce1.png",
+          "destination": "tierra/03.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 03. Use a fresh arrangement of faint construction strokes and short hatch marks, keep all main edges in the exact same positions. Keep ocean interiors clean white with no grey blotches. No globe rotation."
+        }
+      ]
+    },
+    {
+      "id": "microfono",
+      "name": "Micrófono",
+      "description": "A slim gooseneck conference microphone on a small oval tabletop base, three-quarter view, elegant long curved stem and a small rounded capsule tilted toward upper left. Contemporary diplomatic conference microphone, no retro broadcast microphone, no podium.",
+      "section": "AUGE; junto al título o la introducción de sus encuentros.",
+      "frames": [
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-1e45bd68-f3a8-4163-8192-9cb71572fa34.png",
+          "destination": "microfono/01.png",
+          "prompt": "Use case: illustration-story. Create ONE standalone object illustration for Diego's international affairs portfolio, matching only the GRAPHITE DRAWING STYLE of the supplied person reference. Do NOT draw the person. Square 1024x1024 canvas. Center the complete object inside a 720x720 area with generous empty margins. Graphite black and grey pencil ONLY, quick expert observational sketch, overlapping searching strokes, slight overshoots, repeated faint construction contours, loose sparse crosshatching, confident but imperfect human pencil strokes. Match the scratchy line density and lively unfinished quality of the reference. No clean vector outlines, no cartoon, no photorealism, no dark solid fill, no gradients, no text, no borders, no cast shadow. Background genuinely TRANSPARENT with alpha, no white paper rectangle or checkerboard drawn in the pixels. Sparse graphite strokes on transparency so the artwork can sit on a warm white web page. This is anchor frame 01 of a three-drawing line-boil loop: clear stable geometry, strong legibility at 200px. Object: A slim gooseneck conference microphone on a small oval tabletop base, three-quarter view, elegant long curved stem and a small rounded capsule tilted toward upper left. Contemporary diplomatic conference microphone, no retro broadcast microphone, no podium."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-f2e3082f-8dd8-47ea-8f17-aea3d05d79cd.png",
+          "destination": "microfono/02.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 02, very subtle and faithful."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-f07cd197-6c1f-494c-9c2c-141d78b55ead.png",
+          "destination": "microfono/03.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 03. Use a fresh arrangement of faint construction strokes and short hatch marks, keep all main edges in the exact same positions."
+        }
+      ]
+    },
+    {
+      "id": "libro",
+      "name": "Libro abierto",
+      "description": "An open scholarly book in a gently elevated three-quarter view, two slightly curved pages, visible thin page edges and a simple sewn spine, sparse short graphite marks suggesting annotations but NO actual letters or readable text. No pen or other object.",
+      "section": "Studies o Blog; en el margen del encabezado.",
+      "frames": [
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-906a785c-0710-4162-8835-f26c5afbc0f1.png",
+          "destination": "libro/01.png",
+          "prompt": "Use case: illustration-story. Create ONE standalone object illustration for Diego's international affairs portfolio, matching only the GRAPHITE DRAWING STYLE of the supplied person reference. Do NOT draw the person. Square 1024x1024 canvas. Center the complete object inside a 720x720 area with generous empty margins. Graphite black and grey pencil ONLY, quick expert observational sketch, overlapping searching strokes, slight overshoots, repeated faint construction contours, loose sparse crosshatching, confident but imperfect human pencil strokes. Match the scratchy line density and lively unfinished quality of the reference. No clean vector outlines, no cartoon, no photorealism, no dark solid fill, no gradients, no text, no borders, no cast shadow. Background genuinely TRANSPARENT with alpha, no white paper rectangle or checkerboard drawn in the pixels. Sparse graphite strokes on transparency so the artwork can sit on a warm white web page. This is anchor frame 01 of a three-drawing line-boil loop: clear stable geometry, strong legibility at 200px. Object: An open scholarly book in a gently elevated three-quarter view, two slightly curved pages, visible thin page edges and a simple sewn spine, sparse short graphite marks suggesting annotations but NO actual letters or readable text. No pen or other object."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-bc275a4b-9c45-4afe-9da6-ee0841ab353c.png",
+          "destination": "libro/02.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 02, very subtle and faithful."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-224ee7e1-c6e8-4edd-8523-7f648d2c79a8.png",
+          "destination": "libro/03.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 03. Use a fresh arrangement of faint construction strokes and short hatch marks, keep all main edges in the exact same positions."
+        }
+      ]
+    },
+    {
+      "id": "microchip",
+      "name": "Microchip",
+      "description": "A single semiconductor microchip in an elegant slightly elevated three-quarter view, square central plate and neat metallic pins on four sides, a few fine schematic etched lines inside the plate. No text, no branding, no surrounding circuitry or board.",
+      "section": "Investigación y política industrial; asociado al trabajo sobre semiconductores.",
+      "frames": [
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-45d41413-6bb0-4c5f-94f1-b71be4a0ca3f.png",
+          "destination": "microchip/01.png",
+          "prompt": "Use case: illustration-story. Create ONE standalone object illustration for Diego's international affairs portfolio, matching only the GRAPHITE DRAWING STYLE of the supplied person reference. Do NOT draw the person. Square 1024x1024 canvas. Center the complete object inside a 720x720 area with generous empty margins. Graphite black and grey pencil ONLY, quick expert observational sketch, overlapping searching strokes, slight overshoots, repeated faint construction contours, loose sparse crosshatching, confident but imperfect human pencil strokes. Match the scratchy line density and lively unfinished quality of the reference. No clean vector outlines, no cartoon, no photorealism, no dark solid fill, no gradients, no text, no borders, no cast shadow. Background genuinely TRANSPARENT with alpha, no white paper rectangle or checkerboard drawn in the pixels. Sparse graphite strokes on transparency so the artwork can sit on a warm white web page. This is anchor frame 01 of a three-drawing line-boil loop: clear stable geometry, strong legibility at 200px. Object: A single semiconductor microchip in an elegant slightly elevated three-quarter view, square central plate and neat metallic pins on four sides, a few fine schematic etched lines inside the plate. No text, no branding, no surrounding circuitry or board."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-c3ddc917-c623-4771-afee-a15dda882cfc.png",
+          "destination": "microchip/02.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 02, very subtle and faithful."
+        },
+        {
+          "source": "/home/carlos/.codex/generated_images/01a0f39f-c1b8-7ae3-bdd3-a502963051af/exec-1622099a-c40b-4938-b7f8-60fa6b198132.png",
+          "destination": "microchip/03.png",
+          "prompt": "Use case: precise-object-edit. Edit the supplied drawing to create ONE additional exposure of the SAME stationary object for a hand-drawn line-boil loop. Lock the canvas dimensions, composition, scale, silhouette, perspective, object center, every structural landmark and transparent background. Do NOT rotate, translate, bend, squash, zoom, change geometry, add or remove components. ONLY redraw individual graphite marks with tiny irregular deviations of roughly 1-3 pixels: different searching contour repetitions, lightly shifted hatching and pencil pressure, a few varied overshooting construction strokes. Keep identical overall stroke weight and dark/light balance. Preserve the rough quick pencil sketch, no vector cleanup, no blur, no double-image offset. No text. Transparent background with real alpha. Retain the reference's internal light areas. Produce variant 03. Use a fresh arrangement of faint construction strokes and short hatch marks, keep all main edges in the exact same positions."
+        }
+      ]
+    }
+  ]
+}

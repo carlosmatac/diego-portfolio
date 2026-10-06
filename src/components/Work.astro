@@ -1,6 +1,7 @@
 ---
 import { works } from '../data/facts';
 import type { Copy, WorkCopy } from '../i18n/en';
+import Sketch from './Sketch.astro';
 
 interface Props {
   copy: Copy;
@@ -40,6 +41,7 @@ const c = copy.work;
                   </p>
                 )}
               </div>
+              {w.id === 'thesis' && <Sketch id="microchip" class="chip" />}
             </article>
           );
         })
@@ -106,7 +108,21 @@ const c = copy.work;
     font-size: 1.1rem;
   }
 
+  .item :global(.chip) {
+    width: clamp(110px, 32vw, 150px);
+    margin-top: 1rem;
+  }
+
   @media (min-width: 900px) {
+    .item :global(.chip) {
+      grid-column: 10 / span 3;
+      grid-row: 2 / span 3;
+      align-self: center;
+      justify-self: end;
+      width: clamp(150px, 14vw, 240px);
+      margin-top: 0;
+    }
+
     .item .kind {
       grid-column: var(--s) / span 5;
     }

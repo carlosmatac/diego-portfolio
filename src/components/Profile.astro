@@ -1,5 +1,6 @@
 ---
 import type { Copy } from '../i18n/en';
+import Sketch from './Sketch.astro';
 
 interface Props {
   copy: Copy;
@@ -10,6 +11,7 @@ const c = copy.profile;
 
 <section class="section surface-dark profile" id="profile" aria-labelledby="profile-title">
   <div class="wrap">
+    <div class="grid top">
     <h2 class="display statement" id="profile-title">
       {
         c.title.map((line, i) => (
@@ -19,6 +21,8 @@ const c = copy.profile;
         ))
       }
     </h2>
+    <Sketch id="tierra" class="globe" />
+    </div>
 
     <div class="grid body">
       <dl class="facts reveal" style="--d:150ms">
@@ -50,22 +54,30 @@ const c = copy.profile;
   }
 
   .statement {
-    font-size: clamp(2.45rem, 7.1vw, 8.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.045em;
-    max-width: 14ch;
+    font-size: clamp(2.1rem, 5vw, 5.6rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    max-width: 20ch;
+  }
+
+  .top {
+    row-gap: 1.6rem;
+  }
+
+  .statement {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .top :global(.globe) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: end;
+    width: clamp(96px, 30vw, 150px);
   }
 
   .line {
     display: block;
-  }
-
-  .line:nth-child(2) {
-    padding-left: clamp(0.4em, 2vw, 1.4em);
-  }
-
-  .line:nth-child(3) {
-    padding-left: clamp(0.8em, 4vw, 2.6em);
   }
 
   .body {
@@ -102,7 +114,15 @@ const c = copy.profile;
 
   @media (min-width: 900px) {
     .statement {
-      max-width: none;
+      grid-column: 1 / span 10;
+      grid-row: 1;
+      max-width: 22ch;
+    }
+
+    .top :global(.globe) {
+      grid-column: 11 / span 2;
+      width: min(100%, 230px);
+      margin-top: 0.4rem;
     }
 
     .facts {

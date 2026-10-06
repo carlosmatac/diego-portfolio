@@ -89,11 +89,11 @@ export const sources = {
   },
   'diego-direct': {
     label: 'Diego Prados Jódar, first-hand information given to the site owner (Oct 2026)',
-    note: 'Not published online. Cross-registration at Harvard, SPPN membership and the 2027 panel role are known only from Diego himself.',
+    note: 'Not published online. Cross-registration at Harvard, SPPN membership, the 2027 panel role, the 2026/27 Areces award and the end of his AUGE presidency in June 2025 are known only from Diego himself.',
   },
   cv: {
     label: 'Diego Prados Jódar, CV (PDF)',
-    note: 'Private document, kept out of the repository (.gitignore). Used for the scholarships and the city of the Garrigues internship.',
+    note: 'Private document, kept out of the repository (.gitignore). Used for the scholarships, work and leadership entries (dates, tasks), the public email address and the TellUs and Café y Calor entries.',
   },
   'hks-maga': {
     label: 'Harvard Kennedy School, course page "Make America Great Again: The Ideas Behind The Movement"',

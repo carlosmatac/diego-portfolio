@@ -36,7 +36,7 @@ export const en = {
   meta: {
     title: 'Diego Prados Jódar',
     description:
-      'Diego Prados Jódar studies and works on international relations, international law and geostrategy. Universidad Carlos III de Madrid, UC Berkeley, Bologna, College of Europe and The Fletcher School. Founder and president of AUGE.',
+      'Diego Prados Jódar is a transatlantic policy and strategy professional focused on technology, industrial and energy policy. Universidad Carlos III de Madrid, UC Berkeley, Bologna, College of Europe and The Fletcher School. Founder of AUGE.',
   },
   skip: 'Skip to content',
   hero: {
@@ -59,10 +59,10 @@ export const en = {
   },
   words: { to: 'to', present: 'present', since: 'Since' },
   profile: {
-    title: ['International relations,', 'international law', 'and geostrategy.'],
+    title: ['Transatlantic policy and strategy professional with a focus on technology, industrial, and energy policy.'],
     paragraphs: [
-      'Diego Prados Jódar was born in Granada. He studied the Double Degree in International Studies and Law at Universidad Carlos III de Madrid, spent an exchange year at UC Berkeley and a stay at the University of Bologna. He is now studying the Master of Arts in Transatlantic Affairs, a joint degree of the College of Europe in Bruges and The Fletcher School in Boston, and cross-registers at Harvard Kennedy School. A Fundación Ramón Areces scholarship funds his postgraduate studies abroad.',
-      'Alongside his studies he has worked in the administrative law department of a law firm, with the Spanish Ministry of Foreign Affairs and as a collaborating researcher at an independent media outlet on international affairs. He is a member of the Spanish Public Policy Network and coordinates a panel on industrial policy for the 2027 European Conference. In 2023 he co-founded AUGE, the geopolitics and strategy association of his university, and has presided over it since.',
+      'Transatlantic policy and strategy professional with a background in international affairs, law, public-sector analysis, and geopolitical research. Experience across foreign policy, regulatory analysis, legal consultancy, and policy research. Currently pursuing an M.A. in Transatlantic Affairs at the College of Europe and Fletcher School, with a focus on technology, industrial, and energy policy. Interested in strategic and policy roles across the intersection of these sectors.',
+      'Alongside his studies he has worked in the administrative law department of Garrigues, one of the best-known law firms in Spain, with the Spanish Ministry of Foreign Affairs and as a collaborating researcher at an independent media outlet on international affairs. He is a member of the Spanish Public Policy Network and coordinates a panel on industrial policy for the 2027 European Conference. In 2023 he co-founded AUGE, the geopolitics and strategy association of his university, and presided over it until June 2025.',
     ],
     facts: [
       { label: 'Now', value: 'Master of Arts in Transatlantic Affairs, College of Europe (Bruges) and The Fletcher School (Boston)' },
@@ -89,7 +89,7 @@ export const en = {
         summary:
           'A five-year programme that pairs demanding legal training with the multidisciplinary approach of international studies: the global economy, poverty and inequality, migration and climate policy.',
         points: [
-          'In August 2023 he co-founded AUGE, the university\u2019s geopolitics and strategy association, and became its president.',
+          'In August 2023 he co-founded AUGE, the university\u2019s geopolitics and strategy association, and became its president, a post he held until June 2025.',
         ],
       },
       berkeley: {
@@ -147,7 +147,7 @@ export const en = {
           relation: 'Scholarship holder, awarded twice',
           programme: 'Postgraduate studies abroad, social sciences',
           summary:
-            'The foundation\u2019s annual call funds master\u2019s and doctoral studies at universities and research centres abroad in economics, EU law and the social sciences. Diego holds it for his master\u2019s at the College of Europe and Fletcher, and appears on the foundation\u2019s list of grantees for the 2025/26 call.',
+            'The foundation\u2019s annual call funds master\u2019s and doctoral studies at universities and research centres abroad in economics, EU law and the social sciences. Diego holds it for his master\u2019s at the College of Europe and Fletcher. He appears on the foundation\u2019s list of grantees for the 2025/26 call and holds the scholarship again in 2026/27, although the public list does not show it yet.',
         },
         'madrid-excellence': {
           relation: 'Scholarship holder, awarded three times',
@@ -159,41 +159,90 @@ export const en = {
   },
   experience: {
     title: 'Experience',
-    lede: 'Placements, research and the policy networks he is part of.',
-    entries: {
-      euroconf: {
-        relation: 'Panel coordinator',
-        programme: 'Industrial policy panel, European Conference 2027',
-        place: 'Cambridge, Massachusetts',
-        summary:
-          'Diego is organising a panel on industrial policy for the 2027 edition. The conference is run each year by Harvard, MIT and Fletcher students to strengthen transatlantic dialogue; the 2026 edition was its twelfth.',
-      },
-      sppn: {
-        relation: 'Member',
-        programme: 'Platform for young Spanish professionals in public policy',
-        summary:
-          'The Spanish Public Policy Network brings together students, professionals and institutional leaders in policymaking and international affairs, through institutional visits, expert talks, an annual conference and a policy blog.',
-      },
-      maec: {
-        relation: 'Collaborator',
-        programme: 'Deputy Directorate-General for Common Foreign and Security Policy',
-        place: 'Madrid, Spain',
-        points: [
-          'Part of the team that organised the first Meeting of Senior Allied Officials on NATO\u2019s Southern Neighbourhood, held at the Ministry on 29 November 2024.',
-        ],
-      },
-      garrigues: {
-        relation: 'Summer Legal Intern',
-        programme: 'Administrative Law department',
-        place: 'Málaga, Spain',
-      },
-      tpr: {
-        relation: 'Collaborating researcher',
-        programme: 'Independent media outlet on international affairs',
-        place: 'Madrid, Spain',
-        summary: 'Published an article in Spanish on the South China Sea and international law in March 2024.',
-      },
-    } satisfies Record<string, EntryCopy>,
+    lede: 'Work first, then leadership, associations and conferences.',
+    work: {
+      title: 'Work',
+      entries: {
+        maec: {
+          relation: 'Collaborator',
+          programme: 'Deputy Directorate-General for Common Foreign and Security Policy',
+          place: 'Madrid, Spain',
+          points: [
+            'Helped organise the first Meeting of Senior Allied Officials on NATO\u2019s Southern Neighbourhood, held at the Ministry on 29 November 2024: preparing the infrastructure (live translation, transport and meals), receiving the diplomats and accompanying them during the event.',
+            'Helped prepare and translate the Minister\u2019s interventions for the EU\u2019s Foreign Affairs Council, compiling and analysing relevant events and declarations by European leaders.',
+            'Researched Spain\u2019s foreign security policy in the EU context to brief the assigned diplomats on recent developments and strategic courses of action.',
+            'Analysed the EEAS expenditure breakdown in the current Multiannual Financial Framework and built a database to monitor and track spending.',
+          ],
+        },
+        garrigues: {
+          relation: 'Summer Legal Intern',
+          programme: 'Administrative Law department',
+          place: 'Málaga, Spain',
+          summary: 'Garrigues is one of the best-known law firms in Spain.',
+          points: [
+            'Supported the department\u2019s counsel by analysing case law, reviewing the urban planning regulations of municipalities in Andalusia, and drafting legal reports and administrative claims.',
+            'Areas of practice covered: public procurement, concessions, infrastructure, expropriations, grants and subsidies, administrative litigation, environmental law and urban planning.',
+          ],
+        },
+        tpr: {
+          relation: 'Collaborator',
+          programme: 'Independent media outlet on international relations and security affairs',
+          place: 'Madrid, Spain',
+          summary:
+            'Researched Southeast Asia and wrote an analysis, in Spanish, of the interplay between international law and the Chinese maritime presence in the region: \u201cEl Mar de China Meridional: \u00bfPunto final al Derecho Internacional?\u201d, published in March 2024.',
+        },
+      } satisfies Record<string, EntryCopy>,
+    },
+    leadership: {
+      title: 'Leadership',
+      entries: {
+        euroconf: {
+          relation: 'Panel coordinator',
+          programme: 'Industrial policy panel, European Conference 2027',
+          place: 'Cambridge, Massachusetts',
+          summary:
+            'Diego is organising a panel on industrial policy for the 2027 edition. The conference is run each year by Harvard, MIT and Fletcher students to strengthen transatlantic dialogue; the 2026 edition was its twelfth.',
+        },
+        tellus: {
+          relation: 'Participant',
+          programme: 'Innovation ecosystems policy project',
+          place: 'Bruges, Belgium',
+          points: [
+            'Led team research on innovation ecosystems and drafted a policy report on the engines that drive innovation, comparing ecosystems and formulating recommendations for the EU.',
+            'Presented the final draft to Marc Lema\u00eetre, Director-General of DG RTD at the European Commission, under the supervision of Jekaterina Novikova.',
+          ],
+        },
+        sppn: {
+          relation: 'Member',
+          programme: 'Platform for young Spanish professionals in public policy',
+          summary:
+            'The Spanish Public Policy Network brings together students, professionals and institutional leaders in policymaking and international affairs, through institutional visits, expert talks, an annual conference and a policy blog.',
+        },
+        auge: {
+          relation: 'Founder and president',
+          programme: 'Student association for geopolitical analysis and strategic debate',
+          place: 'Madrid, Spain',
+          points: [
+            'Founded and directed the association at Universidad Carlos III de Madrid. He stepped down as president in June 2025.',
+            'Organised and moderated seminars and guest lectures with experts in geopolitics, and interviewed guests including Dennis C. Blair, former U.S. Director of National Intelligence, and María Andrés Marín, Director of the European Parliament Office in Spain.',
+          ],
+        },
+        dpe: {
+          relation: 'Member',
+          programme: 'Professional foreign service fraternity, Epsilon Chapter',
+          place: 'Berkeley, California',
+          points: [
+            'Took part in panels and guest lectures on international affairs with diplomats, scholars and foreign policy practitioners.',
+            'Wrote a research paper on the security dynamics of the Sahel and their implications for EU external action, presented at an academic symposium.',
+          ],
+        },
+        cafe: {
+          relation: 'Volunteer',
+          programme: 'Community association',
+          place: 'Granada, Spain',
+        },
+      } satisfies Record<string, EntryCopy>,
+    },
   },
   photos: {
     by: 'Photo',
@@ -236,7 +285,7 @@ export const en = {
     roleTitle: 'Diego\u2019s role',
     role: [
       'Co-founder, with Aina Vallespir Bonafé, Pedro Pérez Motilla and Carla Ruiz Gutiérrez. The association was announced on 23 August 2023, with activities starting that September.',
-      'President since August 2023.',
+      'President from August 2023 to June 2025.',
       'Moderator, with Lucía Barona Bonet, of the session with the Ambassador of Japan to Spain on 6 November 2024.',
     ],
     formatTitle: 'How it works',
@@ -261,7 +310,7 @@ export const en = {
       },
       blair: {
         title: 'Conference with Dennis Blair',
-        note: 'Recorded session.',
+        note: 'Dennis C. Blair is a former U.S. Director of National Intelligence. Recorded session.',
       },
       vara: {
         title: '\u201cEl porvenir del viejo mundo\u201d, with Óscar Vara',
@@ -331,7 +380,7 @@ export const en = {
   },
   contact: {
     title: 'Contact',
-    text: 'Diego is interested in opportunities in international relations, geostrategy and international law.',
+    text: 'Diego is interested in strategic and policy roles across technology, industrial, and energy policy.',
     emailLabel: 'Email',
     linkedinLabel: 'LinkedIn',
     linkedinText: 'linkedin.com/in/diegopradosjodar',

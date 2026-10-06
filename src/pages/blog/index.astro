@@ -1,5 +1,6 @@
 ---
 import Header from '../../components/Header.astro';
+import Sketch from '../../components/Sketch.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import Base from '../../layouts/Base.astro';
 import { en as copy } from '../../i18n/en';
@@ -27,6 +28,7 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-re
       <div class="wrap">
         <header class="head grid">
           <h1 class="display title" id="blog-title">{copy.blog.title}</h1>
+          <Sketch id="libro" class="book" />
           <p class="lede reveal">{copy.blog.lede}</p>
         </header>
 
@@ -88,6 +90,24 @@ Astro.response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-re
     grid-column: 1 / -1;
     font-size: 1.4rem;
     color: var(--muted);
+  }
+
+  .head :global(.book) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+    width: clamp(110px, 30vw, 150px);
+    margin-top: -4.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .head :global(.book) {
+      grid-column: 9 / span 4;
+      align-self: end;
+      width: clamp(200px, 20vw, 320px);
+      margin: 0 0 1rem;
+    }
   }
 
   .empty {

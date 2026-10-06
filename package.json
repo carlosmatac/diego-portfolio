@@ -10,6 +10,7 @@
     "check": "astro check",
     "frames": "python3 scripts/build-frames.py",
     "photos": "python3 scripts/build-photos.py",
+    "sketches": "python3 scripts/build-sketches.py",
     "video": "cd video && npm run render"
   },
   "dependencies": {

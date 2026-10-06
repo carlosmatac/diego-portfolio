@@ -27,7 +27,7 @@ snippet only (to be confirmed by Diego); **D** Diego's own word or his private C
 | Fundación Ramón Areces scholarship, XXXIX call, course 2025/26 | Fundación Ramón Areces grantee list; LinkedIn profile | A |
 | Thesis on European chip policy / ASML EUV, supervised by Chris Miller (in process); coursework list | LinkedIn profile | C |
 | AUGE announced 23 Aug 2023 by Diego, Aina Vallespir Bonafé, Pedro Pérez Motilla and Carla Ruiz Gutiérrez; purpose and method; Getafe campus; first activities in September | LinkedIn post of 23 Aug 2023; Carla Ruiz Gutiérrez's post (founding member and secretary) | B |
-| Diego is President of AUGE since August 2023 ("Presidente y fundador") | LinkedIn profile; The Political Room author box | C/B |
+| Diego was President of AUGE from August 2023 (CV: June 2023) to June 2025 ("Presidente y fundador") | LinkedIn profile; The Political Room author box; CV; Diego himself for the end date | C/B/D |
 | First external, 20 Sep 2023, Libya 2011 with Peter Bartu (UC Berkeley, Middle East) | Post by Aina Vallespir Bonafé | B |
 | Recorded sessions: 10 Oct, 2 Nov, 20 Nov, 22 Nov 2023, 19 Mar 2024 | UC3M Media series "Asociación AUGE" | A |
 | Óscar Vara presented "El porvenir del viejo mundo" and it closed the first term | Diego's post of Dec 2023 | B |

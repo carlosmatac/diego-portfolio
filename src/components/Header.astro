@@ -15,9 +15,8 @@ const h = copy.header;
     <span class="brand-inner" data-brand-inner aria-hidden="true">
       <span class="b-row" data-row>
         <span class="b-diego"><span class="rise">Diego</span></span>
-        <span class="b-mask b-mask-2"><span class="b-prados p2"><span class="rise">Prados</span></span></span>
+        <span class="b-prados" data-prados><span class="b-clip"><span class="rise">Prados</span></span></span>
       </span>
-      <span class="b-mask b-mask-1"><span class="b-prados p1"><span class="rise">Prados</span></span></span>
     </span>
   </a>
 
@@ -149,8 +148,9 @@ const h = copy.header;
     align-items: flex-start;
   }
 
+  /* Each word carries its own mask for the intro rise; the mask travels with the word. */
   .b-diego,
-  .b-mask-2 {
+  .b-clip {
     display: block;
     overflow: hidden;
     padding-block: 0.12em 0.22em;
@@ -159,58 +159,46 @@ const h = copy.header;
     margin-inline: -0.02em;
   }
 
-  .b-mask-2 {
-    margin-left: 0.2em;
-  }
-
   .b-prados,
   .rise {
     display: block;
   }
 
-  /* Prados below Diego (large state only): clipped at its own top edge so it tucks under Diego. */
-  .b-mask-1 {
-    display: none;
+  .b-prados {
+    margin-left: 0.2em;
   }
 
-  :global(html[data-brand='big']) .b-mask-1 {
-    display: block;
+  /*
+   * Large state: Prados starts under Diego and travels on a curve to his right while the
+   * brand docks (offsets set by src/scripts/header.ts). Nothing is hidden on the way.
+   */
+  :global(html[data-brand='big']) .b-prados {
     position: absolute;
     left: 0;
     top: 100%;
-    line-height: inherit;
-    height: 0.84em;
-    clip-path: inset(-0.07em -1em -0.4em -1em);
+    margin-left: 0;
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
   }
 
-  .p1 {
-    transform: translateY(calc(var(--u, 0) * -135%));
-  }
-
-  /* Prados to the right of Diego: hidden behind Diego's edge until the brand has docked. */
-  .p2 {
-    transform: translateX(-120%);
-    transition: transform 0.4s cubic-bezier(0.5, 0, 0.9, 0.4);
-  }
-
-  [data-state='docked'] .p2 {
-    transform: none;
-    transition: transform 0.9s cubic-bezier(0.12, 1, 0.3, 1);
-  }
-
-  /* Large single-line state on compact screens: Prados sits beside Diego until the scroll starts. */
+  /* Compact screens: one line from the start, nothing to travel. */
   @media (max-width: 760px), (max-aspect-ratio: 4/5) {
-    :global(html[data-brand='big']) [data-state='big'] .p2 {
+    :global(html[data-brand='big']) .b-prados {
+      position: static;
+      margin-left: 0.2em;
       transform: none;
     }
-
-    :global(html[data-brand='big']) .b-mask-1 {
-      display: none;
-    }
   }
 
-  :global(html[data-brand='big']) .b-row {
-    gap: 0;
+  /* Inner pages: Prados settles in beside Diego once, on load. */
+  :global(html.js) .site-header:not([data-home]) .b-prados {
+    transition:
+      opacity 0.7s ease,
+      transform 0.9s var(--ease-out);
+  }
+
+  :global(html.js) .site-header:not([data-home]):not([data-ready]) .b-prados {
+    opacity: 0;
+    transform: translateX(-0.35em);
   }
 
   /* intro: letters rise into place once the figure is close */
@@ -222,8 +210,7 @@ const h = copy.header;
     transition: transform 1.2s var(--ease-out);
   }
 
-  .p2 .rise,
-  .p1 .rise {
+  .b-prados .rise {
     transition-delay: 0.15s;
   }
 
@@ -288,8 +275,7 @@ const h = copy.header;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .p2,
-    [data-state='docked'] .p2,
+    .site-header .b-prados,
     .rise {
       transition: none;
     }

@@ -48,7 +48,7 @@ export interface Stage {
 export const person = {
   name: 'Diego Prados Jódar',
   displayName: ['Diego', 'Prados'],
-  email: 'diegopradosjodar@berkeley.edu',
+  email: 'diego.pradosjodar@coleurope.eu',
   linkedin: 'https://www.linkedin.com/in/diegopradosjodar/',
 } as const;
 
@@ -154,7 +154,7 @@ export const scholarships: Entry[] = [
     institution: 'Fundación Ramón Areces',
     logo: 'areces',
     link: 'https://www.fundacionareces.es/fundacionareces/en/social-sciences/scholarships/',
-    sources: ['areces-list', 'areces-call', 'cv'],
+    sources: ['areces-list', 'areces-call', 'cv', 'diego-direct'],
   },
   {
     id: 'madrid-excellence',
@@ -163,7 +163,32 @@ export const scholarships: Entry[] = [
   },
 ];
 
-export const experience: Entry[] = [
+export const work: Entry[] = [
+  {
+    id: 'maec',
+    institution: 'Ministry of Foreign Affairs, European Union and Cooperation',
+    logo: 'maec',
+    photo: 'ministry',
+    period: { from: '2024-09', to: '2025-01' },
+    sources: ['li-profile', 'li-nato', 'maec-placement', 'cv'],
+  },
+  {
+    id: 'garrigues',
+    institution: 'Garrigues',
+    logo: 'garrigues',
+    period: { from: '2024-06', to: '2024-07' },
+    sources: ['li-profile', 'li-garrigues', 'cv'],
+  },
+  {
+    id: 'tpr',
+    institution: 'The Political Room',
+    link: 'https://thepoliticalroom.com',
+    period: { from: '2024-03', to: '2025-06' },
+    sources: ['li-profile', 'tpr-article', 'cv'],
+  },
+];
+
+export const leadership: Entry[] = [
   {
     id: 'euroconf',
     institution: 'European Conference',
@@ -172,31 +197,35 @@ export const experience: Entry[] = [
     sources: ['diego-direct', 'euroconf-2026'],
   },
   {
+    id: 'tellus',
+    institution: 'TellUs Project',
+    period: { from: '2025-08', to: '2026-06' },
+    sources: ['cv'],
+  },
+  {
     id: 'sppn',
     institution: 'Spanish Public Policy Network',
     link: 'https://spainpolicy.com/',
     sources: ['diego-direct', 'sppn-home'],
   },
   {
-    id: 'maec',
-    institution: 'Ministry of Foreign Affairs, European Union and Cooperation',
-    logo: 'maec',
-    photo: 'ministry',
-    period: { from: '2024-09', to: '2025-01' },
-    sources: ['li-profile', 'li-nato', 'maec-placement'],
+    id: 'auge',
+    institution: 'AUGE, Asociación Universitaria de Geopolítica y Estrategia',
+    link: '#auge',
+    period: { from: '2023-08', to: '2025-06' },
+    sources: ['li-auge-launch', 'li-profile', 'cv', 'diego-direct'],
   },
   {
-    id: 'garrigues',
-    institution: 'Garrigues',
-    logo: 'garrigues',
-    date: '2024-06',
-    sources: ['li-profile', 'li-garrigues', 'cv'],
+    id: 'dpe',
+    institution: 'Delta Phi Epsilon',
+    period: { from: '2023-01', to: '2023-06' },
+    sources: ['li-berkeley', 'cv'],
   },
   {
-    id: 'tpr',
-    institution: 'The Political Room',
-    link: 'https://thepoliticalroom.com',
-    sources: ['li-profile', 'tpr-article'],
+    id: 'cafe',
+    institution: 'Asociación Café y Calor',
+    period: { from: '2026-06', to: '2026-08' },
+    sources: ['cv'],
   },
 ];
 
@@ -213,6 +242,7 @@ export const auge = {
   host: 'Universidad Carlos III de Madrid',
   announced: '2023-08-23',
   presidentSince: '2023-08',
+  presidentUntil: '2025-06',
   instagram: 'https://www.instagram.com/auge.uc3m/',
   media: 'https://media.uc3m.es/series/6526553d9b2ac014e938d313',
   founders: ['Diego Prados Jódar', 'Aina Vallespir Bonafé', 'Pedro Pérez Motilla', 'Carla Ruiz Gutiérrez'],

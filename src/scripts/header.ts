@@ -2,6 +2,7 @@ const doc = document.documentElement;
 const header = document.querySelector<HTMLElement>('[data-header]');
 const inner = header?.querySelector<HTMLElement>('[data-brand-inner]');
 const row = header?.querySelector<HTMLElement>('[data-row]');
+const prados = header?.querySelector<HTMLElement>('[data-prados]');
 const nav = header?.querySelector<HTMLElement>('[data-nav]');
 
 const clamp = (v: number, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
@@ -12,13 +13,23 @@ if (header && inner && row) init(header, inner, row);
 
 function init(header: HTMLElement, inner: HTMLElement, row: HTMLElement) {
   const scrub = doc.dataset.brand === 'big';
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   let geo = { x0: 0, y0: 0, x1: 0, y1: 0, lnS: 0 };
+  /** Distance from Prados' resting place under Diego to its place beside him, in unscaled px. */
+  let trip = { dx: 0, dy: 0 };
   let ticking = false;
   let lastTheme = '';
 
   const measure = () => {
     inner.style.transform = '';
+    if (prados && getComputedStyle(prados).position === 'absolute') {
+      // Lay Prados out in line for a moment to read exactly where it ends up beside Diego.
+      const { offsetLeft: x0, offsetTop: y0 } = prados;
+      prados.style.cssText = 'position:static;margin-left:0.2em;transform:none';
+      trip = { dx: prados.offsetLeft - x0, dy: prados.offsetTop - y0 };
+      prados.style.cssText = '';
+    } else {
+      trip = { dx: 0, dy: 0 };
+    }
     const r = inner.getBoundingClientRect();
     const f0 = parseFloat(getComputedStyle(inner).fontSize);
     const final = parseFloat(getComputedStyle(doc).getPropertyValue('--brand-final')) || 26;
@@ -44,7 +55,10 @@ function init(header: HTMLElement, inner: HTMLElement, row: HTMLElement) {
       const e = smooth(t);
       inner.style.transform = `translate3d(${lerp(geo.x0, geo.x1, e).toFixed(2)}px, ${lerp(geo.y0, geo.y1, e).toFixed(2)}px, 0) scale(${Math.exp(geo.lnS * e).toFixed(5)})`;
       const alpha = smooth(clamp((t - 0.72) / 0.28));
-      header.style.setProperty('--u', clamp(t / 0.62).toFixed(4));
+      // Prados goes right first, then up: a quarter curve around Diego, landing as the brand docks.
+      const q = smooth(clamp(t / 0.85));
+      header.style.setProperty('--px', `${(trip.dx * (1 - (1 - q) ** 2.2)).toFixed(2)}px`);
+      header.style.setProperty('--py', `${(trip.dy * q ** 1.8).toFixed(2)}px`);
       header.style.setProperty('--bg-alpha', alpha.toFixed(3));
       header.style.setProperty('--nav-alpha', alpha.toFixed(3));
       nav?.toggleAttribute('data-hidden', alpha < 0.4);
@@ -71,12 +85,9 @@ function init(header: HTMLElement, inner: HTMLElement, row: HTMLElement) {
       measure();
       request();
     });
-  } else if (!reduce.matches) {
-    // Inner pages: Prados slips out from behind Diego once on load.
-    header.dataset.state = 'moving';
-    setTimeout(() => (header.dataset.state = 'docked'), 350);
   } else {
-    header.dataset.state = 'docked';
+    // Inner pages: Prados settles in beside Diego once on load (see Header.astro).
+    requestAnimationFrame(() => requestAnimationFrame(() => header.setAttribute('data-ready', '')));
   }
 
   addEventListener('scroll', request, { passive: true });

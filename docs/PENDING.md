@@ -24,7 +24,7 @@ entry is simply shorter.
 
 ## AUGE
 - Official name: the 2023 announcement says "para la Geopolítica y Estrategia", later posts and his profile say "de Geopolítica y Estrategia". The site uses "Asociación Universitaria de Geopolítica y Estrategia".
-- Whether Diego is still president today (LinkedIn says "Present") and the current board.
+- Diego left the presidency in June 2025 (told by Diego); LinkedIn still says "Present". The current board is unknown.
 - Verified figures for the "what came of it" text: members, attendance, number of sessions per year, partners. None are public, so the text is qualitative and counts only sessions found online (six between Sep 2023 and Mar 2024).
 - Sessions from 2024/25 and 2025/26 other than the two listed: only publicly found ones are shown. A talk on European security by a Colonel (Oct 2025) was left out because the name was not readable.
 - "Conference with Dennis Blair" (20 Nov 2023): the UC3M recording has no description. Confirm who he is and the title before adding any credential.
@@ -32,7 +32,7 @@ entry is simply shorter.
 - The Japan session: confirm the exact title of the talk. Identity is settled (Takahiro Nakamae, Ambassador of Japan to Spain).
 
 ## Contact and rights
-- Email: `diegopradosjodar@berkeley.edu` comes from his LinkedIn "About". Confirm it is the address he wants to publish long term.
+- Email: `diego.pradosjodar@coleurope.eu` (given by Diego, also in his CV). A College of Europe address may stop working after the master ends; ask for a long-term one.
 - Logos are shown as found on official sites or Wikimedia Commons (`public/logos/`). Confirm the right to use them in a personal portfolio, especially UC Berkeley (strict wordmark rules), the University of Bologna seal and Garrigues. No logo was found for College of Europe or The Political Room, so their names are set in type.
 - Photo or social links beyond LinkedIn and AUGE's Instagram, if wanted.
 
@@ -46,6 +46,7 @@ entry is simply shorter.
 
 ## Product
 - The opening animation no longer has a visible pause button (removed on request). It loops indefinitely, so consider WCAG 2.2.2 (Pause, Stop, Hide); reduced-motion users get a still pose. A discreet control or the Escape key can be added back.
+- The pencil sketches (line boil) loop while in view and have no pause control; reduced-motion users get the first drawing. They are decorative and `aria-hidden`, but a pause could be added if wanted.
 - Blog: password is in Vercel env vars; hand it to Diego privately and rotate it if shared. Add rate limiting (Vercel WAF) before launch. No RSS feed, tags or search yet.
 - Admin UI is in Spanish; make it follow the site language if other editors join.
 - Contact section: Path, AUGE and Contact links only appear in the header on large screens.

@@ -1,5 +1,5 @@
 ---
-import { experience } from '../data/facts';
+import { leadership, work } from '../data/facts';
 import type { Copy, EntryCopy } from '../i18n/en';
 import { formatDate, formatPeriod } from '../i18n/format';
 import Logo from './Logo.astro';
@@ -11,21 +11,30 @@ interface Props {
 const { copy } = Astro.props;
 const c = copy.experience;
 
-const when = (e: (typeof experience)[number]) =>
+const groups = [
+  { id: 'work', entries: work, copy: c.work },
+  { id: 'leadership', entries: leadership, copy: c.leadership },
+];
+
+const when = (e: (typeof work)[number]) =>
   e.period ? formatPeriod(e.period, copy) : e.date ? formatDate(e.date, copy) : '';
 ---
 
 <section class="section surface-light experience" id="experience" aria-labelledby="experience-title">
   <div class="wrap">
     <header class="head grid">
-      <h2 class="display title" id="experience-title">{c.title}</h2>
+      <h2 class="display title" id="experience-title" data-ink={c.title}>{c.title}</h2>
       <p class="lede reveal">{c.lede}</p>
     </header>
 
-    <ol class="roles">
-      {
-        experience.map((entry) => {
-          const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
+    {
+      groups.map((g) => (
+        <div class="group">
+          <h3 class="group-title display reveal" id={`${g.id}-title`}>{g.copy.title}</h3>
+          <ol class="roles" aria-labelledby={`${g.id}-title`}>
+            {
+              g.entries.map((entry) => {
+          const t = (g.copy.entries as Record<string, EntryCopy>)[entry.id];
           const time = when(entry);
           return (
             <li class="role grid reveal">
@@ -39,7 +48,7 @@ const when = (e: (typeof experience)[number]) =>
                 </p>
               </div>
               <div class="body">
-                <h3>{entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}</h3>
+                <h4>{entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}</h4>
                 <p class="programme">{t.programme}</p>
                 {t.summary && <p class="summary">{t.summary}</p>}
                 {t.points && (
@@ -54,8 +63,11 @@ const when = (e: (typeof experience)[number]) =>
             </li>
           );
         })
-      }
-    </ol>
+            }
+          </ol>
+        </div>
+      ))
+    }
   </div>
 </section>
 
@@ -105,19 +117,30 @@ const when = (e: (typeof experience)[number]) =>
     display: block;
   }
 
-  h3 {
+  .group-title {
+    font-size: clamp(2.6rem, 1.6rem + 4vw, 5.5rem);
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+  }
+
+  .group + .group {
+    margin-top: clamp(4rem, 9vw, 8rem);
+  }
+
+  h4 {
     font-size: clamp(1.9rem, 1.4rem + 1.4vw, 2.7rem);
     letter-spacing: -0.025em;
     line-height: 1.04;
   }
 
-  h3 a {
+  h4 a {
     text-decoration-color: var(--line);
     text-decoration-thickness: 2px;
     transition: text-decoration-color 0.3s ease;
   }
 
-  h3 a:hover {
+  h4 a:hover {
     text-decoration-color: currentColor;
   }
 

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elementos a lápiz · Diego Prados</title>
+<style>
+:root{--paper:#efeee9;font-family:Arial,sans-serif;color:#242421;background:#efeee9;font-synthesis:none}*{box-sizing:border-box}body{margin:0;padding:clamp(20px,5vw,70px)}main{max-width:1200px;margin:auto}h1{font-size:clamp(38px,6vw,76px);letter-spacing:-.055em;line-height:1;margin:12px 0 24px;max-width:850px}p{line-height:1.6;max-width:750px;font-size:17px}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:30px 0}button,select{font:inherit;padding:12px 16px;border:1px solid #777;border-radius:4px;color:inherit;background:transparent;cursor:pointer}select option{color:#222;background:#eee}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #9f7338;outline-offset:4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}article{border-top:1px solid #aaa;padding-top:10px;min-width:0}h2{font-size:28px;letter-spacing:-.025em;margin:20px 0 6px}.art{background:var(--paper);aspect-ratio:1;position:relative;isolation:isolate}.art img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;mix-blend-mode:multiply}.art img[hidden]{display:none}article p{font-size:16px;margin:6px 0 18px}a{color:inherit;text-underline-offset:4px}footer{border-top:1px solid #aaa;margin-top:50px;padding-top:20px;font-size:15px}body.dark{--paper:#191918;background:#191918;color:#edede7}.dark .art img{filter:invert(1);mix-blend-mode:screen}.status{font-size:14px} @media(max-width:600px){.grid{grid-template-columns:1fr;gap:24px}.art{max-height:360px}h1{font-size:44px}.controls{gap:8px}button,select{padding:10px}}
+</style>
+<main>
+<p>Diego Prados · Colección de dibujos</p>
+<h1>El lápiz sigue vivo.</h1>
+<p>Cuatro objetos, tres dibujos de cada uno. La forma permanece y el trazo cambia. Prueba el ritmo y el contraste para encontrar su sitio en la web.</p>
+<div class="controls"><button id="play">Pausar</button><label>Ritmo <select id="rate"><option value="4">4 dibujos/s</option><option selected value="6">6 dibujos/s</option><option value="8">8 dibujos/s</option></select></label><button id="theme" aria-pressed="false">Fondo oscuro</button><button id="step">Siguiente dibujo</button><span class="status" id="status" aria-live="off">Cargando dibujos…</span></div>
+<div class="grid" id="grid"></div>
+<footer><a href="elementos-line-boil.zip" download>Descargar colección</a> · <a href="LEEME.md">Guía de integración</a> · <a href="prompts.json">Prompts de generación</a></footer>
+</main>
+<script>
+const items=[['tierra','Tierra','Perfil internacional. Como acento junto a la presentación, sin repetir el globo del recorrido.'],['microfono','Micrófono','AUGE. Un dibujo ligado a las conversaciones, invitados y encuentros.'],['libro','Libro abierto','Studies o Blog. Formación, lectura y análisis.'],['microchip','Microchip','Investigación. Política industrial y trabajo sobre semiconductores.']];
+const grid=document.querySelector('#grid'),groups=[];
+for(const [id,name,description] of items){const card=document.createElement('article');card.innerHTML=`<div class="art" role="img" aria-label="${name}, boceto de lápiz animado"></div><h2>${name}</h2><p>${description}</p><a href="${id}/01.png" download>Primer dibujo PNG</a>`;const art=card.querySelector('.art'),imgs=[];for(let n=1;n<=3;n++){const img=new Image();img.alt='';img.width=1254;img.height=1254;img.src=`${id}/0${n}.png`;img.hidden=n!==1;art.append(img);imgs.push(img)}grid.append(card);groups.push({card,imgs,visible:true})}
+const media=matchMedia('(prefers-reduced-motion: reduce)'),play=document.querySelector('#play'),rate=document.querySelector('#rate'),status=document.querySelector('#status');let running=!media.matches,ready=false,step=0,last=0;const sequence=[0,1,2,1];
+function display(){const k=sequence[step%4];for(const g of groups)g.imgs.forEach((im,i)=>im.hidden=i!==k);status.textContent=`Dibujo ${k+1} de 3`;play.textContent=running?'Pausar':'Reproducir'}
+play.onclick=()=>{running=!running;last=0;display()};document.querySelector('#step').onclick=()=>{running=false;step++;display()};rate.onchange=()=>last=0;document.querySelector('#theme').onclick=e=>{const dark=document.body.classList.toggle('dark');e.currentTarget.textContent=dark?'Fondo claro':'Fondo oscuro';e.currentTarget.setAttribute('aria-pressed',dark)};media.addEventListener('change',e=>{if(e.matches){running=false;display()}});
+const observer=new IntersectionObserver(entries=>{for(const e of entries){const g=groups.find(g=>g.card===e.target);g.visible=e.isIntersecting}},{rootMargin:'80px'});groups.forEach(g=>observer.observe(g.card));
+Promise.all(groups.flatMap(g=>g.imgs.map(i=>i.decode()))).then(()=>{ready=true;display()}).catch(()=>{running=false;status.textContent='No se han podido cargar todos los PNG. Comprueba las carpetas.'});
+function tick(t){if(ready&&running&&!document.hidden&&groups.some(g=>g.visible)&&t-last>=1000/Number(rate.value)){step++;display();last=t}requestAnimationFrame(tick)}requestAnimationFrame(tick);
+</script>
+</html>

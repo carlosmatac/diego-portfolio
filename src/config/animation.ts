@@ -101,6 +101,27 @@ export const animation = {
     },
   },
 
+  /** Section titles that arrive as a pencil sketch and settle into ink (src/scripts/ink.ts). */
+  ink: {
+    /** Progress starts when the title's top crosses this fraction of the viewport height... */
+    start: 1,
+    /** ...and completes after it has travelled this fraction further up. */
+    span: 0.62,
+    /** Progress at which hatching starts to fill the letters, and at which the outline starts to settle. */
+    hatchFrom: 0.38,
+    settleFrom: 0.7,
+    /** Pencil wobble of the outline, as a fraction of the font size. */
+    wobble: 0.022,
+    noise: 0.015,
+    fps: 6,
+    /** Turbulence seeds for the two pencil passes, one pair per boil drawing. */
+    seeds: [
+      [3, 11],
+      [7, 19],
+      [13, 29],
+    ] as [number, number][],
+  },
+
   /** Layout switch shared by CSS (see Hero.astro) and the greeting slots. */
   compactQuery: '(max-width: 760px), (max-aspect-ratio: 4/5)',
 } as const;

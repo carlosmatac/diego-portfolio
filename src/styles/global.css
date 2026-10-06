@@ -298,6 +298,38 @@ button {
   }
 }
 
+/*
+ * Sketch, then ink (src/scripts/ink.ts). The title's own text turns transparent but stays selectable
+ * and readable to assistive tech; ::before is the hatched ink, ::after the boiling pencil outline.
+ */
+[data-ink-state='sketch'] {
+  position: relative;
+  color: transparent;
+}
+
+[data-ink-state='sketch']::before,
+[data-ink-state='sketch']::after {
+  content: attr(data-ink);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  filter: var(--ink-filter);
+}
+
+[data-ink-state='sketch']::before {
+  color: var(--fg);
+  --gap: calc((1 - var(--hatch, 0)) * 0.03em);
+  -webkit-mask-image: repeating-linear-gradient(-38deg, #000 0 calc(0.032em - var(--gap)), transparent 0 0.032em);
+  mask-image: repeating-linear-gradient(-38deg, #000 0 calc(0.032em - var(--gap)), transparent 0 0.032em);
+  opacity: min(1, calc(var(--hatch, 0) * 4));
+}
+
+[data-ink-state='sketch']::after {
+  color: transparent;
+  -webkit-text-stroke: max(1px, 0.0045em) var(--fg);
+  opacity: var(--outline, 1);
+}
+
 @media print {
   .js .reveal,
   .js .rule.reveal {

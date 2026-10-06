@@ -1,0 +1,68 @@
+{
+  "fps": 6,
+  "sequence": [
+    1,
+    2,
+    3,
+    2
+  ],
+  "rotation": false,
+  "objects": [
+    {
+      "id": "tierra",
+      "name": "Tierra",
+      "placement": "Presentación internacional; acompañar el perfil sin duplicar el globo del recorrido.",
+      "size": [
+        1254,
+        1254
+      ],
+      "frames": [
+        "tierra/01.png",
+        "tierra/02.png",
+        "tierra/03.png"
+      ]
+    },
+    {
+      "id": "microfono",
+      "name": "Micrófono",
+      "placement": "AUGE; junto al título o la introducción de sus encuentros.",
+      "size": [
+        1254,
+        1254
+      ],
+      "frames": [
+        "microfono/01.png",
+        "microfono/02.png",
+        "microfono/03.png"
+      ]
+    },
+    {
+      "id": "libro",
+      "name": "Libro abierto",
+      "placement": "Studies o Blog; en el margen del encabezado.",
+      "size": [
+        1254,
+        1254
+      ],
+      "frames": [
+        "libro/01.png",
+        "libro/02.png",
+        "libro/03.png"
+      ]
+    },
+    {
+      "id": "microchip",
+      "name": "Microchip",
+      "placement": "Investigación y política industrial; asociado al trabajo sobre semiconductores.",
+      "size": [
+        1254,
+        1254
+      ],
+      "frames": [
+        "microchip/01.png",
+        "microchip/02.png",
+        "microchip/03.png"
+      ]
+    }
+  ]
+}
