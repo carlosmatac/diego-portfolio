@@ -47,6 +47,8 @@ entry is simply shorter.
 ## Product
 - The opening animation no longer has a visible pause button (removed on request). It loops indefinitely, so consider WCAG 2.2.2 (Pause, Stop, Hide); reduced-motion users get a still pose. A discreet control or the Escape key can be added back.
 - The pencil sketches (line boil) loop while in view and have no pause control; reduced-motion users get the first drawing. They are decorative and `aria-hidden`, but a pause could be added if wanted.
+- Contact door: loops every 6 s of rest while in view, with no pause button (requested). WCAG 2.2.2 asks for a way to pause moving content that repeats; today a tap closes it and reduced motion turns it off. Timing comes from the manifest (650 / 2400 / 1000 / 2400 / 650 ms) and the opening is capped at 66% of the panel; tune after Diego sees it. The panel edge overlaps the palms by 1.5 px (`OVERLAP` in `src/scripts/door.ts`).
+- Mobile (390 px): the Studies deck makes the layout about 11 px wider than the viewport. This predates the door; worth fixing separately.
 - Blog: password is in Vercel env vars; hand it to Diego privately and rotate it if shared. Add rate limiting (Vercel WAF) before launch. No RSS feed, tags or search yet.
 - Admin UI is in Spanish; make it follow the site language if other editors join.
 - Contact section: Path, AUGE and Contact links only appear in the header on large screens.

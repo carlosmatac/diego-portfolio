@@ -11,6 +11,7 @@
     "frames": "python3 scripts/build-frames.py",
     "photos": "python3 scripts/build-photos.py",
     "sketches": "python3 scripts/build-sketches.py",
+    "door": "python3 scripts/build-door.py",
     "video": "cd video && npm run render"
   },
   "dependencies": {

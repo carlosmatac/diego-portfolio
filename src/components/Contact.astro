@@ -14,7 +14,12 @@ const wink = '/frames/lg/wink.webp';
 ---
 
 <section class="surface-dark contact" id="contact" aria-labelledby="contact-title">
-  <div class="copy">
+  <!-- The dark panel is a garage door: Diego lifts it from underneath (src/scripts/door.ts). -->
+  <div class="door" data-door>
+  <div class="under" aria-hidden="true">
+    <canvas data-door-sprite></canvas>
+  </div>
+  <div class="copy" data-door-panel>
     <div class="top">
       <h2 class="display title" id="contact-title" data-ink={c.title}>{c.title}</h2>
       <p class="intro reveal">{c.text}</p>
@@ -31,6 +36,7 @@ const wink = '/frames/lg/wink.webp';
     </div>
     <p class="footer">© 2026 {c.footer}</p>
   </div>
+  </div>
 
   <figure class="sheet">
     <div class="sketch reveal" data-wink>
@@ -38,6 +44,9 @@ const wink = '/frames/lg/wink.webp';
       <img class="wink" src={wink} width={w} height={h} alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </div>
   </figure>
+  <script>
+    import '../scripts/door';
+  </script>
   <script>
     // Touch screens have no hover: a tap gives the same wink for a moment.
     document.querySelectorAll<HTMLElement>('[data-wink]').forEach((el) => {
@@ -63,8 +72,39 @@ const wink = '/frames/lg/wink.webp';
     overflow: hidden;
   }
 
-  .copy {
+  .door {
+    position: relative;
     display: grid;
+    overflow: hidden;
+  }
+
+  /* What the door reveals: the same marble as the sheet, with the drawing multiplied onto it. */
+  .under {
+    position: absolute;
+    inset: 0;
+    isolation: isolate;
+    background: var(--marble-fixed);
+    background-attachment: fixed;
+  }
+
+  .under canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: none;
+    mix-blend-mode: multiply;
+    visibility: hidden;
+  }
+
+  [data-playing] .under canvas {
+    visibility: visible;
+    will-change: transform;
+  }
+
+  .copy {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
     gap: 4rem;
     align-content: space-between;
     padding: clamp(5.5rem, 13vw, 12rem) var(--gutter) 0;
@@ -113,6 +153,10 @@ const wink = '/frames/lg/wink.webp';
 
   .big:hover {
     text-decoration-color: currentColor;
+  }
+
+  [data-playing] .copy {
+    will-change: transform;
   }
 
   .footer {
