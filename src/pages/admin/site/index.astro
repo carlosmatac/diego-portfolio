@@ -1,0 +1,76 @@
+---
+import Admin from '../../../layouts/Admin.astro';
+import { getSiteRows } from '../../../lib/db';
+import { normalizeSite } from '../../../lib/site';
+import { defaultSite } from '../../../lib/site-default';
+import { LOGO_IDS, PHOTO_IDS } from '../../../lib/site-validate';
+
+export const prerender = false;
+
+let data: unknown = null;
+try {
+  const rows = await getSiteRows();
+  const live = rows.live ? normalizeSite(rows.live.data) : defaultSite();
+  const draft = rows.draft ? normalizeSite(rows.draft.data) : live;
+  data = {
+    content: draft,
+    pending: JSON.stringify(draft) !== JSON.stringify(live),
+    logos: LOGO_IDS,
+    photos: PHOTO_IDS,
+  };
+} catch (e) {
+  console.error(e);
+}
+---
+
+<Admin title="Contenido de la web">
+  {
+    data ? (
+      <>
+        <script type="application/json" id="site-data" set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />
+        <div id="site-editor" class="editor site-editor">
+          <header class="ed-bar">
+            <a class="back" href="/admin">← Artículos</a>
+            <p class="state">
+              <span id="state" data-status="published">Publicado</span> <span id="msg" role="status" aria-live="polite" />
+            </p>
+            <div class="actions">
+              <button type="button" class="btn btn-solid" data-act="save">Guardar borrador</button>
+              <button type="button" class="btn btn-solid" data-act="publish">Publicar</button>
+              <button type="button" class="btn btn-ghost" data-act="preview">Vista previa</button>
+            </div>
+          </header>
+
+          <div class="site-intro">
+            <h1 class="display">La web</h1>
+            <p>
+              Aquí se edita el contenido de la página principal. Escribe en inglés: la web pública está en inglés.
+              «Guardar borrador» no cambia nada para los visitantes; «Publicar» sí, y el cambio tarda hasta un minuto en verse.
+            </p>
+            <p class="muted">
+              El vídeo del mapa, las ilustraciones y los títulos grandes de cada sección no se editan aquí. Las fotos y logos se
+              eligen entre los que ya tiene la web.
+            </p>
+          </div>
+
+          <div id="errors" class="site-errors" role="alert" hidden />
+          <div id="form" />
+
+          <footer class="site-danger">
+            <button type="button" class="btn btn-ghost" data-act="discard">Descartar cambios sin publicar</button>
+            <button type="button" class="btn btn-quiet danger" data-act="restore">Volver al contenido original</button>
+          </footer>
+        </div>
+        <script>
+          import '../../../scripts/site-editor';
+        </script>
+      </>
+    ) : (
+      <section class="wrap-admin">
+        <h1 class="display">La web</h1>
+        <p class="form-error" role="alert">No se pudo conectar con la base de datos. La web sigue mostrando el último contenido publicado.</p>
+        <p><a href="/admin">← Artículos</a></p>
+      </section>
+    )
+  }
+</Admin>

@@ -1,13 +1,15 @@
 ---
 import { animation } from '../config/animation';
-import { person } from '../data/facts';
 import type { Copy } from '../i18n/en';
+import type { SiteContent } from '../lib/site-types';
 
 interface Props {
   copy: Copy;
+  site: SiteContent;
 }
-const { copy } = Astro.props;
+const { copy, site } = Astro.props;
 const c = copy.contact;
+const s = site.contact;
 const [w, h] = animation.frames.tiers.lg;
 const still = `/frames/lg/g${String(animation.staticDrawing).padStart(2, '0')}.webp`;
 const wink = '/frames/lg/wink.webp';
@@ -22,16 +24,20 @@ const wink = '/frames/lg/wink.webp';
   <div class="copy" data-door-panel>
     <div class="top">
       <h2 class="display title" id="contact-title" data-ink={c.title}>{c.title}</h2>
-      <p class="intro reveal">{c.text}</p>
+      {s.text && <p class="intro reveal">{s.text}</p>}
       <ul class="links">
         <li class="reveal">
           <span class="meta muted">{c.emailLabel}</span>
-          <a class="big" href={`mailto:${person.email}`}>{person.email}</a>
+          <a class="big" href={`mailto:${s.email}`}>{s.email}</a>
         </li>
-        <li class="reveal" style="--d:100ms">
-          <span class="meta muted">{c.linkedinLabel}</span>
-          <a class="big" href={person.linkedin} rel="noopener">{c.linkedinText}</a>
-        </li>
+        {
+          s.linkedin && (
+            <li class="reveal" style="--d:100ms">
+              <span class="meta muted">{c.linkedinLabel}</span>
+              <a class="big" href={s.linkedin} rel="noopener">{s.linkedinText || s.linkedin}</a>
+            </li>
+          )
+        }
       </ul>
     </div>
     <p class="footer">© 2026 {c.footer}</p>

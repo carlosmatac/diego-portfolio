@@ -1,0 +1,9 @@
+---
+import HomePage from '../../../components/HomePage.astro';
+import { loadSite } from '../../../lib/site';
+
+export const prerender = false;
+const site = await loadSite('draft');
+---
+
+<HomePage site={site} preview />

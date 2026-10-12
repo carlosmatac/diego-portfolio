@@ -23,6 +23,12 @@ function init(deck: HTMLElement) {
     card.querySelector<HTMLElement>(wide.matches ? '[data-card-scroll]' : '[data-card-body]')!;
   const movers = (card: HTMLElement) => card.querySelectorAll<HTMLElement>('[data-card-scroll], [data-card-body]');
   const headerH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 56;
+  // The movers have will-change: transform, which makes them offsetParents: sum the chain up to the sheet.
+  const topIn = (el: HTMLElement, card: HTMLElement) => {
+    let y = 0;
+    for (let n: Element | null = el; n && n !== card; n = (n as HTMLElement).offsetParent) y += (n as HTMLElement).offsetTop;
+    return y;
+  };
 
   const measure = () => {
     if (!on) return;
@@ -30,8 +36,9 @@ function init(deck: HTMLElement) {
     segs = cards.map((card, i) => {
       movers(card).forEach((el) => (el.style.transform = ''));
       const el = inner(card);
-      const pad = parseFloat(getComputedStyle(card).paddingBottom);
-      const read = Math.max(0, Math.ceil(el.offsetTop + el.offsetHeight + pad - card.clientHeight));
+      // Read on until the last line clears the soft edge at the bottom of the sheet (1.6 × padding, see Studies.astro).
+      const pad = parseFloat(getComputedStyle(card).paddingBottom) * 1.6;
+      const read = Math.max(0, Math.ceil(topIn(el, card) + el.offsetHeight + pad - card.clientHeight));
       const leave = i < cards.length - 1 ? Math.round(card.offsetHeight * 0.9) : 0;
       const seg = { start, read, leave };
       start += read + leave;

@@ -1,26 +1,25 @@
 ---
-import { scholarships, studies } from '../data/facts';
-import type { Copy, EntryCopy, ItemCopy } from '../i18n/en';
-import { formatDate, formatPeriod } from '../i18n/format';
+import type { Copy } from '../i18n/en';
+import { formatWhen } from '../i18n/format';
+import type { SiteContent } from '../lib/site-types';
 import Film from './Film.astro';
 import Logo from './Logo.astro';
 import Photo from './Photo.astro';
 
 interface Props {
   copy: Copy;
+  site: SiteContent;
 }
-const { copy } = Astro.props;
+const { copy, site } = Astro.props;
 const c = copy.studies;
-
-const when = (e: (typeof studies)[number]['entries'][number]) =>
-  e.period ? formatPeriod(e.period, copy) : e.date ? formatDate(e.date, copy) : '';
+const s = site.studies;
 ---
 
 <section class="section surface-light studies" id="studies" aria-labelledby="studies-title">
   <div class="wrap">
     <header class="head grid">
       <h2 class="display title" id="studies-title">{c.title}</h2>
-      <p class="lede reveal">{c.lede}</p>
+      {s.lede && <p class="lede reveal">{s.lede}</p>}
     </header>
 
     <Film copy={copy} />
@@ -28,7 +27,7 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
     <div class="stages" data-deck>
       <div class="deck-view" data-deck-view>
       {
-        studies.map((stage, si) => (
+        s.stages.map((stage, si) => (
           <div class={`stage ${si % 2 ? 'is-right' : 'is-left'}`} data-card>
            <div class="card-body grid" data-card-body>
             <span class="rule reveal" aria-hidden="true" />
@@ -42,42 +41,39 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
             </div>
             <div class="entries" data-card-scroll>
               {stage.entries.map((entry) => {
-                const t = c.entries[entry.id as keyof typeof c.entries] as EntryCopy;
-                const place = t.place ?? stage.place;
-                const time = when(entry);
+                const place = entry.place || stage.place;
+                const time = formatWhen(entry, copy);
+                const meta = [entry.relation, time].filter(Boolean).join(', ');
                 return (
                   <article class="entry reveal">
                     {entry.logo && <Logo id={entry.logo} />}
                     <h3>
                       {entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}
                     </h3>
-                    <p class="programme">{t.programme}</p>
+                    {entry.programme && <p class="programme">{entry.programme}</p>}
                     <p class="meta muted">
-                      {t.relation}
-                      {time && `, ${time}`}
-                      <span class="place">{place}</span>
+                      {meta}
+                      {entry.grade && <span class="grade">{copy.words.grade} {entry.grade}</span>}
+                      {place && <span class="place">{place}</span>}
                     </p>
-                    {t.summary && <p class="summary">{t.summary}</p>}
-                    {t.points && (
+                    {entry.summary && <p class="summary">{entry.summary}</p>}
+                    {entry.points.length > 0 && (
                       <ul class="points">
-                        {t.points.map((p) => (
+                        {entry.points.map((p) => (
                           <li>{p}</li>
                         ))}
                       </ul>
                     )}
-                    {entry.items && t.items && (
+                    {entry.items.length > 0 && (
                       <ul class="points items">
-                        {entry.items.map((item) => {
-                          const it = t.items![item.id] as ItemCopy;
-                          return (
-                            <li>
-                              <span class="item-title">
-                                {item.link ? <a href={item.link} rel="noopener">{it.title}</a> : it.title}
-                              </span>
-                              {it.note && <span class="item-note muted">{it.note}</span>}
-                            </li>
-                          );
-                        })}
+                        {entry.items.map((it) => (
+                          <li>
+                            <span class="item-title">
+                              {it.link ? <a href={it.link} rel="noopener">{it.title}</a> : it.title}
+                            </span>
+                            {it.note && <span class="item-note muted">{it.note}</span>}
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </article>
@@ -91,26 +87,35 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
       </div>
     </div>
 
-    <div class="awards grid">
-      <span class="rule reveal" aria-hidden="true" />
-      <h3 class="display awards-title reveal">{c.scholarships.title}</h3>
-      <div class="award-list">
-        {
-          scholarships.map((a) => {
-            const t = c.scholarships.items[a.id as keyof typeof c.scholarships.items] as EntryCopy;
-            return (
-              <article class="entry reveal">
-                {a.logo && <Logo id={a.logo} />}
-                <h4>{a.link ? <a href={a.link} rel="noopener">{a.institution}</a> : a.institution}</h4>
-                <p class="programme">{t.programme}</p>
-                <p class="meta muted">{t.relation}</p>
-                {t.summary && <p class="summary">{t.summary}</p>}
-              </article>
-            );
-          })
-        }
-      </div>
-    </div>
+    {
+      s.scholarships.length > 0 && (
+        <div class="awards grid">
+          <span class="rule reveal" aria-hidden="true" />
+          <h3 class="display awards-title reveal">{c.scholarships.title}</h3>
+          <div class="award-list">
+            {s.scholarships.map((a) => {
+              const meta = [a.relation, formatWhen(a, copy)].filter(Boolean).join(', ');
+              return (
+                <article class="entry reveal">
+                  {a.logo && <Logo id={a.logo} />}
+                  <h4>{a.link ? <a href={a.link} rel="noopener">{a.institution}</a> : a.institution}</h4>
+                  {a.programme && <p class="programme">{a.programme}</p>}
+                  {meta && <p class="meta muted">{meta}</p>}
+                  {a.summary && <p class="summary">{a.summary}</p>}
+                  {a.points.length > 0 && (
+                    <ul class="points">
+                      {a.points.map((p) => (
+                        <li>{p}</li>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      )
+    }
   </div>
 </section>
 
@@ -279,7 +284,8 @@ const when = (e: (typeof studies)[number]['entries'][number]) =>
     line-height: 1.25;
   }
 
-  .place {
+  .place,
+  .grade {
     display: block;
   }
 

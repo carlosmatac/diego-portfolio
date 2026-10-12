@@ -11,6 +11,12 @@ export function formatDate(iso: string, copy: Copy) {
   return new Intl.DateTimeFormat(copy.locales.month, { ...opts, timeZone: 'UTC' }).format(Date.UTC(y, m - 1, d ?? 1));
 }
 
+/** Span if there is one, else the single date, else nothing. Empty strings count as absent. */
+export function formatWhen(e: { from?: string; to?: string; date?: string }, copy: Copy) {
+  if (e.from) return formatPeriod({ from: e.from, to: e.to || undefined }, copy);
+  return e.date ? formatDate(e.date, copy) : '';
+}
+
 export function formatPeriod(period: Period | undefined, copy: Copy) {
   if (!period?.from) return '';
   const from = formatDate(period.from, copy);

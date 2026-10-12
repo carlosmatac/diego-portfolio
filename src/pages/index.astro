@@ -1,29 +1,11 @@
 ---
-import Auge from '../components/Auge.astro';
-import Contact from '../components/Contact.astro';
-import Experience from '../components/Experience.astro';
-import Hero from '../components/Hero.astro';
-import Header from '../components/Header.astro';
-import Studies from '../components/Studies.astro';
-import Profile from '../components/Profile.astro';
-import Base from '../layouts/Base.astro';
-import { en as copy } from '../i18n/en';
+import HomePage from '../components/HomePage.astro';
+import { loadSite } from '../lib/site';
+
+// Rendered on request so Diego's edits from /admin/site show up without a deploy; the CDN keeps a copy.
+export const prerender = false;
+const site = await loadSite('live');
+Astro.response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=600');
 ---
 
-<Base lang={copy.lang} title={copy.meta.title} description={copy.meta.description} home>
-  <a class="skip-link" href="#profile">{copy.skip}</a>
-  <Header copy={copy} home />
-  <main id="content">
-    <Hero copy={copy} />
-    <Profile copy={copy} />
-    <Studies copy={copy} />
-    <Auge copy={copy} />
-    <Experience copy={copy} />
-    <Contact copy={copy} />
-  </main>
-  <script>
-    import '../scripts/hero';
-    import '../scripts/page';
-    import '../scripts/ink';
-  </script>
-</Base>
+<HomePage site={site} />

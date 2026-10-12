@@ -1,0 +1,59 @@
+---
+import Auge from './Auge.astro';
+import Contact from './Contact.astro';
+import Experience from './Experience.astro';
+import Hero from './Hero.astro';
+import Header from './Header.astro';
+import Studies from './Studies.astro';
+import Profile from './Profile.astro';
+import Base from '../layouts/Base.astro';
+import { en as copy } from '../i18n/en';
+import type { SiteContent } from '../lib/site-types';
+
+interface Props {
+  site: SiteContent;
+  /** Admin preview of the draft: not indexed, with a banner back to the editor. */
+  preview?: boolean;
+}
+const { site, preview = false } = Astro.props;
+---
+
+<Base lang={copy.lang} title={copy.meta.title} description={copy.meta.description} home noindex={preview}>
+  <a class="skip-link" href="#profile">{copy.skip}</a>
+  <Header copy={copy} home />
+  <main id="content">
+    <Hero copy={copy} />
+    <Profile site={site} />
+    <Studies copy={copy} site={site} />
+    <Auge copy={copy} site={site} />
+    <Experience copy={copy} site={site} />
+    <Contact copy={copy} site={site} />
+  </main>
+  {preview && <p class="preview-flag">Vista previa del borrador. <a href="/admin/site">Volver al editor</a></p>}
+  <script>
+    import '../scripts/hero';
+    import '../scripts/page';
+    import '../scripts/ink';
+  </script>
+</Base>
+
+<style is:global>
+  .preview-flag {
+    position: fixed;
+    z-index: 70;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    padding: 0.7rem 1.1rem;
+    background: var(--charcoal);
+    color: var(--marble);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+    white-space: nowrap;
+  }
+  .preview-flag a {
+    margin-left: 0.8rem;
+  }
+</style>

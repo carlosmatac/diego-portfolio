@@ -1,59 +1,57 @@
 ---
-import { leadership, work } from '../data/facts';
-import type { Copy, EntryCopy } from '../i18n/en';
-import { formatDate, formatPeriod } from '../i18n/format';
+import type { Copy } from '../i18n/en';
+import { formatWhen } from '../i18n/format';
+import type { SiteContent } from '../lib/site-types';
 import Logo from './Logo.astro';
 import Photo from './Photo.astro';
 
 interface Props {
   copy: Copy;
+  site: SiteContent;
 }
-const { copy } = Astro.props;
+const { copy, site } = Astro.props;
 const c = copy.experience;
+const x = site.experience;
 
 const groups = [
-  { id: 'work', entries: work, copy: c.work },
-  { id: 'leadership', entries: leadership, copy: c.leadership },
-];
-
-const when = (e: (typeof work)[number]) =>
-  e.period ? formatPeriod(e.period, copy) : e.date ? formatDate(e.date, copy) : '';
+  { id: 'work', entries: x.work, title: c.work.title },
+  { id: 'leadership', entries: x.leadership, title: c.leadership.title },
+].filter((g) => g.entries.length);
 ---
 
 <section class="section surface-light experience" id="experience" aria-labelledby="experience-title">
   <div class="wrap">
     <header class="head grid">
       <h2 class="display title" id="experience-title" data-ink={c.title}>{c.title}</h2>
-      <p class="lede reveal">{c.lede}</p>
+      {x.lede && <p class="lede reveal">{x.lede}</p>}
     </header>
 
     {
       groups.map((g) => (
         <div class="group">
-          <h3 class="group-title display reveal" id={`${g.id}-title`}>{g.copy.title}</h3>
+          <h3 class="group-title display reveal" id={`${g.id}-title`}>{g.title}</h3>
           <ol class="roles" aria-labelledby={`${g.id}-title`}>
             {
               g.entries.map((entry) => {
-          const t = (g.copy.entries as Record<string, EntryCopy>)[entry.id];
-          const time = when(entry);
+          const time = formatWhen(entry, copy);
           return (
             <li class="role grid reveal">
               <span class="rule" aria-hidden="true" />
               <div class="side">
                 {entry.logo && <Logo id={entry.logo} />}
                 <p class="meta muted">
-                  {t.relation}
+                  {entry.relation}
                   {time && <span class="when">{time}</span>}
-                  {t.place && <span class="when">{t.place}</span>}
+                  {entry.place && <span class="when">{entry.place}</span>}
                 </p>
               </div>
               <div class="body">
                 <h4>{entry.link ? <a href={entry.link} rel="noopener">{entry.institution}</a> : entry.institution}</h4>
-                <p class="programme">{t.programme}</p>
-                {t.summary && <p class="summary">{t.summary}</p>}
-                {t.points && (
+                {entry.programme && <p class="programme">{entry.programme}</p>}
+                {entry.summary && <p class="summary">{entry.summary}</p>}
+                {entry.points.length > 0 && (
                   <ul class="points">
-                    {t.points.map((p) => (
+                    {entry.points.map((p) => (
                       <li>{p}</li>
                     ))}
                   </ul>
