@@ -175,7 +175,7 @@ const h = copy.header;
   :global(html[data-brand='big']) .b-prados {
     position: absolute;
     left: 0;
-    top: 100%;
+    top: calc(100% + var(--name-lead) * 1em);
     margin-left: 0;
     transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
   }

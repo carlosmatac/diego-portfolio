@@ -1,14 +1,17 @@
 ---
 import { auge } from '../data/facts';
-import type { Copy, InitiativeCopy } from '../i18n/en';
+import type { Copy } from '../i18n/en';
 import { formatDate } from '../i18n/format';
+import type { SiteContent } from '../lib/site-types';
 import Sketch from './Sketch.astro';
 
 interface Props {
   copy: Copy;
+  site: SiteContent;
 }
-const { copy } = Astro.props;
+const { copy, site } = Astro.props;
 const c = copy.auge;
+const a = site.auge;
 ---
 
 <section class="section surface-dark auge" id="auge" aria-labelledby="auge-title">
@@ -25,50 +28,57 @@ const c = copy.auge;
     <div class="grid story">
       <div class="purpose reveal">
         <h3>{c.purposeTitle}</h3>
-        {c.purpose.map((p) => <p>{p}</p>)}
+        {a.purpose.map((p) => <p>{p}</p>)}
       </div>
 
       <div class="side">
-        <div class="block reveal">
-          <h3>{c.roleTitle}</h3>
-          <ul>
-            {c.role.map((r) => <li>{r}</li>)}
-          </ul>
-        </div>
-        <div class="block reveal">
-          <h3>{c.formatTitle}</h3>
-          <ul>
-            {c.format.map((r) => <li>{r}</li>)}
-          </ul>
-        </div>
+        {
+          a.role.length > 0 && (
+            <div class="block reveal">
+              <h3>{c.roleTitle}</h3>
+              <ul>
+                {a.role.map((r) => <li>{r}</li>)}
+              </ul>
+            </div>
+          )
+        }
+        {
+          a.format.length > 0 && (
+            <div class="block reveal">
+              <h3>{c.formatTitle}</h3>
+              <ul>
+                {a.format.map((r) => <li>{r}</li>)}
+              </ul>
+            </div>
+          )
+        }
       </div>
     </div>
 
-    <div class="sessions">
-      <h3 class="reveal">{c.initiativesTitle}</h3>
-      <ol>
-        {
-          auge.initiatives.map((it) => {
-            const t = c.initiatives[it.id as keyof typeof c.initiatives] as InitiativeCopy;
-            return (
+    {
+      a.initiatives.length > 0 && (
+        <div class="sessions">
+          <h3 class="reveal">{c.initiativesTitle}</h3>
+          <ol>
+            {a.initiatives.map((it) => (
               <li class="session reveal">
                 <span class="rule" aria-hidden="true" />
                 <time class="when meta" datetime={it.date}>
                   {formatDate(it.date, copy)}
                 </time>
-                <h4 class="what">{it.link ? <a href={it.link} rel="noopener">{t.title}</a> : t.title}</h4>
-                {t.note && <p class="note muted">{t.note}</p>}
+                <h4 class="what">{it.link ? <a href={it.link} rel="noopener">{it.title}</a> : it.title}</h4>
+                {it.note && <p class="note muted">{it.note}</p>}
               </li>
-            );
-          })
-        }
-      </ol>
-    </div>
+            ))}
+          </ol>
+        </div>
+      )
+    }
 
     <div class="grid outcome">
       <h3 class="reveal">{c.outcomeTitle}</h3>
       <div class="outcome-text">
-        {c.outcome.map((p) => <p class="reveal">{p}</p>)}
+        {a.outcome.map((p) => <p class="reveal">{p}</p>)}
         <p class="links reveal">
           <a href={auge.media} rel="noopener">{c.links.media}</a>
           <a href={auge.instagram} rel="noopener">{c.links.instagram}</a>

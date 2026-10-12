@@ -125,3 +125,53 @@ export async function deleteArticle(id: string): Promise<void> {
   await ensure();
   await sql().query(`DELETE FROM ${tableName()} WHERE id = $1`, [id]);
 }
+
+/* ---------- home page content (src/lib/site.ts) ---------- */
+
+export type SiteKey = 'draft' | 'live';
+export interface SiteRow {
+  data: unknown;
+  updatedAt: string;
+}
+
+const siteTable = () => {
+  const t = env('SITE_TABLE') ?? 'site_content';
+  if (!/^[a-z_]{3,40}$/.test(t)) throw new Error('Invalid SITE_TABLE');
+  return t;
+};
+
+let siteReady: Promise<void> | undefined;
+function ensureSite() {
+  siteReady ??= sql()
+    .query(
+      `CREATE TABLE IF NOT EXISTS ${siteTable()} (
+        key text PRIMARY KEY,
+        data jsonb NOT NULL,
+        updated_at timestamptz NOT NULL DEFAULT now()
+      )`,
+    )
+    .then(() => undefined)
+    .catch((e) => {
+      siteReady = undefined;
+      throw e;
+    });
+  return siteReady;
+}
+
+export async function getSiteRows(): Promise<Partial<Record<SiteKey, SiteRow>>> {
+  await ensureSite();
+  const rows = (await sql().query(`SELECT key, data, updated_at FROM ${siteTable()}`)) as any[];
+  return Object.fromEntries(rows.map((r) => [r.key, { data: r.data, updatedAt: iso(r.updated_at)! }]));
+}
+
+export async function putSite(keys: SiteKey[], data: unknown): Promise<void> {
+  await ensureSite();
+  const json = JSON.stringify(data);
+  for (const key of keys) {
+    await sql().query(
+      `INSERT INTO ${siteTable()} (key, data) VALUES ($1, $2)
+       ON CONFLICT (key) DO UPDATE SET data = EXCLUDED.data, updated_at = now()`,
+      [key, json],
+    );
+  }
+}

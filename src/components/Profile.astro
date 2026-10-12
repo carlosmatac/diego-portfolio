@@ -1,25 +1,18 @@
 ---
-import type { Copy } from '../i18n/en';
+import type { SiteContent } from '../lib/site-types';
 import Sketch from './Sketch.astro';
 
 interface Props {
-  copy: Copy;
+  site: SiteContent;
 }
-const { copy } = Astro.props;
-const c = copy.profile;
+const c = Astro.props.site.profile;
 ---
 
 <section class="section surface-dark profile" id="profile" aria-labelledby="profile-title">
   <div class="wrap">
     <div class="grid top">
     <h2 class="display statement" id="profile-title">
-      {
-        c.title.map((line, i) => (
-          <span class="line reveal" style={`--d:${i * 120}ms`}>
-            {line}
-          </span>
-        ))
-      }
+      <span class="line reveal" style="--d:0ms">{c.title}</span>
     </h2>
     <Sketch id="tierra" class="globe" />
     </div>

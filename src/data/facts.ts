@@ -31,6 +31,8 @@ export interface Entry {
   /** A single point in time (YYYY-MM or YYYY-MM-DD) when the span is not documented. */
   date?: string;
   link?: string;
+  /** Grade point average as written in the CV, for example "9.13/10.00". */
+  grade?: string;
   /** Sub-entries such as the courses taken at an institution. */
   items?: Item[];
   photo?: PhotoId;
@@ -64,7 +66,8 @@ export const studies: Stage[] = [
         institution: 'Universidad Carlos III de Madrid',
         logo: 'uc3m',
         period: { from: '2020', to: '2025' },
-        sources: ['li-profile', 'tpr-article'],
+        grade: '9.13/10.00',
+        sources: ['li-profile', 'tpr-article', 'cv'],
       },
     ],
   },
@@ -79,7 +82,8 @@ export const studies: Stage[] = [
         institution: 'University of California, Berkeley',
         logo: 'berkeley',
         period: { from: '2022', to: '2023' },
-        sources: ['li-profile', 'li-berkeley'],
+        grade: '4.0/4.0',
+        sources: ['li-profile', 'li-berkeley', 'cv'],
       },
     ],
   },
@@ -93,7 +97,8 @@ export const studies: Stage[] = [
         id: 'bologna',
         institution: 'Alma Mater Studiorum, Università di Bologna',
         logo: 'bologna',
-        sources: ['li-profile', 'tpr-article'],
+        grade: '9.23/10.00',
+        sources: ['li-profile', 'tpr-article', 'cv'],
       },
     ],
   },
@@ -199,8 +204,8 @@ export const leadership: Entry[] = [
   {
     id: 'tellus',
     institution: 'TellUs Project',
-    period: { from: '2025-08', to: '2026-06' },
-    sources: ['cv'],
+    period: { from: '2025-11', to: '2026-06' },
+    sources: ['cv', 'diego-direct'],
   },
   {
     id: 'sppn',

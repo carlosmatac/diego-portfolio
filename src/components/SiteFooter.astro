@@ -1,11 +1,13 @@
 ---
-import { person } from '../data/facts';
 import type { Copy } from '../i18n/en';
+import { loadSite } from '../lib/site';
 
 interface Props {
   copy: Copy;
 }
 const { copy } = Astro.props;
+// Email and LinkedIn are editable from /admin/site. Prerendered pages read them at build time.
+const { contact } = await loadSite();
 ---
 
 <footer class="site-footer surface-dark">
@@ -13,8 +15,8 @@ const { copy } = Astro.props;
   <ul>
     <li><a href="/">{copy.footer.home}</a></li>
     {copy.header.pages.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
-    <li><a href={person.linkedin} rel="noopener">LinkedIn</a></li>
-    <li><a href={`mailto:${person.email}`}>{copy.contact.emailLabel}</a></li>
+    {contact.linkedin && <li><a href={contact.linkedin} rel="noopener">LinkedIn</a></li>}
+    <li><a href={`mailto:${contact.email}`}>{copy.contact.emailLabel}</a></li>
   </ul>
 </footer>
 

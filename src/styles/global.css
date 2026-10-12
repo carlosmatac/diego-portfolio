@@ -35,15 +35,18 @@
   --header-h: 56px;
   --brand-final: 26px;
   --name-size: clamp(4.5rem, 12vw, 17rem);
-  --name-b: 2.2svh;
-  --stack-lines: 1.68;
+  --name-b: 5.5svh;
+  /* Extra leading between Diego and Prados in the large stacked name, in em. */
+  --name-lead: 0.16;
+  --stack-lines: calc(1.68 + var(--name-lead));
 }
 
 @media (max-width: 760px), (max-aspect-ratio: 4/5) {
   :root {
     --header-h: 52px;
     --name-size: clamp(2.4rem, 13vw, 6.5rem);
-    --name-b: 3.2svh;
+    --name-b: 5svh;
+    --name-lead: 0;
     --stack-lines: 0.84;
   }
 }

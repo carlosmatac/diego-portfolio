@@ -57,9 +57,9 @@ export const en = {
       { id: 'contact', label: 'Contact' },
     ],
   },
-  words: { to: 'to', present: 'present', since: 'Since' },
+  words: { to: 'to', present: 'present', since: 'Since', grade: 'GPA' },
   profile: {
-    title: ['Transatlantic policy and strategy professional with a focus on technology, industrial, and energy policy.'],
+    title: ['Transatlantic policy and strategy professional with a focus on technology, industrial, and energy sectors.'],
     paragraphs: [
       'Transatlantic policy and strategy professional with a background in international affairs, law, public-sector analysis, and geopolitical research. Experience across foreign policy, regulatory analysis, legal consultancy, and policy research. Currently pursuing an M.A. in Transatlantic Affairs at the College of Europe and Fletcher School, with a focus on technology, industrial, and energy policy. Interested in strategic and policy roles across the intersection of these sectors.',
       'Alongside his studies he has worked in the administrative law department of Garrigues, one of the best-known law firms in Spain, with the Spanish Ministry of Foreign Affairs and as a collaborating researcher at an independent media outlet on international affairs. He is a member of the Spanish Public Policy Network and coordinates a panel on industrial policy for the 2027 European Conference. In 2023 he co-founded AUGE, the geopolitics and strategy association of his university, and presided over it until June 2025.',
@@ -87,7 +87,7 @@ export const en = {
         relation: 'Degree',
         programme: 'Double Degree in International Studies and Law',
         summary:
-          'A five-year programme that pairs demanding legal training with the multidisciplinary approach of international studies: the global economy, poverty and inequality, migration and climate policy.',
+          'A five-year programme that pairs demanding legal training with a multidisciplinary approach of international studies: the global economy, poverty and inequality, migration and climate policy.',
         points: [
           'In August 2023 he co-founded AUGE, the university\u2019s geopolitics and strategy association, and became its president, a post he held until June 2025.',
         ],
@@ -109,7 +109,7 @@ export const en = {
         relation: 'Master of Arts, in progress',
         programme: 'Transatlantic Affairs (MATA)',
         summary:
-          'A two-year, 120 ECTS degree awarded jointly with The Fletcher School at Tufts University, with study at both institutions and a transatlantic internship.',
+          'A two-year, 120 ECTS degree awarded jointly with The Fletcher School at Tufts University, with a year of study at each institution.',
         points: [
           'Coursework includes European governance and institutions, European political economy, transatlantic trade and EU foresight, industrial strategy and digital policies.',
           'Thesis in progress on European chip policy, supervised by Chris Miller.',
@@ -120,7 +120,7 @@ export const en = {
         programme: 'Master of Arts in Transatlantic Affairs',
         place: 'Greater Boston, Massachusetts',
         summary:
-          'The Fletcher School is the other half of the degree. Students who begin in Bruges cross the Atlantic for a semester in the Boston area.',
+          'The Fletcher School is the other half of the degree. After the year in Bruges, Diego crosses the Atlantic for a full academic year in the Boston area.',
         points: ['From Fletcher, Diego cross-registers at Harvard Kennedy School.'],
       },
       harvard: {
@@ -135,7 +135,7 @@ export const en = {
           },
           china: {
             title: 'China\u2019s Political Economy: Industrial Policy and Corporate Strategy',
-            note: 'Edward Cunningham. Fall 2026, second half of the term, 19 October to 4 December. How business and the state interact in China, through the energy and technology sectors.',
+            note: 'Edward Cunningham. How business and the state interact in China, through the energy and technology sectors.',
           },
         },
       },
@@ -147,7 +147,7 @@ export const en = {
           relation: 'Scholarship holder, awarded twice',
           programme: 'Postgraduate studies abroad, social sciences',
           summary:
-            'The foundation\u2019s annual call funds master\u2019s and doctoral studies at universities and research centres abroad in economics, EU law and the social sciences. Diego holds it for his master\u2019s at the College of Europe and Fletcher. He appears on the foundation\u2019s list of grantees for the 2025/26 call and holds the scholarship again in 2026/27, although the public list does not show it yet.',
+            'The foundation\u2019s annual call funds master\u2019s and doctoral studies at universities and research centres abroad in economics, EU law and the social sciences. Diego holds it for his master\u2019s at the College of Europe and Fletcher.',
         },
         'madrid-excellence': {
           relation: 'Scholarship holder, awarded three times',
@@ -286,7 +286,7 @@ export const en = {
     role: [
       'Co-founder, with Aina Vallespir Bonafé, Pedro Pérez Motilla and Carla Ruiz Gutiérrez. The association was announced on 23 August 2023, with activities starting that September.',
       'President from August 2023 to June 2025.',
-      'Moderator, with Lucía Barona Bonet, of the session with the Ambassador of Japan to Spain on 6 November 2024.',
+      'Moderator of the association\u2019s seminars and guest lectures with experts in geopolitics.',
     ],
     formatTitle: 'How it works',
     format: [
